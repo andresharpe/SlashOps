@@ -1,0 +1,57 @@
+{
+  "working_dir": null,
+  "slug": "doc-06",
+  "type": "prompt",
+  "dependencies": [
+    "lt-06"
+  ],
+  "deliverables": [
+    "docs/DOCUMENTS.md"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "File present, content-complete."
+  ],
+  "prd_refs": [
+    "PRD §7.10-§7.11 (lines 1129-1171)",
+    "PRD §7.7 Required v0.2 local tools (lines 1057-1073)"
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/doc-06-documents-md.md",
+  "applicable_agents": [
+    ".claude/agents/planner.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "docs",
+    "documents",
+    "local-tools"
+  ],
+  "description": "Reference for document workflows: resolution order, local document search, summarization with chunking + citations, conversion via Pandoc, PDF inspection via Poppler.",
+  "subgroup": "documents",
+  "group": "docs",
+  "ai_hours": null,
+  "notes": [
+    "Privacy section must call out that document text is sent to local Ollama; never to a remote provider unless explicit policy is set."
+  ],
+  "steps": [
+    "Sections: resolution, search, extraction, summarization, conversion, PDF inspection, privacy.",
+    "Worked examples for each."
+  ],
+  "sequence": 6,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 100,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "XS",
+  "name": "[doc-06] docs/DOCUMENTS.md",
+  "id": "0c9b74bd-8d74-4fd9-9909-078081e92b7e",
+  "plan_path": ".bot/workspace/plans/doc-06-docsdocumentsmd-0c9b74bd-plan.md"
+}

@@ -1,0 +1,68 @@
+{
+  "working_dir": null,
+  "slug": "lt-09",
+  "type": "prompt",
+  "dependencies": [
+    "tr-03"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Data/Invoke-CsvInspect.ps1",
+    "src/SlashOps/ToolManifests/csv.inspect.json",
+    "tests/Unit/Tools.Data.CsvInspect.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.7 Required v0.2 local tools (lines 1057-1073)",
+    "§7.7 — tool list."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/lt-09-csv-inspect.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "tool",
+    "csv",
+    "data"
+  ],
+  "description": "Inspect CSV / TSV shape: detected delimiter, header, row count, sample rows, column types inferred from a small sample. Read-only; fast-mode eligible.",
+  "subgroup": "data",
+  "group": "local-tools",
+  "ai_hours": null,
+  "notes": [
+    "Avoid loading whole large CSVs — read first N lines for inspection."
+  ],
+  "steps": [
+    "TDD: Detects comma vs tab delimiter.",
+    "TDD: Returns header.",
+    "TDD: Returns row count.",
+    "TDD: Returns first N sample rows.",
+    "TDD: Infers column types (int / float / date / string) from sample.",
+    "TDD: Manifest passes validation.",
+    "Author `Private/Tools/Data/Invoke-CsvInspect.ps1` using `Import-Csv` after delimiter detection.",
+    "Author manifest.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 9,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 39,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[lt-09] csv.inspect tool",
+  "id": "a506c67c-a318-4d27-9262-d36c016c4065",
+  "plan_path": ".bot/workspace/plans/lt-09-csvinspect-tool-a506c67c-plan.md"
+}

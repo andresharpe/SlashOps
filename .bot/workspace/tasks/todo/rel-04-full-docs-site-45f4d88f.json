@@ -1,0 +1,67 @@
+{
+  "working_dir": null,
+  "slug": "rel-04",
+  "type": "prompt",
+  "dependencies": [
+    "doc-01",
+    "doc-02",
+    "doc-03",
+    "doc-04",
+    "doc-05",
+    "doc-06",
+    "doc-07",
+    "doc-08"
+  ],
+  "deliverables": [
+    "docs/_config.yml (or equivalent)",
+    ".github/workflows/docs.yml"
+  ],
+  "created_at": "2026-04-26T09:01:22Z",
+  "acceptance_criteria": [
+    "Site builds.",
+    "All docs reachable."
+  ],
+  "prd_refs": [
+    "PRD §16 v1.0 full docs site (line 2954)",
+    "§16 — v1.0 scope."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/rel-04-docs-site.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v1.0",
+    "docs",
+    "site"
+  ],
+  "description": "Publish the `docs/` tree as a docs site (GitHub Pages or similar). Auto-build on every push to `main`. Side-bar mirrors the docs tree from PRD §10.1.",
+  "subgroup": "docs-site",
+  "group": "release",
+  "ai_hours": null,
+  "notes": [
+    "Decide whether the PRD itself ships in the docs site; if yes, redact internal-only sections first."
+  ],
+  "steps": [
+    "Choose Jekyll / MkDocs / Docusaurus; default to MkDocs Material for simplicity.",
+    "Author config.",
+    "Add a docs-build workflow."
+  ],
+  "sequence": 4,
+  "applicable_decisions": [],
+  "version": "v1.0",
+  "priority": 89,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:28Z",
+  "status": "todo",
+  "effort": "L",
+  "name": "[rel-04] Full docs site",
+  "id": "45f4d88f-935f-409e-b5dc-6211e820d153",
+  "plan_path": ".bot/workspace/plans/rel-04-full-docs-site-45f4d88f-plan.md"
+}

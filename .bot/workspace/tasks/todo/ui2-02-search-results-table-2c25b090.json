@@ -1,0 +1,66 @@
+{
+  "working_dir": null,
+  "slug": "ui2-02",
+  "type": "prompt",
+  "dependencies": [
+    "ui-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/UI/Write-SlashOpsSearchResults.ps1",
+    "tests/Unit/UI.SearchResults.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.16 Tool result UI (lines 1259-1269)",
+    "PRD §7.11 Local document search (lines 1153-1171)",
+    "§7.16 — search results UI.",
+    "§7.11 — local document search ranking."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ui2-02-search-results-table.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "ui-ux",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "ui",
+    "search",
+    "fxconsole"
+  ],
+  "description": "Render ranked search results — used by file search, document search, mail search. Columns are tool-specific (file: name / size / modified / path; mail: sender / subject / received / folder / snippet) but the helper accepts a column spec so each tool can configure its own.",
+  "subgroup": "search",
+  "group": "ui2",
+  "ai_hours": null,
+  "notes": [
+    "Avoid rendering full snippets; truncate to keep terminals readable."
+  ],
+  "steps": [
+    "TDD: Renders rows with the supplied column spec.",
+    "TDD: Renders rank column when ranking metadata present.",
+    "TDD: Truncates long snippets to a configurable width.",
+    "TDD: Honours `ui.useFxConsole = false` fallback.",
+    "Author `Private/UI/Write-SlashOpsSearchResults.ps1` calling `Write-FxTable`.",
+    "Tests stub FxConsole."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 32,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ui2-02] Search results table",
+  "id": "2c25b090-9db3-4b2c-9415-3e7470ecea6c",
+  "plan_path": ".bot/workspace/plans/ui2-02-search-results-table-2c25b090-plan.md"
+}

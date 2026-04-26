@@ -1,0 +1,64 @@
+{
+  "working_dir": null,
+  "slug": "pub-03",
+  "type": "prompt",
+  "dependencies": [
+    "pub-02"
+  ],
+  "deliverables": [
+    "build/publish-local.ps1",
+    "tests/Integration/PublishLocal.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:22Z",
+  "acceptance_criteria": [
+    "Cycle completes end-to-end.",
+    "Imported module exposes the expected cmdlets."
+  ],
+  "prd_refs": [
+    "PRD §12.2 Local publish test (lines 2742-2754)",
+    "§12.2 — exact command sequence."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/pub-03-local-psrepo-test.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "publish",
+    "smoke",
+    "local"
+  ],
+  "description": "Use a local PSRepository under `.local-psrepo/` to validate `Publish-Module` produces an installable artefact. After publish, install it into a temp scope and import to confirm cmdlets resolve.",
+  "subgroup": "scripts",
+  "group": "publish",
+  "ai_hours": null,
+  "notes": [
+    "Clean up `.local-psrepo/` between runs to avoid version-pinning surprises."
+  ],
+  "steps": [
+    "TDD: `.local-psrepo/` is created if missing.",
+    "TDD: `Publish-Module` succeeds.",
+    "TDD: `Find-Module SlashOps -Repository SlashOpsLocal` returns the published version.",
+    "TDD: `Install-Module ... -Scope CurrentUser -Force` succeeds.",
+    "TDD: `Import-Module SlashOps` after install resolves all public cmdlets.",
+    "Author `build/publish-local.ps1` per §12.2.",
+    "Integration test runs the full cycle."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 13,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[pub-03] Local PSRepository smoke test",
+  "id": "d9e7c5cd-8bd5-41b8-a0c1-dd4dd708e696",
+  "plan_path": ".bot/workspace/plans/pub-03-local-psrepository-smoke-test-d9e7c5cd-plan.md"
+}

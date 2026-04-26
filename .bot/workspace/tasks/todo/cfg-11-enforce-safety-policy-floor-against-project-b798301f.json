@@ -1,0 +1,72 @@
+{
+  "working_dir": null,
+  "slug": "cfg-11",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-07"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/Test-SafetyFloor.ps1",
+    "tests/Unit/Config.SafetyFloor.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "All TDD bullets pass.",
+    "Floor violations propagate as structured errors.",
+    "`Get-EffectiveConfig` refuses to return a config that violates the floor."
+  ],
+  "prd_refs": [
+    "PRD §9.7 Project config rules (lines 2022-2030)",
+    "PRD §9.12 Config and safety interaction (lines 2178-2188)",
+    "§9.7 — project config rules.",
+    "§9.12 — explicit safety floor list."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg-11-safety-floor.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "config",
+    "safety",
+    "policy",
+    "floor"
+  ],
+  "description": "After merging, validate that the effective configuration does not violate the hard safety floor: remote script execution, privilege elevation, encoded commands, broad protected-root deletion, cloud mutation in `/x`, and package install in `/x` cannot be enabled. Project config can only relax `protectedRoots` when user policy sets `allowProjectPolicyRelaxation = true`.",
+  "subgroup": "safety",
+  "group": "config",
+  "ai_hours": null,
+  "notes": [
+    "This task is the last line of defence — keep the rule list tight and append-only.",
+    "Document which rules are floor (immutable) vs configurable in `docs/SAFETY.md` (doc-01)."
+  ],
+  "steps": [
+    "TDD: Effective config with `policy.blockedBehavior.blockRemoteScriptExecution = false` is rejected.",
+    "TDD: Project config attempting to remove `~/.ssh` from `protectedRoots` is rejected when user policy disallows relaxation.",
+    "TDD: Project config can add safe write roots inside the project (per §9.7).",
+    "TDD: Project config can add stricter regex patterns (per §9.7).",
+    "TDD: CLI override cannot disable `blockedBehavior.blockCloudMutationInFastMode`.",
+    "TDD: Floor violation surfaces as a structured error, not a silent override.",
+    "Author `Private/Config/Test-SafetyFloor.ps1` taking `(Effective, Sources)` and returning `Passed/Errors/Warnings`.",
+    "Wire it into `Get-EffectiveConfig` post-merge — failure prevents callers from using the merged config.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 11,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 21,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg-11] Enforce safety policy floor against project / CLI overrides",
+  "id": "b798301f-367c-4e6e-9793-624a76fbec24",
+  "plan_path": ".bot/workspace/plans/cfg-11-enforce-safety-policy-floor-against-project-b798301f-plan.md"
+}

@@ -1,0 +1,82 @@
+{
+  "working_dir": null,
+  "slug": "cfg-04",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-02",
+    "cfg-03"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/Read-Config.ps1",
+    "src/SlashOps/Private/Config/Test-ConfigSchema.ps1",
+    "src/SlashOps/Private/Config/Test-PolicySchema.ps1",
+    "tests/Unit/Config.ReadValidate.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "All TDD tests pass.",
+    "Validators return structured results, not bare booleans.",
+    "No mutation of the input file."
+  ],
+  "prd_refs": [
+    "PRD §9.4 User config schema (lines 1691-1776)",
+    "PRD §9.6 Policy config schema (lines 1869-1987)",
+    "PRD §9.8 Test-SlashOpsConfig (lines 2097-2108)",
+    "PRD §9.10 Config migration (lines 2141-2157)",
+    "§9.4 — required user config fields.",
+    "§9.6 — required policy fields.",
+    "§9.8 `Test-SlashOpsConfig` semantics.",
+    "§9.10 — refusal of unknown future schemas without modification."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg-04-read-validate-config.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "config",
+    "validation",
+    "schema",
+    "io"
+  ],
+  "description": "Read user config and policy from disk and validate them against the v1 schema. Validation must catch invalid JSON, missing required fields, malformed endpoint URI, non-positive durations, regex compilation failures, and unknown future schema versions. Failure must be structured (not just exceptions) so callers can present remediation.",
+  "subgroup": "io",
+  "group": "config",
+  "ai_hours": null,
+  "notes": [
+    "Use `[uri]::IsWellFormedUriString` for endpoint check; tolerate trailing slashes.",
+    "Avoid `Test-Json` since older PS 7 versions vary; do explicit shape checks instead."
+  ],
+  "steps": [
+    "TDD: Valid config round-trip parses without error.",
+    "TDD: Invalid JSON returns `Passed = $false` with parse-error message.",
+    "TDD: Invalid schema version (not `\"1\"` and not future-known) returns `Passed = $false`.",
+    "TDD: Future schema version (e.g. `\"99\"`) returns `Passed = $false` with refusal note (per §9.10).",
+    "TDD: Missing required field returns `Passed = $false` listing the field path.",
+    "TDD: Endpoint not matching URI format returns `Passed = $false`.",
+    "TDD: Negative timeouts/cache durations are rejected.",
+    "TDD: Policy regex patterns that fail to compile are rejected.",
+    "Author `Private/Config/Read-Config.ps1` returning a parsed object or throwing a structured `[pscustomobject]@{ Passed; Errors; Warnings; Path }` per §9.8.",
+    "Author `Private/Config/Test-ConfigSchema.ps1` and `Test-PolicySchema.ps1` returning the same structured shape.",
+    "Use `ConvertFrom-Json -AsHashtable` for stable shape; convert back to `pscustomobject` only at API boundaries.",
+    "Tests cover every TDD bullet using `TestDrive:` and seeded JSON files."
+  ],
+  "sequence": 4,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 14,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg-04] Read and validate config + policy JSON",
+  "id": "005f7cf2-49c1-4e20-bd53-cbdaa6f2b2d1",
+  "plan_path": ".bot/workspace/plans/cfg-04-read-and-validate-config-policy-json-005f7cf2-plan.md"
+}

@@ -1,0 +1,62 @@
+{
+  "working_dir": null,
+  "slug": "pub-04",
+  "type": "prompt",
+  "dependencies": [
+    "pub-03"
+  ],
+  "deliverables": [
+    "build/publish.ps1 (final)",
+    "tests/Integration/PublishGallery.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:22Z",
+  "acceptance_criteria": [
+    "All TDD bullets pass."
+  ],
+  "prd_refs": [
+    "PRD §12.3 Gallery publish (lines 2755-2772)",
+    "§12.3 — Gallery publish requirements."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/pub-04-psgallery-publish.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "publish",
+    "psgallery",
+    "release"
+  ],
+  "description": "Final `build/publish.ps1` that publishes to PSGallery using `$env:PSGALLERY_API_KEY`. Refuses to publish a dirty tree unless `-Force`. Supports `-WhatIf`. Displays version + repository before invoking `Publish-Module`.",
+  "subgroup": "scripts",
+  "group": "publish",
+  "ai_hours": null,
+  "notes": [
+    "Never log the API key. Use `[SecureString]` or read directly from env at the call site."
+  ],
+  "steps": [
+    "TDD: `-WhatIf` prints planned actions and does not call `Publish-Module`.",
+    "TDD: Dirty tree without `-Force` aborts.",
+    "TDD: Missing `PSGALLERY_API_KEY` aborts with remediation.",
+    "TDD: Version + repository displayed before publish.",
+    "Replace the skeleton from `f-06` with the full implementation.",
+    "Integration test mocks `Publish-Module` to verify the surrounding logic."
+  ],
+  "sequence": 4,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 14,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[pub-04] PSGallery publish wrapper",
+  "id": "21ec5a6b-bbe0-4738-ad75-ea7dd95d7a1b",
+  "plan_path": ".bot/workspace/plans/pub-04-psgallery-publish-wrapper-21ec5a6b-plan.md"
+}

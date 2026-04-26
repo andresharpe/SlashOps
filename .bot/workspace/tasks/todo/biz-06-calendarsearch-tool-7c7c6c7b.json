@@ -1,0 +1,66 @@
+{
+  "working_dir": null,
+  "slug": "biz-06",
+  "type": "prompt",
+  "dependencies": [
+    "biz-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Outlook/Invoke-CalendarSearch.ps1",
+    "src/SlashOps/ToolManifests/calendar.search.json",
+    "tests/Unit/Tools.Calendar.Search.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.8 Optional v0.3 business/dev tools (lines 1076-1090)",
+    "§7.8 — tool list."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/biz-06-calendar-search.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.3",
+    "calendar",
+    "search",
+    "read-only"
+  ],
+  "description": "Search calendar items via the resolved provider. Read-only; fast-mode eligible.",
+  "subgroup": "calendar",
+  "group": "business",
+  "ai_hours": null,
+  "notes": [
+    "Recurring events: return expanded instances within the requested range, not the master event."
+  ],
+  "steps": [
+    "TDD: Disabled by default.",
+    "TDD: Enabled → returns events between given dates (mocked).",
+    "TDD: Honours timezone context.",
+    "TDD: Manifest passes validation.",
+    "Author the tool function.",
+    "Author manifest.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 6,
+  "applicable_decisions": [],
+  "version": "v0.3",
+  "priority": 56,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[biz-06] calendar.search tool",
+  "id": "7c7c6c7b-98e3-4bf3-8a61-806e03b640ea",
+  "plan_path": ".bot/workspace/plans/biz-06-calendarsearch-tool-7c7c6c7b-plan.md"
+}

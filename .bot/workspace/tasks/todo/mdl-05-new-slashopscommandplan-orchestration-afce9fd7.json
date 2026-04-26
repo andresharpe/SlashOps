@@ -1,0 +1,70 @@
+{
+  "working_dir": null,
+  "slug": "mdl-05",
+  "type": "prompt",
+  "dependencies": [
+    "mdl-03",
+    "mdl-04"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/New-SlashOpsCommandPlan.ps1",
+    "tests/Unit/Model.CommandPlan.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Function exported.",
+    "Returns structured fail-closed on parse failure."
+  ],
+  "prd_refs": [
+    "PRD §6.5 Model request contract (lines 550-583)",
+    "PRD §6.1 Module commands — Safety functions (lines 430-441)",
+    "§6.5 — schema.",
+    "§6.1 — public function name."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/mdl-05-generate-command-plan.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "model",
+    "plan",
+    "generation",
+    "orchestration"
+  ],
+  "description": "Tie the model layer together for v0.1 single-step shell flow: build context (ctx-05) → assemble system prompt (mdl-03) → call Ollama (mdl-02) → parse with repair (mdl-04) → emit a `CommandPlan` matching the §6.5 schema. The result is what the safety pipeline (saf-*) consumes.",
+  "subgroup": "plan",
+  "group": "model",
+  "ai_hours": null,
+  "notes": [
+    "Keep this function shell-only for v0.1; tool-using plans land in `tr-06`."
+  ],
+  "steps": [
+    "TDD: Happy path returns a populated `CommandPlan` object.",
+    "TDD: Mocked Ollama returning malformed JSON triggers repair, then succeeds.",
+    "TDD: Mocked Ollama returning unrecoverable JSON returns a fail-closed result.",
+    "TDD: Mode is recorded in the plan.",
+    "TDD: Plan includes `summary`, `command`, `risk_guess`, `requires_tools`, `expected_outputs`, `undo_hint` per §6.5.",
+    "Author `Public/New-SlashOpsCommandPlan.ps1` orchestrating the steps above and returning a structured object.",
+    "Tests mock `Invoke-OllamaChat` exhaustively."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 15,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[mdl-05] New-SlashOpsCommandPlan orchestration",
+  "id": "afce9fd7-4979-47c1-ba16-2b2642feb4df",
+  "plan_path": ".bot/workspace/plans/mdl-05-new-slashopscommandplan-orchestration-afce9fd7-plan.md"
+}

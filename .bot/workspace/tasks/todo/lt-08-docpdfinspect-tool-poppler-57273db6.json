@@ -1,0 +1,66 @@
+{
+  "working_dir": null,
+  "slug": "lt-08",
+  "type": "prompt",
+  "dependencies": [
+    "tr-03"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Documents/Invoke-PdfInspect.ps1",
+    "src/SlashOps/ToolManifests/doc.pdf.inspect.json",
+    "tests/Unit/Tools.Doc.PdfInspect.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.7 Required v0.2 local tools (lines 1057-1073)",
+    "§7.7 — tool list."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/lt-08-doc-pdf-inspect.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "tool",
+    "pdf",
+    "poppler"
+  ],
+  "description": "Inspect a PDF: page count, metadata, optional table-of-contents extraction via `pdfinfo` and `pdftotext` from Poppler. Read-only; fast-mode eligible.",
+  "subgroup": "documents",
+  "group": "local-tools",
+  "ai_hours": null,
+  "notes": [
+    "Some PDFs strip metadata; tolerate empty fields."
+  ],
+  "steps": [
+    "TDD: Returns `pages`, `title`, `author`, `creation_date`.",
+    "TDD: Missing `pdfinfo` → `needs_dependency` observation.",
+    "TDD: Refuses non-PDF inputs.",
+    "TDD: Manifest passes validation.",
+    "Author the tool function invoking `pdfinfo` and parsing output.",
+    "Author manifest with `required_commands: ['pdfinfo']`.",
+    "Tests mock external invocation."
+  ],
+  "sequence": 8,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 38,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[lt-08] doc.pdf.inspect tool (Poppler)",
+  "id": "57273db6-e469-4023-9949-f161c31d36df",
+  "plan_path": ".bot/workspace/plans/lt-08-docpdfinspect-tool-poppler-57273db6-plan.md"
+}

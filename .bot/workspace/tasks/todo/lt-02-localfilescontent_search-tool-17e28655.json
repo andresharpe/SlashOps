@@ -1,0 +1,68 @@
+{
+  "working_dir": null,
+  "slug": "lt-02",
+  "type": "prompt",
+  "dependencies": [
+    "lt-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Local/Invoke-LocalFilesContentSearch.ps1",
+    "src/SlashOps/ToolManifests/local.files.content_search.json",
+    "tests/Unit/Tools.Local.ContentSearch.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Manifest valid."
+  ],
+  "prd_refs": [
+    "PRD §7.7 Required v0.2 local tools (lines 1057-1073)",
+    "§7.7 — tool list."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/lt-02-local-files-content-search.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "tool",
+    "files",
+    "search",
+    "content"
+  ],
+  "description": "Search text content within text files (TXT, MD, HTML, JSON, YAML, CSV) using `Select-String` or `rg` when available. Refuses binary files. Read-only; fast-mode eligible.",
+  "subgroup": "files",
+  "group": "local-tools",
+  "ai_hours": null,
+  "notes": [
+    "For PDFs and DOCX use `doc.text.extract` first (lt-05); this tool sticks to plain text."
+  ],
+  "steps": [
+    "TDD: Returns matches with file, line number, snippet.",
+    "TDD: Skips binary files.",
+    "TDD: Uses `rg` when available, falls back to `Select-String`.",
+    "TDD: Manifest passes validation.",
+    "Author the tool function.",
+    "Author the manifest with `required_commands: []` (rg is optional, fall back to Select-String).",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 32,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[lt-02] local.files.content_search tool",
+  "id": "17e28655-fe55-4ad5-8f93-fd4f89bc24fb",
+  "plan_path": ".bot/workspace/plans/lt-02-localfilescontent_search-tool-17e28655-plan.md"
+}

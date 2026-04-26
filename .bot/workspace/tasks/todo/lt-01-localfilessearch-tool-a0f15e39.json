@@ -1,0 +1,71 @@
+{
+  "working_dir": null,
+  "slug": "lt-01",
+  "type": "prompt",
+  "dependencies": [
+    "tr-03"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Local/Invoke-LocalFilesSearch.ps1",
+    "src/SlashOps/ToolManifests/local.files.search.json",
+    "tests/Unit/Tools.Local.FilesSearch.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Manifest valid."
+  ],
+  "prd_refs": [
+    "PRD §7.7 Required v0.2 local tools (lines 1057-1073)",
+    "PRD §11.3 Local/document tools tests (lines 2638-2651)",
+    "§7.7 — tool list.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/lt-01-local-files-search.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "tool",
+    "files",
+    "search"
+  ],
+  "description": "Search local files by root, extension list, modified-on-or-after, name fragment. Read-only; fast-mode eligible. Used by document search workflows and direct shell-like prompts.",
+  "subgroup": "files",
+  "group": "local-tools",
+  "ai_hours": null,
+  "notes": [
+    "Use `Get-ChildItem -File -Recurse:$false` by default; recurse only on explicit input."
+  ],
+  "steps": [
+    "TDD: Resolves `~/Downloads` correctly.",
+    "TDD: Filters by today using timezone context (per §7.11).",
+    "TDD: Ranks by recency and keyword match.",
+    "TDD: Returns structured rows with `Name`, `LastWriteTime`, `Length`, `FullName`.",
+    "TDD: Refuses to search outside safe roots (delegates to path policy).",
+    "TDD: Manifest passes `Test-SlashOpsToolManifest`.",
+    "Author `Private/Tools/Local/Invoke-LocalFilesSearch.ps1`.",
+    "Author the manifest with `default_risk: read-only`, `supports_fast_mode: true`.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 31,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[lt-01] local.files.search tool",
+  "id": "a0f15e39-acf9-429a-a958-a73cc8f45fa2",
+  "plan_path": ".bot/workspace/plans/lt-01-localfilessearch-tool-a0f15e39-plan.md"
+}

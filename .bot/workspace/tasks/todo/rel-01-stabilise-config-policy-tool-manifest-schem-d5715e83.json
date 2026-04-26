@@ -1,0 +1,63 @@
+{
+  "working_dir": null,
+  "slug": "rel-01",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-10"
+  ],
+  "deliverables": [
+    "docs/SCHEMAS.md",
+    "tests/Unit/Schemas.Stability.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Schema doc complete."
+  ],
+  "prd_refs": [
+    "PRD §16 v1.0 stable schemas (lines 2949-2952)",
+    "§16 — v1.0 scope."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/rel-01-stabilize-schemas.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v1.0",
+    "schema",
+    "stability"
+  ],
+  "description": "Freeze the v1 schemas for config, policy, and tool manifest. Add tests asserting the public surface (top-level keys, required fields) does not regress. Document the SemVer policy for future schema bumps.",
+  "subgroup": "schemas",
+  "group": "release",
+  "ai_hours": null,
+  "notes": [
+    "Schema bumps are breaking changes — bump `SchemaMajorVersion` and add a migration in `cfg-10`."
+  ],
+  "steps": [
+    "TDD: Snapshot test of default config keys.",
+    "TDD: Snapshot test of default policy keys.",
+    "TDD: Snapshot test of tool manifest required fields.",
+    "TDD: Migration path from `\"1\"` to a future `\"2\"` documented.",
+    "Add snapshot tests.",
+    "Author `docs/SCHEMAS.md` describing the schemas and migration policy."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v1.0",
+  "priority": 86,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[rel-01] Stabilise config / policy / tool-manifest schemas",
+  "id": "d5715e83-0c95-4702-b6b0-106fc7d1601e",
+  "plan_path": ".bot/workspace/plans/rel-01-stabilise-config-policy-tool-manifest-schem-d5715e83-plan.md"
+}

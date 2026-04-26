@@ -1,0 +1,75 @@
+{
+  "working_dir": null,
+  "slug": "f-03",
+  "type": "prompt",
+  "dependencies": [
+    "f-02"
+  ],
+  "deliverables": [
+    "build/test.ps1",
+    "tests/PesterConfig.ps1",
+    "tests/_helpers/MockHelpers.ps1",
+    "tests/Unit/.gitkeep",
+    "tests/Integration/.gitkeep"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Harness runs zero tests cleanly on Windows + Linux.",
+    "Integration tests excluded by default.",
+    "Mock helpers are reusable from any unit test file.",
+    "Output XML written to `tests/_results/unit.xml` (gitignored)."
+  ],
+  "prd_refs": [
+    "PRD §3.5 Pester and TDD (lines 187-201)",
+    "PRD §11 TDD plan with Pester (lines 2487-2722)",
+    "§3.5: required Pester features (`Describe`, `Context`, `It`, `BeforeAll`, `Mock`, `Should -Invoke`).",
+    "§11.2: tests must avoid writing outside `TestDrive:` or temp directories.",
+    "§11.4: integration tests gated by `SLASHOPS_RUN_INTEGRATION = '1'`."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/f-03-pester-harness.md",
+  "applicable_agents": [
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "foundation",
+    "pester",
+    "tdd",
+    "testing"
+  ],
+  "description": "Stand up the Pester 5+ test harness so every subsequent task can land tests first. The harness must work cross-platform, never write outside `TestDrive:` or system temp, and skip integration tests by default (require `SLASHOPS_RUN_INTEGRATION=1`).",
+  "subgroup": "testing",
+  "group": "foundation",
+  "ai_hours": null,
+  "notes": [
+    "Pester v5 syntax differs sharply from v4 — pin the minimum version in the config.",
+    "Avoid `Set-StrictMode -Version Latest` globally; opt-in per test file."
+  ],
+  "steps": [
+    "TDD: `pwsh -File ./build/test.ps1` exits 0 with zero tests defined.",
+    "TDD: `Invoke-Pester -Path ./tests/Unit` finds and runs zero tests cleanly.",
+    "TDD: Setting `$env:SLASHOPS_RUN_INTEGRATION = '1'` enables `-Tag Integration` runs; otherwise they are excluded.",
+    "TDD: Mock helpers from `tests/_helpers/MockHelpers.ps1` are dot-sourceable from any test file.",
+    "Author `tests/PesterConfig.ps1` returning a Pester `Configuration` object with: `Run.Path = ./tests/Unit`, `Output.Verbosity = 'Detailed'`, `Run.PassThru = $true`, `TestResult.Enabled = $true`, `TestResult.OutputPath = ./tests/_results/unit.xml`.",
+    "Author `build/test.ps1` that imports Pester, applies the config, optionally appends Integration path when `$env:SLASHOPS_RUN_INTEGRATION -eq '1'`, and exits non-zero on failures.",
+    "Author `tests/_helpers/MockHelpers.ps1` with utility mocks: `Mock-OllamaChat`, `Mock-GetCommand`, `Mock-FileSystemUnderTestDrive`. Each must be a parameterised function callable from `BeforeAll`.",
+    "Add `.gitkeep` to `tests/Unit/` and `tests/Integration/`."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "n/a",
+  "priority": 3,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:22Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[f-03] Pester 5+ test harness and conventions",
+  "id": "12541f3b-39ca-40a0-a87c-d57567450b3e",
+  "plan_path": ".bot/workspace/plans/f-03-pester-5-test-harness-and-conventions-12541f3b-plan.md"
+}

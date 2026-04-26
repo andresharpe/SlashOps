@@ -1,0 +1,68 @@
+{
+  "working_dir": null,
+  "slug": "cfg-09",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-07"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Get-SlashOpsEffectiveConfig.ps1",
+    "tests/Unit/Config.Effective.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Plain and detailed forms work.",
+    "Source attribution covers every leaf.",
+    "Tests pass."
+  ],
+  "prd_refs": [
+    "PRD §9.8 Get-SlashOpsEffectiveConfig (lines 2057-2062)",
+    "PRD §9.13 effective config source attribution (line 2213)",
+    "§9.8 — `Get-SlashOpsEffectiveConfig` requirements (`-Detailed` source attribution, project-config-found indicator).",
+    "§9.13 — TDD: source attribution."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg-09-effective-config-cmd.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "config",
+    "effective",
+    "source-attribution"
+  ],
+  "description": "Public command that returns the merged effective configuration. With `-Detailed`, the output includes per-leaf source attribution so the user can see which layer (default / user / policy / project / env / CLI) determined each value, plus whether project config was discovered.",
+  "subgroup": "public",
+  "group": "config",
+  "ai_hours": null,
+  "notes": [
+    "Source attribution adds non-trivial size; ensure it is emitted only with `-Detailed`."
+  ],
+  "steps": [
+    "TDD: Plain call returns the effective config object.",
+    "TDD: `-Detailed` returns object with `Effective` and `Sources` members.",
+    "TDD: `Sources` covers every leaf path in `Effective`.",
+    "TDD: `-Detailed` reports `ProjectConfigPath` when found, `$null` when not.",
+    "TDD: Output is deterministic for a given input set.",
+    "Author `Public/Get-SlashOpsEffectiveConfig.ps1` thin-wrapping `Private/Config/Get-EffectiveConfig.ps1`.",
+    "Pester tests using seeded layers in `TestDrive:`."
+  ],
+  "sequence": 9,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 19,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg-09] Get-SlashOpsEffectiveConfig with source attribution",
+  "id": "af5b441e-0b6d-4e02-82c8-2258cf7876e3",
+  "plan_path": ".bot/workspace/plans/cfg-09-get-slashopseffectiveconfig-with-source-att-af5b441e-plan.md"
+}

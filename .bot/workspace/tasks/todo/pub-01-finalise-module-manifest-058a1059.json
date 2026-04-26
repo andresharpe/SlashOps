@@ -1,0 +1,69 @@
+{
+  "working_dir": null,
+  "slug": "pub-01",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-08",
+    "exe-04",
+    "set-05",
+    "ux-07"
+  ],
+  "deliverables": [
+    "src/SlashOps/SlashOps.psd1 (update)",
+    "tests/Unit/Manifest.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Manifest valid."
+  ],
+  "prd_refs": [
+    "PRD §8.2 Module manifest requirements (lines 1309-1337)",
+    "PRD §12.1 Pre-publish checklist (lines 2727-2742)",
+    "§8.2 — manifest schema.",
+    "§12.1 — pre-publish requirements."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/pub-01-finalize-manifest.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "publish",
+    "manifest",
+    "gallery"
+  ],
+  "description": "Update `SlashOps.psd1` with the final list of `FunctionsToExport`, `AliasesToExport`, tags, project URI, license URI, and release notes. Validate via `Test-ModuleManifest` and assert that every cmdlet exported actually exists.",
+  "subgroup": "manifest",
+  "group": "publish",
+  "ai_hours": null,
+  "notes": [
+    "Remember to update `ModuleVersion` on every release per SemVer."
+  ],
+  "steps": [
+    "TDD: `Test-ModuleManifest` returns truthy.",
+    "TDD: `FunctionsToExport` lists every public function file in `Public/`.",
+    "TDD: `AliasesToExport` includes `/`, `//`, `/x`, `/!`, `/?`.",
+    "TDD: Tags include the documented set.",
+    "TDD: LicenseUri and ProjectUri set.",
+    "Update the manifest from `f-02` with the final exports.",
+    "Pester test asserts the cmdlet list matches `Get-ChildItem Public/*.ps1`."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 11,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[pub-01] Finalise module manifest",
+  "id": "058a1059-edb8-4533-a553-c0f39af20168",
+  "plan_path": ".bot/workspace/plans/pub-01-finalise-module-manifest-058a1059-plan.md"
+}

@@ -1,0 +1,66 @@
+{
+  "working_dir": null,
+  "slug": "biz-07",
+  "type": "prompt",
+  "dependencies": [
+    "biz-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Outlook/Invoke-CalendarDraftEvent.ps1",
+    "src/SlashOps/ToolManifests/calendar.draft_event.json",
+    "tests/Unit/Tools.Calendar.DraftEvent.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.8 Optional v0.3 business/dev tools (lines 1076-1090)",
+    "§7.8 — tool list."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/biz-07-calendar-draft-event.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.3",
+    "calendar",
+    "draft",
+    "event"
+  ],
+  "description": "Produce a calendar event payload (title, time, attendees, body) without creating the event. Creation requires confirmation in a separate `calendar.create_event` tool (out of scope for v0.3 first cut).",
+  "subgroup": "calendar",
+  "group": "business",
+  "ai_hours": null,
+  "notes": [
+    "Defer attendee resolution (email lookup) to a follow-up task."
+  ],
+  "steps": [
+    "TDD: Returns structured payload with required fields.",
+    "TDD: Never creates the event.",
+    "TDD: Time fields use ISO 8601.",
+    "TDD: Manifest passes validation.",
+    "Author the tool function.",
+    "Author manifest.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 7,
+  "applicable_decisions": [],
+  "version": "v0.3",
+  "priority": 57,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[biz-07] calendar.draft_event tool",
+  "id": "3a33b7c2-6cc4-4cf3-bd25-7332da2f8e6b",
+  "plan_path": ".bot/workspace/plans/biz-07-calendardraft_event-tool-3a33b7c2-plan.md"
+}

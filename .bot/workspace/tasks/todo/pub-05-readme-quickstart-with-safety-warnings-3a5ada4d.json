@@ -1,0 +1,67 @@
+{
+  "working_dir": null,
+  "slug": "pub-05",
+  "type": "prompt",
+  "dependencies": [
+    "ux-02",
+    "set-05"
+  ],
+  "deliverables": [
+    "README.md (final)"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "README sections present.",
+    "Examples runnable.",
+    "Safety warnings are above-the-fold."
+  ],
+  "prd_refs": [
+    "PRD §12.1 README requirement (line 2733)",
+    "PRD §15.1 v0.1 acceptance criterion 16 (line 2862)",
+    "§12.1 — README must include installation, quickstart, safety, examples.",
+    "§15.1 #16 — v0.1 acceptance."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/pub-05-readme-quickstart.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "publish",
+    "readme",
+    "docs",
+    "quickstart"
+  ],
+  "description": "Replace the placeholder README from `f-01` with installation, quickstart, prefix table, safety warnings, and three example flows (read-only `/x`, benign-write `/x`, blocked refusal). Cross-link `docs/SAFETY.md`, `docs/CONFIGURATION.md`.",
+  "subgroup": "docs",
+  "group": "publish",
+  "ai_hours": null,
+  "notes": [
+    "Keep README under ~300 lines; deeper material lives in `docs/`."
+  ],
+  "steps": [
+    "Write installation block: `Install-Module SlashOps -Scope CurrentUser`.",
+    "Write quickstart: `Initialize-SlashOps`, then a sample `/x` invocation.",
+    "Document the prefix table (mirrors §5.1).",
+    "Add the safety warnings panel: local-only by default, fail-closed, `/x` is bounded.",
+    "Three example flows.",
+    "Link to `docs/SAFETY.md`, `docs/CONFIGURATION.md`, `docs/AGENT_RUNTIME.md`."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 15,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[pub-05] README quickstart with safety warnings",
+  "id": "3a5ada4d-c050-41fd-8eb2-46b70d0d09a3",
+  "plan_path": ".bot/workspace/plans/pub-05-readme-quickstart-with-safety-warnings-3a5ada4d-plan.md"
+}

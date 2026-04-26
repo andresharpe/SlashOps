@@ -1,0 +1,70 @@
+{
+  "working_dir": null,
+  "slug": "tr-03",
+  "type": "prompt",
+  "dependencies": [
+    "tr-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Get-SlashOpsTool.ps1",
+    "src/SlashOps/Public/Test-SlashOpsTool.ps1",
+    "src/SlashOps/Public/Invoke-SlashOpsTool.ps1",
+    "src/SlashOps/Public/Register-SlashOpsTool.ps1",
+    "tests/Unit/Tools.PublicCmds.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Cmdlets exported."
+  ],
+  "prd_refs": [
+    "PRD §6.1 Agent and registered tools (lines 463-476)",
+    "PRD §7.6 Tool registry (lines 1019-1055)",
+    "§6.1 — public function names."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/tr-03-tool-public-cmds.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "tools",
+    "public-api"
+  ],
+  "description": "Expose registry diagnostics and direct tool invocation via public cmdlets. `Register-SlashOpsTool` is reserved for the built-in registration path in v0.2 (user / project tools are out of scope until v1.0 per §17 Q9).",
+  "subgroup": "public",
+  "group": "tool-runtime",
+  "ai_hours": null,
+  "notes": [
+    "Direct `Invoke-SlashOpsTool` is for advanced users; the planner is the main consumer."
+  ],
+  "steps": [
+    "TDD: `Get-SlashOpsTool` returns the loaded registry.",
+    "TDD: `Get-SlashOpsTool -Name local.files.search` returns one tool.",
+    "TDD: `Test-SlashOpsTool` returns dependency / platform check result.",
+    "TDD: `Invoke-SlashOpsTool` runs a registered tool with provided args and returns its output.",
+    "TDD: `Invoke-SlashOpsTool` refuses unknown / disabled tools.",
+    "TDD: `Register-SlashOpsTool` rejects user-supplied manifests when `allowUserTools = false`.",
+    "Author each cmdlet thin-wrapping the registry helpers.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 33,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[tr-03] Tool public commands",
+  "id": "6986b983-0d4a-4094-8d76-bda7eec504aa",
+  "plan_path": ".bot/workspace/plans/tr-03-tool-public-commands-6986b983-plan.md"
+}

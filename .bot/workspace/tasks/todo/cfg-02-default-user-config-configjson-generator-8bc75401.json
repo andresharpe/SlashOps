@@ -1,0 +1,76 @@
+{
+  "working_dir": null,
+  "slug": "cfg-02",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/New-DefaultConfig.ps1",
+    "src/SlashOps/Private/Config/Write-Config.ps1",
+    "tests/Unit/Config.Defaults.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Default object matches PRD §9.4 byte-for-byte after round-trip.",
+    "Tests pass.",
+    "No write at import."
+  ],
+  "prd_refs": [
+    "PRD §9.4 User config schema (lines 1691-1776)",
+    "PRD §9.9 First-run config creation (lines 2110-2139)",
+    "§9.4 defines the full schema. Keep camelCase exactly as shown.",
+    "§9.9 step 3 — \"Create `config.json` from defaults if missing\".",
+    "§9.5 naming convention: JSON persisted config uses camelCase."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg-02-default-user-config.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "config",
+    "defaults",
+    "schema",
+    "json"
+  ],
+  "description": "Produce the default user `config.json` exactly as documented in PRD §9.4 — `model`, `execution`, `ui`, `context`, `tools`, `logging`, `cache` sections, plus `schema_version: \"1\"`. Writes are gated: nothing happens at `Import-Module`; only `Initialize-SlashOps` and the public `Set-`/`Reset-` commands trigger persistence.",
+  "subgroup": "defaults",
+  "group": "config",
+  "ai_hours": null,
+  "notes": [
+    "`tools.preferredTools` is a long list — keep it inline so the file remains diff-friendly.",
+    "`cache.path` uses `~` literal in JSON; resolution happens at read time, not write time."
+  ],
+  "steps": [
+    "TDD: Generated default object has every key listed in §9.4.",
+    "TDD: `schema_version` is `\"1\"`.",
+    "TDD: `model.generationModel` defaults to `qwen3-coder:30b`.",
+    "TDD: `execution.allowFastExecution` defaults to `true`.",
+    "TDD: `ui.theme` defaults to `amber`.",
+    "TDD: Writer creates the parent directory if missing.",
+    "TDD: Writer is no-op when called during `Import-Module` (it must only be invoked from setters).",
+    "TDD: Writer round-trips: object → JSON file → object equals the original.",
+    "Author `Private/Config/New-DefaultConfig.ps1` returning the §9.4 hashtable. Use `[ordered]` so JSON output is deterministic.",
+    "Author `Private/Config/Write-Config.ps1` taking `(Path, Object)` and writing pretty JSON with stable key ordering and 2-space indentation. Use `ConvertTo-Json -Depth 10`.",
+    "Pester tests cover every TDD bullet using `TestDrive:`."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 12,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg-02] Default user config (config.json) generator",
+  "id": "8bc75401-a2b9-4309-ac9e-6ade815003a5",
+  "plan_path": ".bot/workspace/plans/cfg-02-default-user-config-configjson-generator-8bc75401-plan.md"
+}

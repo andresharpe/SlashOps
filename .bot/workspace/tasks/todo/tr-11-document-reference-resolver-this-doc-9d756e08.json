@@ -1,0 +1,69 @@
+{
+  "working_dir": null,
+  "slug": "tr-11",
+  "type": "prompt",
+  "dependencies": [
+    "tr-08"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Agent/Resolve-DocumentReference.ps1",
+    "tests/Unit/Agent.DocumentResolver.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.10 Document resolution (lines 1129-1151)",
+    "PRD §11.3 Document resolver tests (lines 2645-2647)",
+    "§7.10 — resolution order.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/tr-11-document-resolver.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "documents",
+    "resolver",
+    "agent"
+  ],
+  "description": "Resolve \"this doc\" deterministically per §7.10 order: explicit path → pipeline input → last result → cwd single-doc → clipboard (if enabled) → most recent download → interactive choice → ask. Ambiguity surfaces as a structured `needs_clarification` observation, not a guess.",
+  "subgroup": "documents",
+  "group": "tool-runtime",
+  "ai_hours": null,
+  "notes": [
+    "Likely document extensions per §7.10 — keep the list authoritative in this file."
+  ],
+  "steps": [
+    "TDD: Explicit path wins.",
+    "TDD: Pipeline input wins when no explicit path.",
+    "TDD: Last result wins when no pipeline input.",
+    "TDD: Single doc in cwd wins next.",
+    "TDD: Clipboard read only when enabled.",
+    "TDD: Latest downloaded doc as fallback.",
+    "TDD: Multiple candidates → `needs_clarification`.",
+    "Author `Private/Agent/Resolve-DocumentReference.ps1` walking the resolution order.",
+    "Tests cover every TDD bullet using `TestDrive:`."
+  ],
+  "sequence": 11,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 41,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[tr-11] Document reference resolver (\"this doc\")",
+  "id": "9d756e08-62ca-408b-a769-d1c8ddc81eab",
+  "plan_path": ".bot/workspace/plans/tr-11-document-reference-resolver-this-doc-9d756e08-plan.md"
+}

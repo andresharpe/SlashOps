@@ -1,0 +1,64 @@
+{
+  "working_dir": null,
+  "slug": "cfg2-02",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-08"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/New-DefaultConfig.ps1 (update)",
+    "tests/Unit/Config.ToolRegistry.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §9.5 Tool runtime configuration (lines 1799-1814)",
+    "§9.5 — `toolRegistry` schema."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg2-02-tool-registry-section.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "config",
+    "tool-registry"
+  ],
+  "description": "Extend the default user config with the `toolRegistry` block: `enabled`, `registryPath`, `allowUserTools`, `allowProjectTools`, `enabledTools`, `disabledTools`. Defaults disable user / project tools per §17 Q9 / Q10.",
+  "subgroup": "tool-registry",
+  "group": "config2",
+  "ai_hours": null,
+  "notes": [
+    "Adding new built-in tools requires updating `enabledTools` here."
+  ],
+  "steps": [
+    "TDD: Default config contains `toolRegistry`.",
+    "TDD: `enabledTools` matches PRD §9.5 default list.",
+    "TDD: `allowUserTools` and `allowProjectTools` default to `false`.",
+    "TDD: Project config cannot enable user tools (per safety floor cfg-11).",
+    "Update `New-DefaultConfig.ps1`.",
+    "Add validation.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 32,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg2-02] Add toolRegistry config section",
+  "id": "f5d9d767-246e-44ee-8cb7-ca271ea8af29",
+  "plan_path": ".bot/workspace/plans/cfg2-02-add-toolregistry-config-section-f5d9d767-plan.md"
+}

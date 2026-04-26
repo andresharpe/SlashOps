@@ -1,0 +1,77 @@
+{
+  "working_dir": null,
+  "slug": "saf-03",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-07"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Safety/Test-PathPolicy.ps1",
+    "src/SlashOps/Public/Test-SlashOpsPathPolicy.ps1",
+    "src/SlashOps/Public/Get-SlashOpsSafeWriteRoot.ps1",
+    "src/SlashOps/Public/Add-SlashOpsSafeWriteRoot.ps1",
+    "src/SlashOps/Public/Remove-SlashOpsSafeWriteRoot.ps1",
+    "tests/Unit/Safety.PathPolicy.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Public commands exported.",
+    "Cross-platform path handling."
+  ],
+  "prd_refs": [
+    "PRD §6.10 Path policy (lines 699-735)",
+    "PRD §11.3 Path policy tests (lines 2582-2588)",
+    "§6.10 — full path policy.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/saf-03-path-policy.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "safety",
+    "paths",
+    "policy"
+  ],
+  "description": "Normalise paths (`~`, `$HOME`, relative, env-var expansion) and check them against policy `safeWriteRoots` and `protectedRoots`. Reject writes outside safe roots in `/x`, reject writes to protected roots in any mode unless explicit. Provide public commands so users can manage safe roots.",
+  "subgroup": "paths",
+  "group": "safety",
+  "ai_hours": null,
+  "notes": [
+    "Symlink resolution: `Resolve-Path` follows symlinks; document that policy decisions are made on the canonical path."
+  ],
+  "steps": [
+    "TDD: `~/work/file.txt` normalises to `$HOME/work/file.txt`.",
+    "TDD: `./sub/file` resolves relative to `$PWD`.",
+    "TDD: Path under `safeWriteRoots` returns `Allowed = $true`.",
+    "TDD: Path under `protectedRoots` returns `Allowed = $false`.",
+    "TDD: `/etc/foo` blocked on Linux.",
+    "TDD: `C:\\Windows\\foo` blocked on Windows.",
+    "TDD: Broad wildcard write returns `RequiresConfirmation = $true`.",
+    "TDD: Overwrite of existing file returns `RequiresConfirmation = $true` unless explicit.",
+    "TDD: `Add-` and `Remove-SlashOpsSafeWriteRoot` mutate user policy via cfg-08.",
+    "Author `Private/Safety/Test-PathPolicy.ps1` returning structured result.",
+    "Add `Get/Add/Remove-SlashOpsSafeWriteRoot` public commands, all driven by user policy file.",
+    "Tests cover normalisation and policy decisions."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 13,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[saf-03] Path policy normalisation and check",
+  "id": "2650bb27-7e6c-4175-af77-7151d96f0eee",
+  "plan_path": ".bot/workspace/plans/saf-03-path-policy-normalisation-and-check-2650bb27-plan.md"
+}

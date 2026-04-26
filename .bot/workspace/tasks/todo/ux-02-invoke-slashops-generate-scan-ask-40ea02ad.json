@@ -1,0 +1,71 @@
+{
+  "working_dir": null,
+  "slug": "ux-02",
+  "type": "prompt",
+  "dependencies": [
+    "mdl-05",
+    "saf-07",
+    "exe-01",
+    "ui-03"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Invoke-SlashOps.ps1",
+    "tests/Unit/UX.InvokeSlashOps.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Cmdlet exported."
+  ],
+  "prd_refs": [
+    "PRD §5.1 Prefixes (lines 273-291)",
+    "PRD §6.1 Core UX (lines 392-398)",
+    "§5.1 — prefix table.",
+    "§6.1 — public function name."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ux-02-invoke-slashops.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "ui-ux",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "ux",
+    "invoke",
+    "normal-mode",
+    "prefix"
+  ],
+  "description": "The default `/` prefix entry point. Generates a command plan, runs the safety pipeline, displays the plan and risk via FxConsole, asks for confirmation per the gate decision, then executes (or refuses).",
+  "subgroup": "invoke",
+  "group": "ux",
+  "ai_hours": null,
+  "notes": [
+    "Keep this function thin — orchestration only. All logic lives in the modules it calls."
+  ],
+  "steps": [
+    "TDD: Mode `'/'` flows through context → plan → safety → gate.",
+    "TDD: `read-only` class produces `ask` gate; on `y` confirmation, executes.",
+    "TDD: `risky-write` class produces `ask-with-warning`; on `EXECUTE` token, executes.",
+    "TDD: `blocked` class refuses execution.",
+    "TDD: Transcript written for every attempt regardless of outcome.",
+    "Author `Public/Invoke-SlashOps.ps1` orchestrating the pipeline.",
+    "Tests mock context, model, safety, gate, exec, transcript."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 12,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ux-02] Invoke-SlashOps (/) — generate, scan, ask",
+  "id": "40ea02ad-39e9-4760-99aa-21cafde77c97",
+  "plan_path": ".bot/workspace/plans/ux-02-invoke-slashops-generate-scan-ask-40ea02ad-plan.md"
+}

@@ -1,0 +1,68 @@
+{
+  "working_dir": null,
+  "slug": "set-01",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-08",
+    "mdl-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Install-SlashOpsRuntime.ps1",
+    "tests/Unit/Setup.Runtime.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Cmdlet exported."
+  ],
+  "prd_refs": [
+    "PRD §6.1 Setup and configuration (lines 401-416)",
+    "PRD §8 Installation and setup requirements (lines 1287-1591)",
+    "§6.1 — public function name.",
+    "§8 — overall setup flow context."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/set-01-install-runtime.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "setup",
+    "install",
+    "runtime"
+  ],
+  "description": "Top-level orchestrator that ensures Ollama is installed and reachable, the default model is present, optional CLIs are surveyed, and config / policy files exist. It is a thin coordinator over `Install-SlashOpsOllama`, `Install-SlashOpsModel`, and config defaults — never auto-runs destructive steps.",
+  "subgroup": "orchestrator",
+  "group": "setup",
+  "ai_hours": null,
+  "notes": [
+    "Keep this thin; the heavy lifting lives in `set-02`/`set-03`/`set-05`."
+  ],
+  "steps": [
+    "TDD: Skips Ollama install when reachable.",
+    "TDD: Calls `Install-SlashOpsOllama` (mocked) when missing.",
+    "TDD: Calls `Install-SlashOpsModel` (mocked) when default model missing.",
+    "TDD: Refuses to proceed with `SLASHOPS_NONINTERACTIVE = 1` and missing `-AcceptDefaults`.",
+    "TDD: Returns a structured result with per-step status.",
+    "Author `Public/Install-SlashOpsRuntime.ps1` calling sub-installers in order, surfacing errors.",
+    "Tests mock each sub-installer."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 11,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[set-01] Install-SlashOpsRuntime orchestrator",
+  "id": "500f731d-6f0d-42f0-9ea7-11d76595438e",
+  "plan_path": ".bot/workspace/plans/set-01-install-slashopsruntime-orchestrator-500f731d-plan.md"
+}

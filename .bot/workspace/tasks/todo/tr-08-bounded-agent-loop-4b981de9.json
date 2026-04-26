@@ -1,0 +1,73 @@
+{
+  "working_dir": null,
+  "slug": "tr-08",
+  "type": "prompt",
+  "dependencies": [
+    "tr-06",
+    "tr-07"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Agent/Invoke-AgentLoop.ps1",
+    "tests/Unit/Agent.Loop.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.12 Agent loop (lines 1173-1191)",
+    "PRD §9.5 agent section (lines 1786-1798)",
+    "PRD §11.3 Agent loop tests (lines 2620-2624)",
+    "§7.12 — hard limits.",
+    "§9.5 — config knobs.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/tr-08-agent-loop.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "agent",
+    "loop",
+    "bounded"
+  ],
+  "description": "Drive the plan → execute → observe → re-plan cycle with hard limits: `maxSteps`, `maxToolCalls`, `maxModelCalls`, `maxWallClockSeconds`. Pause for confirmation before any mutation step. Stop on unknown risk or auth-required observation.",
+  "subgroup": "loop",
+  "group": "tool-runtime",
+  "ai_hours": null,
+  "notes": [
+    "The wall clock check must use a `Stopwatch` started at loop entry."
+  ],
+  "steps": [
+    "TDD: Loop honours `maxSteps`.",
+    "TDD: Loop honours `maxToolCalls`.",
+    "TDD: Loop honours `maxModelCalls`.",
+    "TDD: Loop honours `maxWallClockSeconds`.",
+    "TDD: Loop pauses before mutation.",
+    "TDD: Loop stops on `unknown` risk.",
+    "TDD: Loop stops on auth-required observation.",
+    "TDD: Re-plan calls model only when allowed by `agent.allowMultiStepReadOnlyFastMode`.",
+    "Author `Private/Agent/Invoke-AgentLoop.ps1` consuming a validated plan and the registry.",
+    "Tests mock tool invocations and observation conversion."
+  ],
+  "sequence": 8,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 38,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "M",
+  "name": "[tr-08] Bounded agent loop",
+  "id": "4b981de9-d18c-48b2-9f8a-64228ecdf3f8",
+  "plan_path": ".bot/workspace/plans/tr-08-bounded-agent-loop-4b981de9-plan.md"
+}

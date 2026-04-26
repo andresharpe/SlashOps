@@ -1,0 +1,72 @@
+{
+  "working_dir": null,
+  "slug": "lt-05",
+  "type": "prompt",
+  "dependencies": [
+    "tr-03"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Documents/Invoke-DocumentTextExtract.ps1",
+    "src/SlashOps/ToolManifests/doc.text.extract.json",
+    "tests/Unit/Tools.Doc.TextExtract.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.7 Required v0.2 local tools (lines 1057-1073)",
+    "PRD §11.3 Local/document tools tests (lines 2649-2651)",
+    "§7.7 — tool list.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/lt-05-doc-text-extract.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "tool",
+    "documents",
+    "text",
+    "extract"
+  ],
+  "description": "Extract text from TXT, MD, HTML, RTF, PDF (via Poppler `pdftotext`), DOCX (via Pandoc). Each format is a separate code path with graceful degradation when the optional CLI is missing — return a `needs_dependency` observation rather than improvise.",
+  "subgroup": "documents",
+  "group": "local-tools",
+  "ai_hours": null,
+  "notes": [
+    "Document the format-to-tool map in `docs/DOCUMENTS.md`."
+  ],
+  "steps": [
+    "TDD: TXT and MD pass-through verbatim.",
+    "TDD: HTML stripped to plain text.",
+    "TDD: RTF converted via available helper.",
+    "TDD: PDF requires `pdftotext`; missing tool → dependency observation.",
+    "TDD: DOCX requires `pandoc`; missing tool → dependency observation.",
+    "TDD: Output respects `documents.maxExtractedTextBytes`.",
+    "TDD: Manifest passes validation.",
+    "Author `Private/Tools/Documents/Invoke-DocumentTextExtract.ps1` with format dispatch.",
+    "Author the manifest.",
+    "Tests mock external tool invocation."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 35,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[lt-05] doc.text.extract tool",
+  "id": "4a7fa940-367a-4c0e-862c-657a88e644e5",
+  "plan_path": ".bot/workspace/plans/lt-05-doctextextract-tool-4a7fa940-plan.md"
+}

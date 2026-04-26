@@ -1,0 +1,71 @@
+{
+  "working_dir": null,
+  "slug": "biz-02",
+  "type": "prompt",
+  "dependencies": [
+    "biz-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Outlook/Invoke-OutlookMailSearch.ps1",
+    "src/SlashOps/ToolManifests/outlook.mail.search.json",
+    "tests/Unit/Tools.Outlook.MailSearch.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Manifest valid."
+  ],
+  "prd_refs": [
+    "PRD §7.8 Optional v0.3 business/dev tools (lines 1076-1090)",
+    "PRD §11.3 Outlook tools mocked tests (lines 2654-2662)",
+    "§7.8 — tool list.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/biz-02-outlook-mail-search.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.3",
+    "outlook",
+    "search",
+    "read-only"
+  ],
+  "description": "Search mail via the resolved provider. Read-only; fast-mode eligible if `outlook.allowSearchFastMode = true`. Search results show sender, subject, received time, folder, snippet — full body never logged by default.",
+  "subgroup": "outlook",
+  "group": "business",
+  "ai_hours": null,
+  "notes": [
+    "Render results via `ui2-02 Write-SlashOpsSearchResults`."
+  ],
+  "steps": [
+    "TDD: Disabled by default (`outlook.enabled = false`).",
+    "TDD: Enabled + Graph → search via Graph (mocked).",
+    "TDD: Enabled + M365 CLI → search via CLI (mocked).",
+    "TDD: Returns ranked list with sender / subject / received / folder / snippet.",
+    "TDD: Body not logged.",
+    "TDD: Provider auth failure → workflow stops.",
+    "Author the tool function dispatching to provider.",
+    "Author manifest.",
+    "Tests mock both providers."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v0.3",
+  "priority": 52,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[biz-02] outlook.mail.search tool",
+  "id": "adb44fd2-97d9-4457-89e1-46fcf0cbd30c",
+  "plan_path": ".bot/workspace/plans/biz-02-outlookmailsearch-tool-adb44fd2-plan.md"
+}

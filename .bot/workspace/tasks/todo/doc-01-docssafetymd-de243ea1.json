@@ -1,0 +1,56 @@
+{
+  "working_dir": null,
+  "slug": "doc-01",
+  "type": "prompt",
+  "dependencies": [
+    "saf-07"
+  ],
+  "deliverables": [
+    "docs/SAFETY.md"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "File present, content-complete, cross-links resolve."
+  ],
+  "prd_refs": [
+    "PRD §6.7-§6.13 (lines 612-797)",
+    "PRD §13 Security and privacy (lines 2775-2816)"
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/doc-01-safety-md.md",
+  "applicable_agents": [
+    ".claude/agents/planner.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "docs",
+    "safety"
+  ],
+  "description": "Document the safety subsystem end-to-end: principles, classification, static + AST + path + tool checks, AI review, modes, secret redaction, escalation. Pair with `pub-06`.",
+  "subgroup": "safety",
+  "group": "docs",
+  "ai_hours": null,
+  "notes": [
+    "Keep examples concrete; abstract advice is unhelpful."
+  ],
+  "steps": [
+    "Sections: principles, classification matrix, layered checks, AI review, modes, redaction, enterprise compatibility, escalation.",
+    "Cross-link to `docs/CONFIGURATION.md` and PRD sections."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "all",
+  "priority": 91,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "XS",
+  "name": "[doc-01] docs/SAFETY.md",
+  "id": "de243ea1-c6bf-4ac7-a5da-3913dee544a5",
+  "plan_path": ".bot/workspace/plans/doc-01-docssafetymd-de243ea1-plan.md"
+}

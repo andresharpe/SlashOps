@@ -1,0 +1,66 @@
+{
+  "working_dir": null,
+  "slug": "ma-01",
+  "type": "prompt",
+  "dependencies": [
+    "tr-08"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Agent/Invoke-AgentLoop.ps1 (update)",
+    "tests/Unit/Agent.MultiStep.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.12 Agent loop (lines 1173-1191)",
+    "PRD §16 v0.4 (lines 2937-2945)",
+    "§7.12 — loop structure.",
+    "§16 — v0.4 scope."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ma-01-multistep-replan.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.4",
+    "agent",
+    "replan",
+    "multi-step"
+  ],
+  "description": "Extend the v0.2 agent loop to support multiple plan / observe / re-plan iterations within the existing hard limits. Re-plans reuse prior observations as context.",
+  "subgroup": "replan",
+  "group": "mature-agent",
+  "ai_hours": null,
+  "notes": [
+    "Re-plan amplifies token use; cap aggressively."
+  ],
+  "steps": [
+    "TDD: Re-plan uses observation context from previous step.",
+    "TDD: Re-plan honours `agent.maxModelCalls`.",
+    "TDD: Re-plan respects mutation pause.",
+    "TDD: Re-plan refuses to escalate risk class without confirmation.",
+    "Update `Invoke-AgentLoop.ps1` with re-plan branch.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.4",
+  "priority": 71,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "M",
+  "name": "[ma-01] Multi-step plan / observe / re-plan",
+  "id": "00c506be-a77c-486a-af42-46f9fc995146",
+  "plan_path": ".bot/workspace/plans/ma-01-multi-step-plan-observe-re-plan-00c506be-plan.md"
+}

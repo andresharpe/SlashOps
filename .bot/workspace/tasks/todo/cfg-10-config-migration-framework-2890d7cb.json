@@ -1,0 +1,68 @@
+{
+  "working_dir": null,
+  "slug": "cfg-10",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-05"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/Invoke-ConfigMigration.ps1",
+    "tests/Unit/Config.Migration.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Tests pass.",
+    "Backup created before write.",
+    "Future schema refused.",
+    "`migration_log` entry recorded."
+  ],
+  "prd_refs": [
+    "PRD §9.10 Config migration (lines 2141-2157)",
+    "§9.10 — migration support, backup-first, future-version refusal."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg-10-config-migration.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "config",
+    "migration",
+    "schema"
+  ],
+  "description": "Provide a migration entry point that detects older `schema_version` values and applies registered migrations in order. `Initialize-SlashOps` calls this when a known older version is found; unknown future versions are refused without modification, and a `migration_log` entry is written into the migrated config (or history file) recording the bump.",
+  "subgroup": "migration",
+  "group": "config",
+  "ai_hours": null,
+  "notes": [
+    "v0.1 ships only schema `\"1\"` — the dispatcher exists to make later bumps mechanical."
+  ],
+  "steps": [
+    "TDD: Old schema version (e.g. `\"0\"`) triggers migration to `\"1\"` after backup.",
+    "TDD: Unknown future schema (e.g. `\"99\"`) is left untouched and returns refusal.",
+    "TDD: Migration creates a backup before writing (cfg-05).",
+    "TDD: `migration_log` entry recorded with timestamp, from-version, to-version.",
+    "TDD: Migration is idempotent — re-running on a `\"1\"` file is a no-op.",
+    "Author `Private/Config/Invoke-ConfigMigration.ps1` taking `(Path)`, dispatching to a registered migration map keyed by from-version.",
+    "Each migration is a small private function — register them in a hashtable so future versions can be added without touching the dispatcher.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 10,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 20,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg-10] Config migration framework",
+  "id": "2890d7cb-c7ec-4028-a8a3-70eb2d9dc293",
+  "plan_path": ".bot/workspace/plans/cfg-10-config-migration-framework-2890d7cb-plan.md"
+}

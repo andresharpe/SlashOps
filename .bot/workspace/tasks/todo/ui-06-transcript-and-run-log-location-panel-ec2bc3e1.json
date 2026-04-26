@@ -1,0 +1,63 @@
+{
+  "working_dir": null,
+  "slug": "ui-06",
+  "type": "prompt",
+  "dependencies": [
+    "ui-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/UI/Write-SlashOpsTranscriptPanel.ps1",
+    "tests/Unit/UI.Transcript.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §6.15 transcript location panel (line 853)",
+    "§6.15 — transcript location panel."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ui-06-transcript-panel.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "ui-ux",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "ui",
+    "transcript",
+    "panel",
+    "fxconsole"
+  ],
+  "description": "After every executed command, render a small panel showing the transcript path, run id, and per-run log directory so users can investigate quickly.",
+  "subgroup": "panels",
+  "group": "ui",
+  "ai_hours": null,
+  "notes": [
+    "Make paths clickable in supported terminals via OSC-8 hyperlinks if FxConsole already supports it; otherwise plain text."
+  ],
+  "steps": [
+    "TDD: Panel renders transcript path verbatim.",
+    "TDD: Panel renders run id and run log directory.",
+    "TDD: Honours `ui.useFxConsole = false` fallback.",
+    "Author `Private/UI/Write-SlashOpsTranscriptPanel.ps1` calling `Write-FxPanel`.",
+    "Tests stub FxConsole."
+  ],
+  "sequence": 6,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 16,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ui-06] Transcript and run-log location panel",
+  "id": "ec2bc3e1-f65a-4f09-aeac-c45f7ccdd943",
+  "plan_path": ".bot/workspace/plans/ui-06-transcript-and-run-log-location-panel-ec2bc3e1-plan.md"
+}

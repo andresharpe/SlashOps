@@ -1,0 +1,70 @@
+{
+  "working_dir": null,
+  "slug": "set-04",
+  "type": "prompt",
+  "dependencies": [
+    "ux-07"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Install-SlashOpsProfile.ps1",
+    "src/SlashOps/Public/Uninstall-SlashOpsProfile.ps1",
+    "src/SlashOps/Public/Test-SlashOpsProfile.ps1",
+    "src/SlashOps/Private/Setup/Install-Profile.ps1",
+    "tests/Unit/Setup.Profile.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Markers idempotent."
+  ],
+  "prd_refs": [
+    "PRD §8.8 Profile setup (lines 1518-1546)",
+    "PRD §11.3 Setup tests (lines 2685-2691)",
+    "§8.8 — exact marker block content.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/set-04-install-profile.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "setup",
+    "profile",
+    "aliases"
+  ],
+  "description": "Manage the marker-delimited block in `$PROFILE.CurrentUserCurrentHost` that imports SlashOps and sets aliases. Idempotent install (no duplicates); clean uninstall (removes block, leaves rest of profile untouched); test reports presence + version.",
+  "subgroup": "profile",
+  "group": "setup",
+  "ai_hours": null,
+  "notes": [
+    "Use `# >>> SlashOps >>>` and `# <<< SlashOps <<<` exactly as documented; tooling parses these markers."
+  ],
+  "steps": [
+    "TDD: Install adds the marker block to a clean profile.",
+    "TDD: Install on a profile that already has the block is a no-op.",
+    "TDD: Uninstall removes the block cleanly, leaving surrounding lines intact.",
+    "TDD: Test returns `Present = $true` after install.",
+    "TDD: Profile creation prompts confirmation when missing.",
+    "Author each public cmdlet thin-wrapping `Private/Setup/Install-Profile.ps1`.",
+    "Tests use `TestDrive:` to simulate `$PROFILE`."
+  ],
+  "sequence": 4,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 14,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[set-04] Profile install / uninstall / test",
+  "id": "82a31551-81ae-45bb-925b-399614074235",
+  "plan_path": ".bot/workspace/plans/set-04-profile-install-uninstall-test-82a31551-plan.md"
+}

@@ -1,0 +1,67 @@
+{
+  "working_dir": null,
+  "slug": "ux-01",
+  "type": "prompt",
+  "dependencies": [
+    "f-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/UX/Get-PromptText.ps1",
+    "tests/Unit/UX.Capture.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Quoted strings preserved."
+  ],
+  "prd_refs": [
+    "PRD §6.2 Natural language input capture (lines 478-499)",
+    "PRD §11.3 Prompt capture tests (lines 2515-2521)",
+    "§6.2 — capture pattern + acceptance criteria."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ux-01-prompt-capture.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "ui-ux",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "ux",
+    "prompt",
+    "parsing"
+  ],
+  "description": "Capture all remaining arguments after the prefix as the prompt text. Preserve quoted strings, normalise whitespace, handle empty input by displaying help in interactive mode and exiting non-zero in non-interactive mode.",
+  "subgroup": "capture",
+  "group": "ux",
+  "ai_hours": null,
+  "notes": [
+    "PowerShell parameter parsing is finicky; use `[Parameter(ValueFromRemainingArguments = $true)] [string[]]$Prompt` exactly as documented."
+  ],
+  "steps": [
+    "TDD: `/x find files` captures `find files`.",
+    "TDD: `/ \"find files with spaces\"` preserves the quoted string verbatim.",
+    "TDD: Empty prompt in interactive mode shows help.",
+    "TDD: Empty prompt in non-interactive mode exits non-zero.",
+    "TDD: Prompt capture works under PowerShell 7+ on Windows / macOS / Linux / WSL.",
+    "Author `Private/UX/Get-PromptText.ps1` accepting `[string[]]$Tokens` from `ValueFromRemainingArguments`.",
+    "Public `Invoke-SlashOps*` cmdlets reuse this helper.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 11,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:22Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ux-01] Prompt capture (ValueFromRemainingArguments)",
+  "id": "f8724b89-a30f-47b6-a5ca-3b183ca4a8b4",
+  "plan_path": ".bot/workspace/plans/ux-01-prompt-capture-valuefromremainingarguments-f8724b89-plan.md"
+}

@@ -1,0 +1,75 @@
+{
+  "working_dir": null,
+  "slug": "saf-08",
+  "type": "prompt",
+  "dependencies": [
+    "saf-07",
+    "ui-04"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Execution/Confirm-Execution.ps1",
+    "src/SlashOps/Private/Execution/Confirm-Mutation.ps1",
+    "tests/Unit/Safety.Confirmation.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "All TDD tests pass.",
+    "Non-interactive mode honoured."
+  ],
+  "prd_refs": [
+    "PRD §6.13 Confirmation UX (lines 773-797)",
+    "PRD §9.6 policy.confirmation tokens (lines 1979-1985)",
+    "§6.13 — UX text exactly as documented.",
+    "§9.6 — confirmation token names.",
+    "§9.4 — `execution.defaultNonInteractiveAction`."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/saf-08-confirmation-ux.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "safety",
+    "confirm",
+    "ux",
+    "tokens"
+  ],
+  "description": "Render confirmation prompts and validate user input. Standard `y/N`, high-risk `EXECUTE`, package install `INSTALL`, cloud mutation `CLOUD`, model pull `PULL`. Token strings come from `policy.confirmation` so enterprise deployments can localise. Non-interactive mode applies `execution.defaultNonInteractiveAction` (default `refuse`).",
+  "subgroup": "confirm",
+  "group": "safety",
+  "ai_hours": null,
+  "notes": [
+    "Do not call `Read-Host` directly; tests need a seam."
+  ],
+  "steps": [
+    "TDD: `y` + standard prompt → `Confirmed = $true`.",
+    "TDD: `n` or empty + standard prompt → `Confirmed = $false`.",
+    "TDD: `EXECUTE` + risky prompt → confirmed; anything else → not confirmed.",
+    "TDD: `INSTALL` token validates package install prompt.",
+    "TDD: `CLOUD` token validates cloud mutation prompt.",
+    "TDD: `PULL` token validates model-pull prompt.",
+    "TDD: `SLASHOPS_NONINTERACTIVE = 1` skips prompt and applies `defaultNonInteractiveAction`.",
+    "TDD: Token comparison is exact (case-sensitive).",
+    "Author `Private/Execution/Confirm-Execution.ps1` reading from a thin `Read-UserInput` helper that tests can mock.",
+    "Author `Private/Execution/Confirm-Mutation.ps1` for high-risk and tokenised flows.",
+    "Tests mock `Read-UserInput` and `SLASHOPS_NONINTERACTIVE`."
+  ],
+  "sequence": 8,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 18,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[saf-08] Confirmation UX (y/N + token entry)",
+  "id": "5625daf6-0f96-4492-8c46-1ddbab5c181f",
+  "plan_path": ".bot/workspace/plans/saf-08-confirmation-ux-yn-token-entry-5625daf6-plan.md"
+}

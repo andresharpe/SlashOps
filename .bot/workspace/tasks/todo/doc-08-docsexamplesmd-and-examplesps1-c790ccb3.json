@@ -1,0 +1,64 @@
+{
+  "working_dir": null,
+  "slug": "doc-08",
+  "type": "prompt",
+  "dependencies": [
+    "ux-02",
+    "lt-06",
+    "biz-02"
+  ],
+  "deliverables": [
+    "docs/EXAMPLES.md",
+    "examples/basic.ps1",
+    "examples/document-conversion.ps1",
+    "examples/document-summary.ps1",
+    "examples/local-document-search.ps1",
+    "examples/outlook-search-mock.ps1",
+    "examples/git-workflow.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "All example scripts run on a configured machine.",
+    "Index links them clearly."
+  ],
+  "prd_refs": [
+    "PRD §10.1 examples/ tree (lines 2417-2422)"
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/doc-08-examples-md.md",
+  "applicable_agents": [
+    ".claude/agents/planner.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "docs",
+    "examples"
+  ],
+  "description": "Author the examples directory listed in PRD §10.1 plus a `docs/EXAMPLES.md` index. Each example script is runnable and includes a comment block explaining what it demonstrates.",
+  "subgroup": "examples",
+  "group": "docs",
+  "ai_hours": null,
+  "notes": [
+    "The Outlook example must use mocks so it runs without a tenant."
+  ],
+  "steps": [
+    "Author each `.ps1` example end-to-end.",
+    "Author the index in `docs/EXAMPLES.md`."
+  ],
+  "sequence": 8,
+  "applicable_decisions": [],
+  "version": "all",
+  "priority": 98,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "XS",
+  "name": "[doc-08] docs/EXAMPLES.md and examples/*.ps1",
+  "id": "c790ccb3-c4c9-422f-bcf1-6a78b6f71c47",
+  "plan_path": ".bot/workspace/plans/doc-08-docsexamplesmd-and-examplesps1-c790ccb3-plan.md"
+}

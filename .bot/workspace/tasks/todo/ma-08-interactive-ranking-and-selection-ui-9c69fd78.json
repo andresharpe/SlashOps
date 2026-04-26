@@ -1,0 +1,64 @@
+{
+  "working_dir": null,
+  "slug": "ma-08",
+  "type": "prompt",
+  "dependencies": [
+    "ui2-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/UI/Read-SlashOpsSelection.ps1",
+    "tests/Unit/UI.Selection.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §16 v0.4 richer ranking and result selection UI (line 2940)",
+    "§16 — v0.4 scope."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ma-08-ranking-selection-ui.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.4",
+    "ui",
+    "selection",
+    "interactive"
+  ],
+  "description": "Interactive picker for ranked search results — keyboard arrows, fuzzy filter, selection callback. Falls back to numbered prompt when terminal does not support interactive input.",
+  "subgroup": "ui",
+  "group": "mature-agent",
+  "ai_hours": null,
+  "notes": [
+    "Avoid platform-specific key handling; rely on `[Console]::ReadKey(intercept=$true)` only when interactive."
+  ],
+  "steps": [
+    "TDD: Returns selected item from a list.",
+    "TDD: Filter narrows the list.",
+    "TDD: Cancel returns `$null`.",
+    "TDD: Falls back to numbered prompt in non-interactive terminals.",
+    "Author `Read-SlashOpsSelection.ps1` using FxConsole grid + key reader.",
+    "Tests stub the key reader."
+  ],
+  "sequence": 8,
+  "applicable_decisions": [],
+  "version": "v0.4",
+  "priority": 78,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ma-08] Interactive ranking and selection UI",
+  "id": "9c69fd78-313b-4650-a272-be3a9f6517e0",
+  "plan_path": ".bot/workspace/plans/ma-08-interactive-ranking-and-selection-ui-9c69fd78-plan.md"
+}

@@ -1,0 +1,62 @@
+{
+  "working_dir": null,
+  "slug": "cfg2-03",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-08"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/New-DefaultConfig.ps1 (update)",
+    "tests/Unit/Config.Documents.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §9.5 documents config (lines 1816-1826)",
+    "§9.5 — documents schema."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg2-03-documents-section.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "config",
+    "documents"
+  ],
+  "description": "Extend default config with `documents` block: `downloadsDirectory`, `defaultSummaryStyle`, byte / chunk limits, `preferPandoc`, `preferPoppler`, `summarizeWithCitations`.",
+  "subgroup": "documents",
+  "group": "config2",
+  "ai_hours": null,
+  "notes": [
+    "`chunkSizeChars` and `chunkOverlapChars` are tuned for a 256K context window — leave defaults conservative."
+  ],
+  "steps": [
+    "TDD: Default config contains `documents`.",
+    "TDD: Defaults match §9.5.",
+    "TDD: Validation rejects negative byte / chunk values.",
+    "Update `New-DefaultConfig.ps1`.",
+    "Tests cover defaults and validation."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 33,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg2-03] Add documents config section",
+  "id": "5a921239-b81c-4d53-9e71-9a752d8fd164",
+  "plan_path": ".bot/workspace/plans/cfg2-03-add-documents-config-section-5a921239-plan.md"
+}

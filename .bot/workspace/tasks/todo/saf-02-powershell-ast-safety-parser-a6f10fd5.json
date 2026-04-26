@@ -1,0 +1,71 @@
+{
+  "working_dir": null,
+  "slug": "saf-02",
+  "type": "prompt",
+  "dependencies": [
+    "f-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Safety/Parse-CommandAst.ps1",
+    "src/SlashOps/Public/Test-SlashOpsCommandAst.ps1",
+    "tests/Unit/Safety.Ast.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Parse errors block.",
+    "Public command exported."
+  ],
+  "prd_refs": [
+    "PRD §6.9 PowerShell AST safety scan (lines 682-697)",
+    "PRD §11.3 AST safety tests (lines 2574-2580)",
+    "§6.9 — AST scan rules.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/saf-02-ast-parser.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "safety",
+    "ast",
+    "parse"
+  ],
+  "description": "Parse the generated command using `[System.Management.Automation.Language.Parser]::ParseInput`. Extract command names, parameters, string-literal paths, and dynamic-invocation hints. Multi-command scripts inherit the highest risk of any contained command.",
+  "subgroup": "ast",
+  "group": "safety",
+  "ai_hours": null,
+  "notes": [
+    "AST gives ground truth; regex (saf-01) is fast but evadable. Always run both before classification."
+  ],
+  "steps": [
+    "TDD: Parse error stops execution and returns structured error.",
+    "TDD: Single-command script extracts the command name.",
+    "TDD: Multi-command script returns one entry per command.",
+    "TDD: Aliases (e.g. `gci`) are flagged as a violation of \"no aliases\" rule from §6.6.",
+    "TDD: Dynamic invocation (e.g. `& $cmd`) flagged as suspicious.",
+    "TDD: String-literal paths extracted where present.",
+    "Author `Private/Safety/Parse-CommandAst.ps1` returning `[pscustomobject]` with `Commands`, `Errors`, `LiteralPaths`, `HasDynamicInvocation`.",
+    "Public `Test-SlashOpsCommandAst` thin wrapper for diagnostics.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 12,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:22Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[saf-02] PowerShell AST safety parser",
+  "id": "a6f10fd5-90f2-4b40-8882-ce8730ff9794",
+  "plan_path": ".bot/workspace/plans/saf-02-powershell-ast-safety-parser-a6f10fd5-plan.md"
+}

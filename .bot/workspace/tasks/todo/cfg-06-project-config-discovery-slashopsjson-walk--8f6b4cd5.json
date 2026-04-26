@@ -1,0 +1,70 @@
+{
+  "working_dir": null,
+  "slug": "cfg-06",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-04"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/Resolve-ProjectConfig.ps1",
+    "tests/Unit/Config.Project.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Walk-up bounded, no infinite loop.",
+    "`SLASHOPS_NO_PROJECT_CONFIG=1` honoured.",
+    "Tests pass."
+  ],
+  "prd_refs": [
+    "PRD §9.7 Project config schema (lines 1989-2030)",
+    "PRD §9.13 Config TDD requirements (lines 2189-2214)",
+    "§9.7 — project config schema and discovery semantics.",
+    "§9.13 — TDD: project config discovery + disabling via env."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg-06-project-config-discovery.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "config",
+    "project",
+    "discovery"
+  ],
+  "description": "Walk upward from the current directory to find `./.slashops.json`. Stop at the filesystem root or when found. Respect `SLASHOPS_NO_PROJECT_CONFIG=1` (skip discovery entirely). Project paths in the config (e.g. safe write roots) resolve relative to the project config file location.",
+  "subgroup": "project",
+  "group": "config",
+  "ai_hours": null,
+  "notes": [
+    "Walk-up must use `Split-Path -Parent` until `$parent -eq $current`.",
+    "Document that project config does not get loaded when called from a global script with no `$PWD` context (caller must supply explicit start dir)."
+  ],
+  "steps": [
+    "TDD: Discovery returns `$null` when no `.slashops.json` exists in any ancestor.",
+    "TDD: Discovery returns the closest ancestor's path when one exists.",
+    "TDD: `SLASHOPS_NO_PROJECT_CONFIG=1` short-circuits and returns `$null`.",
+    "TDD: `SLASHOPS_PROJECT_CONFIG` env var, when set, takes precedence over walk-up.",
+    "TDD: Walk-up stops at the filesystem root without infinite loop.",
+    "TDD: Discovery is read-only.",
+    "Author `Private/Config/Resolve-ProjectConfig.ps1` taking `[string]$StartDirectory = $PWD` and returning the resolved path or `$null`.",
+    "Pester tests use `TestDrive:` to create nested directory trees with and without `.slashops.json`."
+  ],
+  "sequence": 6,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 16,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg-06] Project config discovery (./.slashops.json walk-up)",
+  "id": "8f6b4cd5-6b5b-4f64-bc2c-dc35f1025f49",
+  "plan_path": ".bot/workspace/plans/cfg-06-project-config-discovery-slashopsjson-walk--8f6b4cd5-plan.md"
+}

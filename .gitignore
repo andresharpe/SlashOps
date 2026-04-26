@@ -34,3 +34,16 @@ secrets/
 
 # Plan task workflow
 plan/tasks/done/.archive/
+
+# dotbot defaults (auto-added by dotbot init)
+.codex/
+.gemini/
+node_modules/
+test-results/
+playwright-report/
+.vscode/mcp.json
+sessions/
+
+# dotbot runtime state (process registry, logs, worktree map)
+.bot/.control/
+

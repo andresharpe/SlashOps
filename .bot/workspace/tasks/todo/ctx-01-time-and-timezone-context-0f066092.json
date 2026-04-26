@@ -1,0 +1,72 @@
+{
+  "working_dir": null,
+  "slug": "ctx-01",
+  "type": "prompt",
+  "dependencies": [
+    "f-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Context/Get-TimeContext.ps1",
+    "tests/Unit/Context.Time.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "All TDD bullets pass on Windows + Linux.",
+    "Output is JSON-serialisable."
+  ],
+  "prd_refs": [
+    "PRD §6.3 Environment context (lines 501-528)",
+    "PRD §6.6 Model system prompt — relative-time rules (lines 603-610)",
+    "§6.3 includes `current_datetime` and `timezone` in the context payload.",
+    "§6.6 lists relative-time resolution rules the model relies on."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ctx-01-time-context.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "context",
+    "time",
+    "timezone",
+    "dates"
+  ],
+  "description": "Produce time fields that the planner uses to resolve relative phrases such as \"today\", \"yesterday\", \"this morning\", \"last week\", \"recently\". Output includes ISO local datetime with offset, IANA timezone, and pre-computed boundary timestamps for each phrase so the planner does not invent its own date math.",
+  "subgroup": "time",
+  "group": "context",
+  "ai_hours": null,
+  "notes": [
+    "Windows reports timezone IDs differently than Linux (Windows: `W. Europe Standard Time`; Linux: `Europe/Zurich`). Document both and pass through whatever `Get-TimeZone` returns."
+  ],
+  "steps": [
+    "TDD: Output includes `current_datetime` (ISO 8601 with offset).",
+    "TDD: Output includes `timezone` (IANA, e.g. `Europe/Zurich`).",
+    "TDD: Output includes `today_start` / `today_end` covering local calendar day.",
+    "TDD: Output includes `yesterday_start` / `yesterday_end`.",
+    "TDD: Output includes `this_morning_start` / `this_morning_end` (00:00–12:00 local).",
+    "TDD: Output includes `last_week_start` (7 days back, midnight local).",
+    "TDD: All datetimes serialise as strings, not `DateTime` objects, so JSON is stable.",
+    "TDD: Output is deterministic for a fixed clock injection.",
+    "Author `Private/Context/Get-TimeContext.ps1` taking optional `[datetime]$Now = (Get-Date)` to enable test-time injection.",
+    "Use `[TimeZoneInfo]::Local.Id` for the IANA-or-Windows zone id, prefer `Get-TimeZone` on Windows.",
+    "Tests use a fixed injected `$Now` to assert exact boundary timestamps."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 11,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:22Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ctx-01] Time and timezone context",
+  "id": "0f066092-1024-4dd2-8a18-90f069c7fd89",
+  "plan_path": ".bot/workspace/plans/ctx-01-time-and-timezone-context-0f066092-plan.md"
+}

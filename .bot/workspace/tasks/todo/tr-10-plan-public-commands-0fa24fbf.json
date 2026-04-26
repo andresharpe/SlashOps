@@ -1,0 +1,65 @@
+{
+  "working_dir": null,
+  "slug": "tr-10",
+  "type": "prompt",
+  "dependencies": [
+    "tr-08",
+    "ui2-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/New-SlashOpsPlan.ps1",
+    "src/SlashOps/Public/Invoke-SlashOpsPlan.ps1",
+    "tests/Unit/Plan.PublicCmds.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Cmdlets exported."
+  ],
+  "prd_refs": [
+    "PRD §6.1 Agent public commands (lines 463-476)",
+    "§6.1 — public function names."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/tr-10-plan-public-cmds.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "planner",
+    "public-api"
+  ],
+  "description": "Expose direct planner access for advanced users: `New-SlashOpsPlan` returns a validated plan; `Invoke-SlashOpsPlan` runs an existing plan through the agent loop with full safety pipeline.",
+  "subgroup": "public",
+  "group": "tool-runtime",
+  "ai_hours": null,
+  "notes": [
+    "These cmdlets unblock testing of the agent loop without going through `Invoke-SlashOps*` orchestration."
+  ],
+  "steps": [
+    "TDD: `New-SlashOpsPlan -Prompt 'X'` returns a validated plan object.",
+    "TDD: `Invoke-SlashOpsPlan -Plan $p` runs the agent loop.",
+    "TDD: Both honour mode (`-Mode '/x'` etc.).",
+    "Author both public cmdlets thin-wrapping `tr-06`/`tr-08`.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 10,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 40,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[tr-10] Plan public commands",
+  "id": "0fa24fbf-260b-4c36-ac57-8d5a8552da74",
+  "plan_path": ".bot/workspace/plans/tr-10-plan-public-commands-0fa24fbf-plan.md"
+}

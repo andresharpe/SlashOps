@@ -1,0 +1,73 @@
+{
+  "working_dir": null,
+  "slug": "tr-05",
+  "type": "prompt",
+  "dependencies": [
+    "mdl-04"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Resolve-SlashOpsIntent.ps1",
+    "src/SlashOps/Private/Agent/Resolve-Intent.ps1",
+    "tests/Unit/Intent.Classifier.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.5 Intent taxonomy (lines 991-1017)",
+    "PRD §9.5 agent.minimumIntentConfidence (line 1797)",
+    "PRD §11.3 Intent classifier tests (lines 2598-2607)",
+    "§7.5 — intent list.",
+    "§9.5 — confidence threshold.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/tr-05-intent-classifier.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "intent",
+    "classifier",
+    "agent"
+  ],
+  "description": "Use the model to classify each prompt into one of the §7.5 intents with a confidence score. Below `agent.minimumIntentConfidence`, downgrade execution mode to confirmation-required. `unknown` intent fails closed.",
+  "subgroup": "intent",
+  "group": "tool-runtime",
+  "ai_hours": null,
+  "notes": [
+    "The classifier prompt is critical; document it in `docs/AGENT_RUNTIME.md`."
+  ],
+  "steps": [
+    "TDD: Direct command prompts classify as `shell_command`.",
+    "TDD: Document summary prompts classify as `document_summary`.",
+    "TDD: Quote / download prompts classify as `document_text_search`.",
+    "TDD: Outlook search prompts classify as `email_search`.",
+    "TDD: Outlook mark / move prompts classify as `email_mutation`.",
+    "TDD: Confidence score returned in 0..1 range.",
+    "TDD: Confidence below threshold downgrades mode.",
+    "TDD: `unknown` intent never executes.",
+    "Author the classifier as a model call returning structured JSON `{intent, confidence, reasons}`.",
+    "Tests mock `Invoke-OllamaChat`."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 35,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[tr-05] Intent classifier with confidence",
+  "id": "13546a0f-b653-4730-8eb4-5271c0493184",
+  "plan_path": ".bot/workspace/plans/tr-05-intent-classifier-with-confidence-13546a0f-plan.md"
+}

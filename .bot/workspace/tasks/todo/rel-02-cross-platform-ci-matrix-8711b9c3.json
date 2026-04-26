@@ -1,0 +1,58 @@
+{
+  "working_dir": null,
+  "slug": "rel-02",
+  "type": "prompt",
+  "dependencies": [
+    "pub-02"
+  ],
+  "deliverables": [
+    ".github/workflows/ci.yml"
+  ],
+  "created_at": "2026-04-26T09:01:22Z",
+  "acceptance_criteria": [
+    "CI green on all three platforms."
+  ],
+  "prd_refs": [
+    "PRD §16 v1.0 cross-platform CI matrix (line 2952)",
+    "§16 — v1.0 scope."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/rel-02-ci-matrix.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v1.0",
+    "ci",
+    "github-actions"
+  ],
+  "description": "GitHub Actions workflow running unit tests, lint, manifest test on Windows, macOS, and Ubuntu against PowerShell 7.x. Integration tests are gated on `SLASHOPS_RUN_INTEGRATION` and run nightly only.",
+  "subgroup": "ci",
+  "group": "release",
+  "ai_hours": null,
+  "notes": [
+    "macOS runners are slower; budget for that in test timeouts."
+  ],
+  "steps": [
+    "Author `.github/workflows/ci.yml` with matrix `os: [windows-latest, macos-latest, ubuntu-latest]`.",
+    "Use `pwsh -File ./build/prepublish.ps1` as the single entry point.",
+    "Optional nightly integration job triggered on schedule."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v1.0",
+  "priority": 87,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[rel-02] Cross-platform CI matrix",
+  "id": "8711b9c3-be5f-4f8a-a0d6-8a9761dbecda",
+  "plan_path": ".bot/workspace/plans/rel-02-cross-platform-ci-matrix-8711b9c3-plan.md"
+}

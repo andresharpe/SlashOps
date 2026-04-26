@@ -1,0 +1,76 @@
+{
+  "working_dir": null,
+  "slug": "f-01",
+  "type": "prompt",
+  "dependencies": [],
+  "deliverables": [
+    "README.md (placeholder; final README is pub-05)",
+    "LICENSE (MIT)",
+    "CHANGELOG.md",
+    ".gitignore",
+    ".editorconfig",
+    "PRD.md (copy of source PRD)"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "All deliverable files exist at the repo root.",
+    "`Test-Path` returns true for each.",
+    "LICENSE is valid MIT.",
+    "`.gitignore` includes `.local-psrepo/`, `coverage.xml`, `*.bak`, `**/runs/`.",
+    "PRD.md byte size matches the source download."
+  ],
+  "prd_refs": [
+    "PRD §10.1 Proposed repository structure (lines 2219-2437)",
+    "PRD §12.1 Pre-publish checklist (lines 2727-2742)",
+    "§10.1 lists the full target tree; this task only creates the top-level files. Subdirectories `src/`, `tests/`, `build/`, `docs/`, `examples/` are created on demand by later tasks.",
+    "§12.1 item 4–6 require README, LICENSE, and CHANGELOG before publishing."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/f-01-init-repo-scaffold.md",
+  "applicable_agents": [
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "foundation",
+    "scaffolding",
+    "license",
+    "repo"
+  ],
+  "description": "Set up the empty `SlashOps/` repository with the top-level files every PowerShell Gallery module needs. This task is intentionally minimal — `README.md` here is a placeholder; the real install / quickstart / safety README is delivered by `pub-05`. Licensing follows the FxConsole MIT model so the vendored module remains compatible.",
+  "subgroup": "scaffold",
+  "group": "foundation",
+  "ai_hours": null,
+  "notes": [
+    "Do not commit secrets — `.env`, API keys, etc. are not part of this task and `.gitignore` should already block them.",
+    "README content here is deliberately thin so `pub-05` can replace it without merge conflicts."
+  ],
+  "steps": [
+    "TDD: `git status` shows the new files staged and no working-tree garbage.",
+    "TDD: `Get-Content .\\LICENSE` parses as MIT text.",
+    "TDD: `.gitignore` excludes `.local-psrepo/`, `*.bak`, `~/.slashops/` test artifacts, `.vscode/` user settings, and `runs/` outputs.",
+    "Create `README.md` with a one-paragraph stub pointing to `PRD.md` and `plan/`.",
+    "Create `LICENSE` with the MIT license, copyright `(c) 2026 Andre Sharpe`.",
+    "Create `CHANGELOG.md` with an `## Unreleased` heading.",
+    "Create `.gitignore` excluding build outputs, local PSRepository folders, `coverage.xml`, and IDE files.",
+    "Create `.editorconfig` enforcing UTF-8, LF for `*.ps1` / `*.psd1` / `*.psm1` / `*.json` / `*.md`, 4-space indent for PowerShell.",
+    "Copy `C:\\Users\\andre\\Downloads\\Slashops-PRD_v3.md` into the repo as `PRD.md` (linked living copy is `doc-10`).",
+    "Commit nothing — leave the working tree for the user to inspect."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "n/a",
+  "priority": 1,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:22Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[f-01] Initialize repository scaffold",
+  "id": "78848fb7-a9a8-41dc-b66c-9c9a1d7c3a13",
+  "plan_path": ".bot/workspace/plans/f-01-initialize-repository-scaffold-78848fb7-plan.md"
+}

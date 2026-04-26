@@ -1,0 +1,68 @@
+{
+  "working_dir": null,
+  "slug": "saf-05",
+  "type": "prompt",
+  "dependencies": [
+    "mdl-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Invoke-SlashOpsSecurityReview.ps1",
+    "tests/Unit/Safety.AiReview.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Function exported."
+  ],
+  "prd_refs": [
+    "PRD §6.11 AI security review (lines 738-761)",
+    "§6.11 — full schema and rules.",
+    "§9.11 — cache key."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/saf-05-ai-security-review.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "safety",
+    "ai",
+    "review",
+    "second-pass"
+  ],
+  "description": "Optional AI security review via a second Ollama call (default same model). Required for `/!` strict mode, `/` for risky-write/unknown classifications, `/x` benign-write unless policy disables it for speed, and any command touching cloud, git mutation, packages, sync, or remote URLs. AI review can raise risk but cannot lower a static block.",
+  "subgroup": "review",
+  "group": "safety",
+  "ai_hours": null,
+  "notes": [
+    "Document the review system prompt in `docs/SAFETY.md` (doc-01) so the heuristic is auditable."
+  ],
+  "steps": [
+    "TDD: Returns object matching §6.11 schema (`risk`, `summary`, `reasons`, `safer_alternative`).",
+    "TDD: Static-blocked command remains blocked even if AI review says `risk = low`.",
+    "TDD: AI review `risk = high` raises a static-benign result.",
+    "TDD: AI review failure prevents `/x` execution for write operations (§6.11 last bullet).",
+    "TDD: Cache hit by command hash + policy version + review model (§9.11).",
+    "Author `Public/Invoke-SlashOpsSecurityReview.ps1` issuing a chat call with the review-system prompt and the candidate command.",
+    "Apply the cannot-lower rule downstream of static block (saf-06 enforces).",
+    "Tests mock `Invoke-OllamaChat` and assert raise/cannot-lower behaviour."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 15,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[saf-05] AI security review (second model call)",
+  "id": "0f581572-9cd4-40d3-9235-eede0d1fa61e",
+  "plan_path": ".bot/workspace/plans/saf-05-ai-security-review-second-model-call-0f581572-plan.md"
+}

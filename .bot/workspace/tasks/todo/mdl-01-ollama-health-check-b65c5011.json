@@ -1,0 +1,71 @@
+{
+  "working_dir": null,
+  "slug": "mdl-01",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-07"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Model/Test-Ollama.ps1",
+    "src/SlashOps/Public/Test-SlashOpsOllama.ps1",
+    "tests/Unit/Model.Health.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Cache TTL respected.",
+    "Cmdlet exported."
+  ],
+  "prd_refs": [
+    "PRD §3.2 Ollama integration (lines 129-148)",
+    "PRD §10.3 Caching requirements (lines 2478-2484)",
+    "§3.2 — endpoints + OpenAI-compatible API.",
+    "§10.3 — Ollama health cache 5 minutes default."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/mdl-01-ollama-health.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "model",
+    "ollama",
+    "health",
+    "cache"
+  ],
+  "description": "Check Ollama reachability via `GET /v1/models`. Cache the result for `cache.ollamaHealthSeconds` (default 300) so preflight and command pipelines can call it freely. Surface a structured result so callers can drive remediation.",
+  "subgroup": "health",
+  "group": "model",
+  "ai_hours": null,
+  "notes": [
+    "Mock `Invoke-RestMethod` in tests; do not hit a real Ollama server."
+  ],
+  "steps": [
+    "TDD: 200 OK from `/v1/models` returns `Reachable = $true` with model list.",
+    "TDD: Connection refused returns `Reachable = $false` with reason.",
+    "TDD: Timeout returns `Reachable = $false` with timeout reason.",
+    "TDD: Cached result is reused within TTL.",
+    "TDD: Cache bypass via `-NoCache`.",
+    "Author `Private/Model/Test-Ollama.ps1` issuing `Invoke-RestMethod` against the configured `modelsEndpoint`.",
+    "Cache layer keyed by endpoint + model.",
+    "Public `Test-SlashOpsOllama` thin wrapper."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 11,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[mdl-01] Ollama health check",
+  "id": "b65c5011-f768-4cdb-921a-c64adbe45b0f",
+  "plan_path": ".bot/workspace/plans/mdl-01-ollama-health-check-b65c5011-plan.md"
+}

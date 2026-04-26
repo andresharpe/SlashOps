@@ -1,0 +1,71 @@
+{
+  "working_dir": null,
+  "slug": "exe-01",
+  "type": "prompt",
+  "dependencies": [
+    "saf-07"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Execution/Invoke-GeneratedCommand.ps1",
+    "src/SlashOps/Public/Invoke-SlashOpsCommand.ps1",
+    "tests/Unit/Execution.Invoke.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Per-run logs landed.",
+    "Truncation marked."
+  ],
+  "prd_refs": [
+    "PRD §6.14 Execution transcript (lines 799-832)",
+    "PRD §9.4 execution captureStdoutStderr / maxStdoutBytes / maxStderrBytes (lines 1718-1721)",
+    "§6.14 — transcript schema includes `stdout_log` / `stderr_log` paths.",
+    "§9.4 — capture and byte limits."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/exe-01-invoke-command.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "execution",
+    "invoke",
+    "capture"
+  ],
+  "description": "Run a generated command in-process via `&{ ... }` or via `pwsh -Command` (configurable). Capture stdout, stderr, and exit code. Per-run logs land at `~/.slashops/runs/<id>/{stdout,stderr}.txt`. Truncate per `execution.maxStdoutBytes` / `maxStderrBytes` with a marker.",
+  "subgroup": "invoke",
+  "group": "execution",
+  "ai_hours": null,
+  "notes": [
+    "Decide between in-process invocation and child `pwsh` carefully — in-process inherits scope and is faster but exposes the SlashOps process to side effects. Default to child `pwsh` for v0.1; revisit in v0.4."
+  ],
+  "steps": [
+    "TDD: Successful command returns `ExitCode = 0` and captured stdout.",
+    "TDD: Failing command returns non-zero exit code and captured stderr.",
+    "TDD: Stdout above `maxStdoutBytes` truncated with marker.",
+    "TDD: Per-run directory created under `runs/<id>/`.",
+    "TDD: Run id is unique per invocation.",
+    "TDD: Function refuses to run when gate decision is not `auto`/`ask-confirmed`.",
+    "Author `Private/Execution/Invoke-GeneratedCommand.ps1` accepting `(CommandPlan, GateDecision)`.",
+    "Public `Invoke-SlashOpsCommand` thin wrapper for explicit invocation.",
+    "Tests use `TestDrive:` for runs root."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 11,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[exe-01] Invoke-GeneratedCommand (run + capture)",
+  "id": "5d63e33b-332f-4bd4-a5fc-18bdda4d59ed",
+  "plan_path": ".bot/workspace/plans/exe-01-invoke-generatedcommand-run-capture-5d63e33b-plan.md"
+}

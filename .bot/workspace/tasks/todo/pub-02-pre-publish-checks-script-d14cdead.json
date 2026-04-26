@@ -1,0 +1,64 @@
+{
+  "working_dir": null,
+  "slug": "pub-02",
+  "type": "prompt",
+  "dependencies": [
+    "pub-01",
+    "gate-v01"
+  ],
+  "deliverables": [
+    "build/prepublish.ps1",
+    "tests/Integration/Prepublish.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Script runs end-to-end.",
+    "Failure modes proven."
+  ],
+  "prd_refs": [
+    "PRD §12.1 Pre-publish checklist (lines 2727-2742)",
+    "§12.1 — pre-publish requirements."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/pub-02-prepublish-checks.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "publish",
+    "ci",
+    "checks"
+  ],
+  "description": "Single-command wrapper running Pester (unit), PSScriptAnalyzer, and `Test-ModuleManifest`. CI and humans both call this before any publish step.",
+  "subgroup": "scripts",
+  "group": "publish",
+  "ai_hours": null,
+  "notes": [
+    "Keep this stage fast — under 60 seconds on a warm machine."
+  ],
+  "steps": [
+    "TDD: Script returns 0 on a clean tree.",
+    "TDD: Script returns non-zero when Pester fails.",
+    "TDD: Script returns non-zero when PSScriptAnalyzer reports errors.",
+    "TDD: Script returns non-zero when manifest is invalid.",
+    "Author `build/prepublish.ps1` chaining `build/test.ps1`, `build/lint.ps1`, `Test-ModuleManifest`.",
+    "Integration test runs the chain end-to-end on a known-good tree."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 12,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[pub-02] Pre-publish checks script",
+  "id": "d14cdead-773f-4d6e-868a-da2ee0e8a3f1",
+  "plan_path": ".bot/workspace/plans/pub-02-pre-publish-checks-script-d14cdead-plan.md"
+}

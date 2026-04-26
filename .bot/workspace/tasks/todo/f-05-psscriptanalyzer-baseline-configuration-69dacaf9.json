@@ -1,0 +1,69 @@
+{
+  "working_dir": null,
+  "slug": "f-05",
+  "type": "prompt",
+  "dependencies": [
+    "f-02"
+  ],
+  "deliverables": [
+    "PSScriptAnalyzerSettings.psd1",
+    "build/lint.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Settings file is valid.",
+    "Lint script exits 0 on a clean tree.",
+    "Lint script exits non-zero on a deliberate violation."
+  ],
+  "prd_refs": [
+    "PRD §3.4 PowerShell Gallery requirements (lines 170-185)",
+    "PRD §11.5 Build/test commands (lines 2714-2722)",
+    "PRD §12.1 Pre-publish checklist item 2 (line 2730)",
+    "§3.4 — PSScriptAnalyzer is required for Gallery best practice.",
+    "§11.5 — `Invoke-ScriptAnalyzer -Path ./src/SlashOps -Recurse` is the canonical command.",
+    "§12.1 — pre-publish step 2 requires no PSScriptAnalyzer errors."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/f-05-psscriptanalyzer.md",
+  "applicable_agents": [
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "foundation",
+    "linting",
+    "psscriptanalyzer",
+    "quality"
+  ],
+  "description": "Add PSScriptAnalyzer settings tuned for SlashOps. Treat all default rules as enabled, with explicit excludes documented inline (e.g. `PSAvoidUsingWriteHost` is acceptable in UI rendering paths if FxConsole requires it). Provide a build script wrapper so CI and pre-publish checks call the same entry point.",
+  "subgroup": "linting",
+  "group": "foundation",
+  "ai_hours": null,
+  "notes": [
+    "Do not silence rules globally; prefer file-scoped suppression with `[Diagnostics.CodeAnalysis.SuppressMessageAttribute()]` and a comment explaining why."
+  ],
+  "steps": [
+    "TDD: `pwsh -File ./build/lint.ps1` runs PSScriptAnalyzer with the settings file and exits 0 on a clean tree.",
+    "TDD: Introducing a deliberate `Write-Host` violation in a non-UI file fails lint.",
+    "TDD: `PSScriptAnalyzerSettings.psd1` parses as a valid PowerShell data file.",
+    "Author `PSScriptAnalyzerSettings.psd1` with `IncludeDefaultRules = $true`, `Severity = @('Error','Warning')`, `ExcludeRules = @()` initially. Document any additions inline with rationale.",
+    "Author `build/lint.ps1` that imports PSScriptAnalyzer, runs `Invoke-ScriptAnalyzer -Path ./src/SlashOps -Recurse -Settings ./PSScriptAnalyzerSettings.psd1`, prints findings, and exits non-zero on error severity.",
+    "Wire up `build/lint.ps1` to be callable standalone or from `pub-02-prepublish-checks`."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "n/a",
+  "priority": 5,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:22Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[f-05] PSScriptAnalyzer baseline configuration",
+  "id": "69dacaf9-dc7a-4b82-aa0b-a8fe4116d330",
+  "plan_path": ".bot/workspace/plans/f-05-psscriptanalyzer-baseline-configuration-69dacaf9-plan.md"
+}

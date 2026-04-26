@@ -1,0 +1,65 @@
+{
+  "working_dir": null,
+  "slug": "ui-03",
+  "type": "prompt",
+  "dependencies": [
+    "ui-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/UI/Write-SlashOpsPlan.ps1",
+    "src/SlashOps/Private/UI/Write-SlashOpsRisk.ps1",
+    "tests/Unit/UI.Plan.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §6.15 Output rendering (lines 840-875)",
+    "§6.15 — generated command card, risk summary card, dependency status table."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ui-03-plan-and-risk-cards.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "ui-ux",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "ui",
+    "plan",
+    "risk",
+    "fxconsole"
+  ],
+  "description": "Render the generated command in a card, and the risk classification + reason in a parallel card. Dependency status table optional via `ui.showDependencyTable`.",
+  "subgroup": "panels",
+  "group": "ui",
+  "ai_hours": null,
+  "notes": [
+    "Long commands wrap awkwardly; document the recommended max width and rely on FxConsole to handle the wrap."
+  ],
+  "steps": [
+    "TDD: Plan card includes the command text verbatim.",
+    "TDD: Risk card includes class label and reason.",
+    "TDD: Dependency table appears when configured to show.",
+    "TDD: Cards honour `ui.theme`.",
+    "Author both helpers calling `Write-FxCard`.",
+    "Tests stub FxConsole."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 13,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ui-03] Generated plan and risk summary cards",
+  "id": "a7000117-22a0-4fd8-917f-7e543fb358f5",
+  "plan_path": ".bot/workspace/plans/ui-03-generated-plan-and-risk-summary-cards-a7000117-plan.md"
+}

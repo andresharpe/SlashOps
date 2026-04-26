@@ -1,0 +1,56 @@
+{
+  "working_dir": null,
+  "slug": "doc-04",
+  "type": "prompt",
+  "dependencies": [
+    "tr-08"
+  ],
+  "deliverables": [
+    "docs/AGENT_RUNTIME.md"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "File present, content-complete."
+  ],
+  "prd_refs": [
+    "PRD §7.1-§7.5, §7.12-§7.16 (lines 879-1017, 1173-1269)"
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/doc-04-agent-runtime-md.md",
+  "applicable_agents": [
+    ".claude/agents/planner.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "docs",
+    "agent",
+    "runtime"
+  ],
+  "description": "Reference for the agent runtime: rationale, architecture, intent taxonomy, planner contract, agent loop, observation handling, tool prompting rules, UI conventions.",
+  "subgroup": "agent",
+  "group": "docs",
+  "ai_hours": null,
+  "notes": [
+    "Keep the agent loop diagram up to date with `Invoke-AgentLoop.ps1`."
+  ],
+  "steps": [
+    "Sections: rationale, architecture, separation of concerns, intent taxonomy, planner contract, agent loop, observations, prompting, UI.",
+    "Worked example: a multi-step document workflow end-to-end."
+  ],
+  "sequence": 4,
+  "applicable_decisions": [],
+  "version": "all",
+  "priority": 94,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "XS",
+  "name": "[doc-04] docs/AGENT_RUNTIME.md",
+  "id": "2bf42fb0-a7ae-4169-81e0-91a1010e7cdc",
+  "plan_path": ".bot/workspace/plans/doc-04-docsagent_runtimemd-2bf42fb0-plan.md"
+}

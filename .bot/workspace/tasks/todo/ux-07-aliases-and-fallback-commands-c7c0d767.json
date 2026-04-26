@@ -1,0 +1,68 @@
+{
+  "working_dir": null,
+  "slug": "ux-07",
+  "type": "prompt",
+  "dependencies": [
+    "ux-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/UX/Set-DefaultAliases.ps1",
+    "tests/Unit/UX.Aliases.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Aliases load idempotently."
+  ],
+  "prd_refs": [
+    "PRD §5.1 fallback commands (lines 286-291)",
+    "PRD §8.8 profile alias block (lines 1532-1542)",
+    "PRD §17 Open question Q6 (line 2966)",
+    "§5.1 — fallback names.",
+    "§8.8 — profile block content.",
+    "§17 Q6 — alias install opt-in."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ux-07-aliases-fallbacks.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "ui-ux",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "ux",
+    "aliases",
+    "fallback"
+  ],
+  "description": "Define the alias set used by the profile block: `/`, `//`, `/x`, `/!`, `/?`. PowerShell does not always allow non-identifier aliases — provide named fallback functions `slash`, `slashx`, `slashq`, `slashgen` that the profile installs unconditionally so users always have a working entry point.",
+  "subgroup": "aliases",
+  "group": "ux",
+  "ai_hours": null,
+  "notes": [
+    "`/?` collides with PowerShell's built-in help shortcut on some hosts; document a workaround if `Set-Alias '/?'` fails on a given host."
+  ],
+  "steps": [
+    "TDD: Aliases for the five prefixes register where supported.",
+    "TDD: Fallback functions `slash`, `slashx`, `slashq`, `slashgen` always register.",
+    "TDD: Fallback functions delegate to the matching `Invoke-SlashOps*` cmdlet.",
+    "TDD: Alias registration is idempotent.",
+    "Author `Private/UX/Set-DefaultAliases.ps1` issuing `Set-Alias` and registering fallback functions.",
+    "Tests assert both aliases and fallbacks resolve."
+  ],
+  "sequence": 7,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 17,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ux-07] Aliases and fallback commands",
+  "id": "c7c0d767-00f0-4f6b-987a-08c595ea72b8",
+  "plan_path": ".bot/workspace/plans/ux-07-aliases-and-fallback-commands-c7c0d767-plan.md"
+}

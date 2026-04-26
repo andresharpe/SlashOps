@@ -1,0 +1,72 @@
+{
+  "working_dir": null,
+  "slug": "ux-03",
+  "type": "prompt",
+  "dependencies": [
+    "ux-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Invoke-SlashOpsFast.ps1",
+    "tests/Unit/UX.InvokeFast.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Cmdlet exported."
+  ],
+  "prd_refs": [
+    "PRD §5.1 Prefixes (lines 273-291)",
+    "PRD §5.2 safe fast execution (lines 293-320)",
+    "PRD §5.3 benign-write fast execution (lines 322-361)",
+    "PRD §11.3 Execution gate /x tests (lines 2667-2673)",
+    "§5.1 / §5.2 / §5.3 — fast-mode behaviour and examples.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ux-03-invoke-fast.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "ui-ux",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "ux",
+    "invoke",
+    "fast-mode",
+    "prefix"
+  ],
+  "description": "Fast mode entry point. Auto-executes when classification is `read-only` or policy-approved `benign-write`. Refuses `blocked`. Stops `risky-write` and `unknown`, instructing the user to retry with `/`.",
+  "subgroup": "invoke",
+  "group": "ux",
+  "ai_hours": null,
+  "notes": [
+    "Cloud mutation and package install must remain blocked in `/x` per §9.12 floor."
+  ],
+  "steps": [
+    "TDD: `/x` + `read-only` → auto-execute.",
+    "TDD: `/x` + `benign-write` (policy-approved) → auto-execute.",
+    "TDD: `/x` + `benign-write` (policy-disapproved) → stops with guidance.",
+    "TDD: `/x` + `risky-write` → stops with guidance.",
+    "TDD: `/x` + `blocked` → refuses.",
+    "TDD: `/x` + `unknown` → stops.",
+    "TDD: Transcript records the gate decision and reason.",
+    "Author `Public/Invoke-SlashOpsFast.ps1` reusing the orchestrator from `ux-02` with `Mode = '/x'`.",
+    "Tests mock the gate decision."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 13,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ux-03] Invoke-SlashOpsFast (/x) — auto-execute safe",
+  "id": "2468d1ec-70bf-493d-880c-db2e1c45fd9d",
+  "plan_path": ".bot/workspace/plans/ux-03-invoke-slashopsfast-x-auto-execute-safe-2468d1ec-plan.md"
+}

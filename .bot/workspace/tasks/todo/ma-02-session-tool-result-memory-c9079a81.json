@@ -1,0 +1,65 @@
+{
+  "working_dir": null,
+  "slug": "ma-02",
+  "type": "prompt",
+  "dependencies": [
+    "ma-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Agent/Get-SessionMemory.ps1",
+    "src/SlashOps/Private/Agent/Add-SessionMemory.ps1",
+    "tests/Unit/Agent.SessionMemory.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §16 v0.4 tool-result memory within a session (line 2941)",
+    "§16 — v0.4 scope."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ma-02-session-tool-memory.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.4",
+    "agent",
+    "memory",
+    "session"
+  ],
+  "description": "In-process memory of tool results so re-plans don't re-fetch identical data within the same session. Memory is process-local and ephemeral; never persisted.",
+  "subgroup": "memory",
+  "group": "mature-agent",
+  "ai_hours": null,
+  "notes": [
+    "Avoid retaining sensitive content in memory; apply same redaction rules as transcripts."
+  ],
+  "steps": [
+    "TDD: Identical tool call within session reuses prior result.",
+    "TDD: Different args produce a new entry.",
+    "TDD: Memory cleared on process exit.",
+    "TDD: Configurable max entries.",
+    "Author memory store keyed by `(tool, hash(args))`.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v0.4",
+  "priority": 72,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ma-02] Session tool-result memory",
+  "id": "c9079a81-6cf2-40a9-b4c5-96ea8c70bf29",
+  "plan_path": ".bot/workspace/plans/ma-02-session-tool-result-memory-c9079a81-plan.md"
+}

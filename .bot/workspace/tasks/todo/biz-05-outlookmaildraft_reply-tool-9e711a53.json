@@ -1,0 +1,68 @@
+{
+  "working_dir": null,
+  "slug": "biz-05",
+  "type": "prompt",
+  "dependencies": [
+    "biz-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Outlook/Invoke-OutlookDraftReply.ps1",
+    "src/SlashOps/ToolManifests/outlook.mail.draft_reply.json",
+    "tests/Unit/Tools.Outlook.DraftReply.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.8 Optional v0.3 business/dev tools (lines 1076-1090)",
+    "PRD §7.9 email_draft handling (lines 1108-1110)",
+    "§7.8 — tool list.",
+    "§7.9 — draft-only rule."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/biz-05-outlook-mail-draft-reply.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.3",
+    "outlook",
+    "draft",
+    "reply"
+  ],
+  "description": "Draft a reply to a selected message. Saves as draft only — never sends. Email send is explicitly out of scope until a future high-risk confirmed flow.",
+  "subgroup": "outlook",
+  "group": "business",
+  "ai_hours": null,
+  "notes": [
+    "The draft body comes from a model summary; ensure privacy section gates whether the source email body was sent to the model."
+  ],
+  "steps": [
+    "TDD: Disabled by default.",
+    "TDD: Enabled → creates draft (mocked) and returns draft id.",
+    "TDD: Never sends regardless of input.",
+    "TDD: Manifest passes validation.",
+    "Author the tool function.",
+    "Author manifest with `default_risk: benign-write`, `supports_fast_mode: false`.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.3",
+  "priority": 55,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[biz-05] outlook.mail.draft_reply tool",
+  "id": "9e711a53-9fa9-47fb-9ee3-59413864f38a",
+  "plan_path": ".bot/workspace/plans/biz-05-outlookmaildraft_reply-tool-9e711a53-plan.md"
+}

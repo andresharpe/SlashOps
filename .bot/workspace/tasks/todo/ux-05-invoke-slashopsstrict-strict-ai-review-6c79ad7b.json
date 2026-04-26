@@ -1,0 +1,68 @@
+{
+  "working_dir": null,
+  "slug": "ux-05",
+  "type": "prompt",
+  "dependencies": [
+    "ux-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Invoke-SlashOpsStrict.ps1",
+    "tests/Unit/UX.InvokeStrict.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Cmdlet exported."
+  ],
+  "prd_refs": [
+    "PRD §5.1 Prefixes (lines 273-291)",
+    "PRD §6.11 AI security review required for /! (lines 738-761)",
+    "§5.1 — strict behaviour.",
+    "§6.11 — AI review required for `/!`."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ux-05-invoke-strict.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "ui-ux",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "ux",
+    "invoke",
+    "strict",
+    "ai-review",
+    "prefix"
+  ],
+  "description": "`/!` strict prefix: always runs AI security review; never auto-executes; refuses `blocked` immediately.",
+  "subgroup": "invoke",
+  "group": "ux",
+  "ai_hours": null,
+  "notes": [
+    "For users who want defence in depth, `/!` is the recommended default — call this out in `docs/SAFETY.md`."
+  ],
+  "steps": [
+    "TDD: AI review always invoked.",
+    "TDD: AI review failure prevents execution.",
+    "TDD: Even `read-only` classifications require explicit confirmation.",
+    "TDD: `blocked` always refused.",
+    "Author `Public/Invoke-SlashOpsStrict.ps1` with `Mode = '/!'` and `RequireAiReview = $true`.",
+    "Tests assert AI review was invoked."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 15,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ux-05] Invoke-SlashOpsStrict (/!) — strict + AI review",
+  "id": "6c79ad7b-3bd5-4faa-9ff3-7fe2f76ec976",
+  "plan_path": ".bot/workspace/plans/ux-05-invoke-slashopsstrict-strict-ai-review-6c79ad7b-plan.md"
+}

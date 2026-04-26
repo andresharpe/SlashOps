@@ -1,0 +1,73 @@
+{
+  "working_dir": null,
+  "slug": "set-05",
+  "type": "prompt",
+  "dependencies": [
+    "set-01",
+    "set-02",
+    "set-03",
+    "set-04",
+    "cfg-08"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Initialize-SlashOps.ps1",
+    "tests/Unit/Setup.Initialize.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Idempotent.",
+    "Cmdlet exported."
+  ],
+  "prd_refs": [
+    "PRD §8.4 Initialize-SlashOps flow (lines 1396-1419)",
+    "PRD §9.9 First-run config creation (lines 2110-2139)",
+    "§8.4 — full step list.",
+    "§9.9 — first-run prompts."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/set-05-initialize-slashops.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "setup",
+    "initialize",
+    "first-run",
+    "idempotent"
+  ],
+  "description": "The user-facing first-run command. Runs the §8.4 17-step flow: banner, version checks, Ollama detection / install, model detection / pull, optional CLI inventory, profile install (opt-in), config + policy creation, preflight, success panel. Idempotent — safe to re-run after partial setup.",
+  "subgroup": "initialize",
+  "group": "setup",
+  "ai_hours": null,
+  "notes": [
+    "Preserve existing config on re-run; only write defaults when missing. Backup any existing config before overwrite even on partial migrations."
+  ],
+  "steps": [
+    "TDD: Fresh machine: full flow with all confirmations granted writes config + policy and runs preflight.",
+    "TDD: Re-run on a configured machine: idempotent — no duplicate writes, no duplicate profile blocks.",
+    "TDD: `-AcceptDefaults` runs without prompting.",
+    "TDD: `SLASHOPS_NONINTERACTIVE = 1` without `-AcceptDefaults` exits with remediation.",
+    "TDD: Each step's success / failure is reflected in a final structured result.",
+    "Author `Public/Initialize-SlashOps.ps1` orchestrating all steps.",
+    "Tests mock every sub-step."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 15,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "M",
+  "name": "[set-05] Initialize-SlashOps full flow",
+  "id": "bb2c4368-1511-4fba-85d2-c2d1b7def65c",
+  "plan_path": ".bot/workspace/plans/set-05-initialize-slashops-full-flow-bb2c4368-plan.md"
+}

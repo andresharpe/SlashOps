@@ -1,0 +1,65 @@
+{
+  "working_dir": null,
+  "slug": "ui-04",
+  "type": "prompt",
+  "dependencies": [
+    "ui-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/UI/Write-SlashOpsConfirm.ps1",
+    "tests/Unit/UI.Confirm.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §6.13 Confirmation UX (lines 773-797)",
+    "PRD §6.15 Confirmation prompts (line 849)",
+    "§6.13 — exact prompt text."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ui-04-confirmation-prompts.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "ui-ux",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "ui",
+    "confirmation",
+    "fxconsole"
+  ],
+  "description": "Render confirmation prompts as themed panels. The actual user input loop lives in `saf-08`; this helper only renders the prompt text and warning context.",
+  "subgroup": "prompts",
+  "group": "ui",
+  "ai_hours": null,
+  "notes": [
+    "Render-only; do not call `Read-Host` here. That happens in `saf-08`."
+  ],
+  "steps": [
+    "TDD: Standard prompt shows the y/N hint.",
+    "TDD: High-risk prompt shows the EXECUTE token requirement.",
+    "TDD: Package install prompt shows INSTALL token.",
+    "TDD: Cloud prompt shows CLOUD token.",
+    "TDD: Pull prompt shows PULL token.",
+    "Author `Private/UI/Write-SlashOpsConfirm.ps1` taking `(Kind, Reason)` and dispatching to FxConsole panel calls.",
+    "Tests stub FxConsole and assert prompt content."
+  ],
+  "sequence": 4,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 14,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ui-04] Confirmation prompts (themed)",
+  "id": "ab2253f6-f675-4857-ba65-e1a325cc4564",
+  "plan_path": ".bot/workspace/plans/ui-04-confirmation-prompts-themed-ab2253f6-plan.md"
+}

@@ -1,0 +1,68 @@
+{
+  "working_dir": null,
+  "slug": "saf-04",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-07"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Test-SlashOpsToolPolicy.ps1",
+    "tests/Unit/Safety.ToolPolicy.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Function exported."
+  ],
+  "prd_refs": [
+    "PRD §9.6 policy.fastAllowedCommands / neverFastExecute (lines 1923-1945)",
+    "PRD §11.3 Tool policy tests (lines 2590-2596)",
+    "§9.6 — `fastAllowedCommands`, `neverFastExecute`.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/saf-04-tool-policy.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "safety",
+    "tools",
+    "allowlist",
+    "blocklist"
+  ],
+  "description": "Compare each command extracted by the AST parser (saf-02) against `policy.fastAllowedCommands` and `policy.neverFastExecute`. Determine fast-mode eligibility. Cloud / package-install commands are treated specially: blocked in `/x` per §9.12 floor.",
+  "subgroup": "tools",
+  "group": "safety",
+  "ai_hours": null,
+  "notes": [
+    "The neverFastExecute list overlaps with risky regex; the rule is \"any list match → not fast-mode eligible\" — order does not matter."
+  ],
+  "steps": [
+    "TDD: `Get-ChildItem` is in `fastAllowedCommands` → fast OK.",
+    "TDD: `Remove-Item` is in `neverFastExecute` → fast not OK.",
+    "TDD: `winget install` is package install → blocked in `/x`.",
+    "TDD: `kubectl apply` is in `neverFastExecute` and risky regex → blocked in `/x`.",
+    "TDD: Missing required CLI tool returns `MissingDependencies` non-empty.",
+    "Author `Public/Test-SlashOpsToolPolicy.ps1` taking `(AstResult, Policy, ToolInventory)`.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 4,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 14,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[saf-04] Tool / command policy check",
+  "id": "6fb5b8ea-beb6-4622-a123-c3afae833ae0",
+  "plan_path": ".bot/workspace/plans/saf-04-tool-command-policy-check-6fb5b8ea-plan.md"
+}

@@ -1,0 +1,55 @@
+{
+  "working_dir": null,
+  "slug": "doc-02",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-09"
+  ],
+  "deliverables": [
+    "docs/CONFIGURATION.md"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "File present, content-complete."
+  ],
+  "prd_refs": [
+    "PRD §9 Configuration (lines 1593-2214)"
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/doc-02-configuration-md.md",
+  "applicable_agents": [
+    ".claude/agents/planner.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "docs",
+    "configuration"
+  ],
+  "description": "Reference for the entire configuration subsystem: file locations, precedence, env vars, schemas, public commands, migration, safety floor, examples.",
+  "subgroup": "configuration",
+  "group": "docs",
+  "ai_hours": null,
+  "notes": [
+    "Keep schema tables aligned with `New-DefaultConfig.ps1` — drift is a common bug source."
+  ],
+  "steps": [
+    "Sections: principles, files / paths, precedence, schemas, public commands, migration, safety floor, examples.",
+    "Provide three concrete examples: per-user defaults, project override, enterprise lock-down."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "all",
+  "priority": 92,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "XS",
+  "name": "[doc-02] docs/CONFIGURATION.md",
+  "id": "80ed6937-b54a-4088-a903-5910516357bb",
+  "plan_path": ".bot/workspace/plans/doc-02-docsconfigurationmd-80ed6937-plan.md"
+}

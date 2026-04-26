@@ -1,0 +1,59 @@
+{
+  "working_dir": null,
+  "slug": "rel-03",
+  "type": "prompt",
+  "dependencies": [
+    "pub-04"
+  ],
+  "deliverables": [
+    "build/sign.ps1",
+    "docs/SIGNING.md"
+  ],
+  "created_at": "2026-04-26T09:01:22Z",
+  "acceptance_criteria": [
+    "Signing step runs end-to-end with a test cert."
+  ],
+  "prd_refs": [
+    "PRD §16 v1.0 signed module option (line 2953)",
+    "§16 — v1.0 scope."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/rel-03-signed-module.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v1.0",
+    "signing",
+    "codesign"
+  ],
+  "description": "Add an optional code-signing step to the publish pipeline. Document how to use it. Signing is opt-in; unsigned releases continue for community contributors.",
+  "subgroup": "signing",
+  "group": "release",
+  "ai_hours": null,
+  "notes": [
+    "Cert renewal is operational; set a calendar reminder before expiry."
+  ],
+  "steps": [
+    "Author `build/sign.ps1` using `Set-AuthenticodeSignature` on Windows; document macOS / Linux signing path (or note unsupported).",
+    "Author `docs/SIGNING.md` explaining cert acquisition and use.",
+    "Update `pub-04` to call signing when configured."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "v1.0",
+  "priority": 88,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[rel-03] Signed module option",
+  "id": "d7b81591-ac4e-4ebf-91fd-d3b144e07ab5",
+  "plan_path": ".bot/workspace/plans/rel-03-signed-module-option-d7b81591-plan.md"
+}

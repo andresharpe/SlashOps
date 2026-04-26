@@ -1,0 +1,60 @@
+{
+  "working_dir": null,
+  "slug": "biz-12",
+  "type": "prompt",
+  "dependencies": [
+    "biz-11"
+  ],
+  "deliverables": [
+    "docs/OUTLOOK.md"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "File exists and is content-complete.",
+    "Cross-links resolve."
+  ],
+  "prd_refs": [
+    "PRD §15.3 acceptance criterion 10 (line 2892)",
+    "PRD §10.1 docs/OUTLOOK.md (line 2433)",
+    "§15.3 — acceptance criterion 10 requires docs.",
+    "§10.1 — docs path."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/biz-12-outlook-docs.md",
+  "applicable_agents": [
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.3",
+    "docs",
+    "outlook"
+  ],
+  "description": "Document the Outlook provider abstraction, Graph app-registration flow, M365 CLI fallback, the privacy model (what is logged, what is sent to the model), and worked examples for search / mark / draft.",
+  "subgroup": "docs",
+  "group": "business",
+  "ai_hours": null,
+  "notes": [
+    "Graph scopes are easy to over-grant; recommend the minimum scopes for read-only and explicit added scopes for mutations."
+  ],
+  "steps": [
+    "Sections: provider preference, Graph setup (app registration / scopes), M365 CLI install / login, privacy defaults, fast-mode policy, examples.",
+    "Cross-link from `README.md` and `docs/CONFIGURATION.md`."
+  ],
+  "sequence": 12,
+  "applicable_decisions": [],
+  "version": "v0.3",
+  "priority": 62,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[biz-12] Outlook setup and privacy docs",
+  "id": "e62602f9-602b-4454-a4cc-460dcf3a9859",
+  "plan_path": ".bot/workspace/plans/biz-12-outlook-setup-and-privacy-docs-e62602f9-plan.md"
+}

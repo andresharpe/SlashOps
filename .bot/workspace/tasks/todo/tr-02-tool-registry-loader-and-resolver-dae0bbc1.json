@@ -1,0 +1,73 @@
+{
+  "working_dir": null,
+  "slug": "tr-02",
+  "type": "prompt",
+  "dependencies": [
+    "tr-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Registry/Get-ToolRegistry.ps1",
+    "src/SlashOps/Private/Tools/Registry/Read-ToolManifest.ps1",
+    "src/SlashOps/Private/Tools/Registry/Resolve-Tool.ps1",
+    "tests/Unit/ToolRegistry.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.6 Tool registry (lines 1019-1055)",
+    "PRD §9.5 toolRegistry config (lines 1799-1814)",
+    "PRD §11.3 Tool registry tests (lines 2626-2636)",
+    "§7.6 — registry rules.",
+    "§9.5 — toolRegistry config.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/tr-02-tool-registry-loader.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "tools",
+    "registry",
+    "loader"
+  ],
+  "description": "Discover manifests under `ToolManifests/`, validate each, filter by `toolRegistry.enabledTools` / `disabledTools`, drop tools whose `supported_platforms` excludes the current OS, drop tools whose `required_commands` are missing from the inventory, and produce an indexed registry the planner and executor consume.",
+  "subgroup": "registry",
+  "group": "tool-runtime",
+  "ai_hours": null,
+  "notes": [
+    "Cache the registry per process; invalidate on policy / config mtime change (per §9.11)."
+  ],
+  "steps": [
+    "TDD: Built-in manifests load.",
+    "TDD: Invalid manifest is excluded with a warning.",
+    "TDD: Disabled tool excluded.",
+    "TDD: Wrong platform excluded.",
+    "TDD: Missing required command excluded.",
+    "TDD: `Resolve-Tool` returns `$null` for unknown name.",
+    "TDD: Project config cannot enable user tools by default (per §9.5).",
+    "Author the three private helpers.",
+    "Tests use `TestDrive:` to seed manifests and a mocked tool inventory."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 32,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[tr-02] Tool registry loader and resolver",
+  "id": "dae0bbc1-8ad4-4c1d-bda5-c23aa857734a",
+  "plan_path": ".bot/workspace/plans/tr-02-tool-registry-loader-and-resolver-dae0bbc1-plan.md"
+}

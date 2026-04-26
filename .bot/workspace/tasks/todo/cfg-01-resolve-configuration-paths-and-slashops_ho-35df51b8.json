@@ -1,0 +1,75 @@
+{
+  "working_dir": null,
+  "slug": "cfg-01",
+  "type": "prompt",
+  "dependencies": [
+    "f-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/Get-ConfigPath.ps1",
+    "src/SlashOps/Public/Get-SlashOpsConfigPath.ps1",
+    "tests/Unit/Config.Paths.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "All TDD tests pass on Windows + Linux.",
+    "No filesystem writes.",
+    "`Get-SlashOpsConfigPath` is exported.",
+    "Function works under `Set-StrictMode -Version Latest`."
+  ],
+  "prd_refs": [
+    "PRD §9.2 Configuration files and directories (lines 1613-1659)",
+    "PRD §9.13 Config TDD requirements (lines 2189-2214)",
+    "§9.2 lists the canonical file paths and environment variables.",
+    "§9.13 enumerates the TDD checklist items this task satisfies (default path resolution, `SLASHOPS_HOME` override, `SLASHOPS_CONFIG` override, `SLASHOPS_POLICY` override)."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg-01-config-paths.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "config",
+    "paths",
+    "env-overrides",
+    "cross-platform"
+  ],
+  "description": "Provide a single source of truth for resolving SlashOps file locations: home directory, config path, policy path, history path, runs/backups directories, and project-config search root. The resolver respects environment overrides `SLASHOPS_HOME`, `SLASHOPS_CONFIG`, `SLASHOPS_POLICY`, and `SLASHOPS_PROJECT_CONFIG`, and works identically on Windows, macOS, Linux, and WSL under PowerShell 7+.",
+  "subgroup": "paths",
+  "group": "config",
+  "ai_hours": null,
+  "notes": [
+    "Avoid `$env:USERPROFILE` — `$HOME` is set in PowerShell 7 on every platform.",
+    "Path comparisons must be case-insensitive on Windows but case-sensitive on Linux/macOS — use `[System.IO.Path]::GetFullPath` for normalisation, not string lower-casing."
+  ],
+  "steps": [
+    "TDD: Default path resolution returns `~/.slashops/config.json` and `~/.slashops/policy.json`.",
+    "TDD: `SLASHOPS_HOME` override changes all default paths consistently.",
+    "TDD: `SLASHOPS_CONFIG` override may point outside `SLASHOPS_HOME`.",
+    "TDD: `SLASHOPS_POLICY` override may point outside `SLASHOPS_HOME`.",
+    "TDD: `~` expansion uses `$HOME` (not `$env:USERPROFILE`) so behaviour matches across platforms.",
+    "TDD: Resolver returns absolute, normalised paths.",
+    "TDD: Resolver does not create files or directories — it is read-only.",
+    "Author `Private/Config/Get-ConfigPath.ps1`: a single function returning a `[pscustomobject]` with members `Home`, `Config`, `Policy`, `History`, `RunsDir`, `BackupsDir`, `CacheFile`, `ProjectConfig`. It honours environment overrides, expands `~`, and normalises with `[System.IO.Path]::GetFullPath` after `Resolve-Path -Force` where applicable.",
+    "Author `Public/Get-SlashOpsConfigPath.ps1` that delegates to the private function and supports `-Detailed` to return the full object versus the default config path string.",
+    "Add Pester tests for every TDD bullet using `TestDrive:` for any temporary roots."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 11,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:22Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg-01] Resolve configuration paths and SLASHOPS_HOME overrides",
+  "id": "35df51b8-cf45-4f94-a820-ce24a1076c4b",
+  "plan_path": ".bot/workspace/plans/cfg-01-resolve-configuration-paths-and-slashops_ho-35df51b8-plan.md"
+}

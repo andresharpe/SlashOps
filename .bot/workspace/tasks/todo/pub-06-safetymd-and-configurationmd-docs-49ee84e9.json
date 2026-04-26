@@ -1,0 +1,66 @@
+{
+  "working_dir": null,
+  "slug": "pub-06",
+  "type": "prompt",
+  "dependencies": [
+    "saf-07",
+    "cfg-09"
+  ],
+  "deliverables": [
+    "docs/SAFETY.md",
+    "docs/CONFIGURATION.md"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Both files exist and are content-complete.",
+    "Cross-links resolve."
+  ],
+  "prd_refs": [
+    "PRD §6 Functional requirements (lines 384-875)",
+    "PRD §9 Configuration (lines 1593-2214)",
+    "PRD §13 Security and privacy (lines 2775-2816)",
+    "§6 — pipeline.",
+    "§9 — configuration.",
+    "§13 — security and privacy."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/pub-06-safety-and-config-docs.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "publish",
+    "docs",
+    "safety",
+    "configuration"
+  ],
+  "description": "Author `docs/SAFETY.md` (the why and how of the safety pipeline: layered checks, classifications, modes, AI review, redaction) and `docs/CONFIGURATION.md` (config and policy schemas, precedence, env overrides, migration, safety floor).",
+  "subgroup": "docs",
+  "group": "publish",
+  "ai_hours": null,
+  "notes": [
+    "These files are reviewed as part of the v0.1 acceptance gate; keep them accurate."
+  ],
+  "steps": [
+    "SAFETY.md sections: principles, classification matrix, static + AST + path + tool checks, AI review, modes, secret redaction, enterprise compatibility, escalation guidance.",
+    "CONFIGURATION.md sections: file locations, precedence, env vars, schemas, public commands, migration, safety floor, examples.",
+    "Cross-link both back to the README and to PRD sections."
+  ],
+  "sequence": 6,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 16,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[pub-06] SAFETY.md and CONFIGURATION.md docs",
+  "id": "49ee84e9-3db1-41a8-9612-beafe5229d16",
+  "plan_path": ".bot/workspace/plans/pub-06-safetymd-and-configurationmd-docs-49ee84e9-plan.md"
+}

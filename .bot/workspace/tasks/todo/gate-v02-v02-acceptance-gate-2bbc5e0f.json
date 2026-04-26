@@ -1,0 +1,96 @@
+{
+  "working_dir": null,
+  "slug": "gate-v02",
+  "type": "prompt",
+  "dependencies": [
+    "gate-v01",
+    "tr-01",
+    "tr-02",
+    "tr-03",
+    "tr-04",
+    "tr-05",
+    "tr-06",
+    "tr-07",
+    "tr-08",
+    "tr-09",
+    "tr-10",
+    "tr-11",
+    "lt-01",
+    "lt-02",
+    "lt-03",
+    "lt-04",
+    "lt-05",
+    "lt-06",
+    "lt-07",
+    "lt-08",
+    "lt-09",
+    "lt-10",
+    "cfg2-01",
+    "cfg2-02",
+    "cfg2-03",
+    "cfg2-04",
+    "ui2-01",
+    "ui2-02",
+    "ui2-03"
+  ],
+  "deliverables": [
+    "docs/RELEASE_NOTES_v0.2.md"
+  ],
+  "created_at": "2026-04-26T09:01:22Z",
+  "acceptance_criteria": [
+    "Intent classifier distinguishes `shell_command`, `file_search`, `document_text_search`, `document_summary`, `document_conversion`.",
+    "Planner can return multi-step registered tool plans.",
+    "Tool registry loads built-in manifests and refuses unknown tools.",
+    "`/x find the quote that I downloaded today` runs as read-only local file/document search.",
+    "`/ summarize this doc` resolves explicit paths, pipeline input, last result, latest downloaded document.",
+    "Document summarization chunks large files and produces a final summary.",
+    "Markdown conversion uses Pandoc only when available and generates dependency guidance when missing.",
+    "Tool outputs are represented as structured observations.",
+    "Agent loop respects max steps, max tool calls, mutation pause rules.",
+    "Config includes `agent`, `toolRegistry`, `documents`, `privacy` sections.",
+    "Pester tests cover tool registry, document resolution, local tools, observations, agent loop."
+  ],
+  "prd_refs": [
+    "PRD §15.2 v0.2 local tool runtime acceptance (lines 2864-2877)"
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/gate-v02-acceptance.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "gate",
+    "acceptance",
+    "v0.2"
+  ],
+  "description": "Checklist gate that closes the v0.2 milestone. Verify all 11 acceptance criteria from PRD §15.2 against the running implementation.",
+  "subgroup": "acceptance",
+  "group": "gate",
+  "ai_hours": null,
+  "notes": [
+    "v0.2 is the largest milestone surface-area-wise; budget for iteration."
+  ],
+  "steps": [
+    "Walk every criterion against the running tree.",
+    "File defects.",
+    "Write `docs/RELEASE_NOTES_v0.2.md`.",
+    "Tag `v0.2.0`."
+  ],
+  "sequence": 999,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 100,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "XS",
+  "name": "[gate-v02] v0.2 acceptance gate",
+  "id": "2bbc5e0f-ee75-47c4-915b-ba781c301d07",
+  "plan_path": ".bot/workspace/plans/gate-v02-v02-acceptance-gate-2bbc5e0f-plan.md"
+}

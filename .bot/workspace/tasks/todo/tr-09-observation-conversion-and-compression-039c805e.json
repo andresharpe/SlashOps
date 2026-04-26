@@ -1,0 +1,66 @@
+{
+  "working_dir": null,
+  "slug": "tr-09",
+  "type": "prompt",
+  "dependencies": [
+    "tr-08"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Agent/ConvertTo-Observation.ps1",
+    "src/SlashOps/Private/Agent/Compress-Observation.ps1",
+    "tests/Unit/Agent.Observation.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.13 Observation handling (lines 1192-1209)",
+    "PRD §11.3 Observation tests (line 2624)",
+    "§7.13 — observation schema."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/tr-09-observation-conversion.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "agent",
+    "observations",
+    "structure"
+  ],
+  "description": "Convert tool outputs into structured observations per §7.13. Large outputs are summarized or truncated with a user-visible note. Raw stdout is not sent back to the model when a structured object is available.",
+  "subgroup": "observations",
+  "group": "tool-runtime",
+  "ai_hours": null,
+  "notes": [
+    "Compression must be lossy in a deterministic way; document the algorithm."
+  ],
+  "steps": [
+    "TDD: Observation includes `step_id`, `tool`, `success`, `risk`, `items`, `summary`, `redactions_applied`.",
+    "TDD: Large output is truncated with a marker visible to humans.",
+    "TDD: Structured tool output is preferred over raw stdout.",
+    "TDD: Redacted secrets recorded in `redactions_applied`.",
+    "Author the converter and compressor.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 9,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 39,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[tr-09] Observation conversion and compression",
+  "id": "039c805e-14e7-4c7c-8000-8fd59cd4f0b0",
+  "plan_path": ".bot/workspace/plans/tr-09-observation-conversion-and-compression-039c805e-plan.md"
+}

@@ -1,0 +1,69 @@
+{
+  "working_dir": null,
+  "slug": "biz-01",
+  "type": "prompt",
+  "dependencies": [
+    "tr-03"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Outlook/Test-OutlookProvider.ps1",
+    "src/SlashOps/Private/Tools/Outlook/Resolve-OutlookProvider.ps1",
+    "tests/Unit/Tools.Outlook.Provider.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Provider abstraction documented in `docs/OUTLOOK.md`."
+  ],
+  "prd_refs": [
+    "PRD §7.9 Outlook/Microsoft 365 handling (lines 1091-1127)",
+    "PRD §17 Q11 (line 2971)",
+    "§7.9 — provider preference order.",
+    "§17 Q11 — Graph-first long term."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/biz-01-outlook-provider-abstraction.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.3",
+    "outlook",
+    "provider",
+    "graph",
+    "m365cli"
+  ],
+  "description": "Provide a small provider abstraction so Outlook tools can plug into Microsoft Graph (preferred) or Microsoft 365 CLI (fallback) per §7.9. Detect installed providers, surface auth status, and refuse to operate when no provider is available.",
+  "subgroup": "outlook",
+  "group": "business",
+  "ai_hours": null,
+  "notes": [
+    "Graph requires app registration; document setup in `docs/OUTLOOK.md`."
+  ],
+  "steps": [
+    "TDD: Graph available → `Resolve-OutlookProvider` returns Graph.",
+    "TDD: Only M365 CLI available → returns M365.",
+    "TDD: Neither available → returns `$null` and dependency observation.",
+    "TDD: Auth-not-completed surfaces as a structured observation, not an error.",
+    "Author both helpers.",
+    "Tests mock `Get-Command` and provider auth checks."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.3",
+  "priority": 51,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "M",
+  "name": "[biz-01] Outlook provider abstraction (Graph + M365 CLI)",
+  "id": "3bd90f35-4d91-4deb-b560-5be01b2a6e45",
+  "plan_path": ".bot/workspace/plans/biz-01-outlook-provider-abstraction-graph-m365-cli-3bd90f35-plan.md"
+}

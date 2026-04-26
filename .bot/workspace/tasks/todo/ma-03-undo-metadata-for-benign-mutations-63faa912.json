@@ -1,0 +1,65 @@
+{
+  "working_dir": null,
+  "slug": "ma-03",
+  "type": "prompt",
+  "dependencies": [
+    "exe-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Execution/New-UndoPlan.ps1",
+    "src/SlashOps/Public/Invoke-SlashOpsUndo.ps1",
+    "tests/Unit/Agent.Undo.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §16 v0.4 undo metadata for benign mutations (line 2942)",
+    "§16 — v0.4 scope."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ma-03-undo-metadata.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.4",
+    "undo",
+    "mutation"
+  ],
+  "description": "For each benign mutation, record an inverse plan (delete created file, restore moved item, etc.) in the transcript. `Invoke-SlashOpsUndo` reads the latest mutation entry and offers to apply the inverse.",
+  "subgroup": "undo",
+  "group": "mature-agent",
+  "ai_hours": null,
+  "notes": [
+    "Not every mutation is undoable; document which kinds are supported and refuse the rest."
+  ],
+  "steps": [
+    "TDD: Created PDF mutation records `delete <path>` undo.",
+    "TDD: Moved file mutation records `move back` undo.",
+    "TDD: Undo command requires confirmation.",
+    "TDD: Undo refuses if file state has changed since execution.",
+    "Author `New-UndoPlan.ps1` for the supported mutation kinds.",
+    "Author `Invoke-SlashOpsUndo.ps1` reading transcript and applying inverse with confirmation.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "v0.4",
+  "priority": 73,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ma-03] Undo metadata for benign mutations",
+  "id": "63faa912-18a5-45ec-8dfd-09ef72daacc0",
+  "plan_path": ".bot/workspace/plans/ma-03-undo-metadata-for-benign-mutations-63faa912-plan.md"
+}

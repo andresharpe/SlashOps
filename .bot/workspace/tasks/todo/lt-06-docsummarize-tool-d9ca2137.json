@@ -1,0 +1,78 @@
+{
+  "working_dir": null,
+  "slug": "lt-06",
+  "type": "prompt",
+  "dependencies": [
+    "lt-05",
+    "mdl-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Documents/Invoke-DocumentSummarize.ps1",
+    "src/SlashOps/Private/Tools/Documents/Split-DocumentText.ps1",
+    "src/SlashOps/Public/Invoke-SlashOpsDocumentSummary.ps1",
+    "src/SlashOps/ToolManifests/doc.summarize.json",
+    "tests/Unit/Tools.Doc.Summarize.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Citations present when configured."
+  ],
+  "prd_refs": [
+    "PRD §7.7 Required v0.2 local tools (lines 1057-1073)",
+    "PRD §7.10 Document resolution (lines 1129-1151)",
+    "PRD §9.5 documents config (lines 1816-1826)",
+    "§7.7 — tool list.",
+    "§7.10 — document resolution.",
+    "§9.5 — chunking config."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/lt-06-doc-summarize.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "tool",
+    "documents",
+    "summarize",
+    "chunking"
+  ],
+  "description": "Summarize a local document by chunking via `documents.chunkSizeChars` (default 12000) with `chunkOverlapChars` overlap, summarising each chunk via Ollama, then synthesising the chunk summaries into a final summary with citations / excerpts when `summarizeWithCitations = true`.",
+  "subgroup": "documents",
+  "group": "local-tools",
+  "ai_hours": null,
+  "notes": [
+    "Local-only model; never send to a remote provider unless `privacy.allowRemoteProviderForSensitiveContent = true` (default false)."
+  ],
+  "steps": [
+    "TDD: Small document produces a single-pass summary.",
+    "TDD: Large document chunks per config.",
+    "TDD: Final summary references chunks (citations).",
+    "TDD: Never logs full document text by default (privacy section).",
+    "TDD: Refuses documents above `documents.maxDocumentBytes`.",
+    "TDD: Manifest passes validation.",
+    "Author chunker `Split-DocumentText.ps1`.",
+    "Author summariser orchestrator.",
+    "Author manifest.",
+    "Public `Invoke-SlashOpsDocumentSummary` thin wrapper."
+  ],
+  "sequence": 6,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 36,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "M",
+  "name": "[lt-06] doc.summarize tool",
+  "id": "d9ca2137-f3d7-46d4-906e-36c138ff8683",
+  "plan_path": ".bot/workspace/plans/lt-06-docsummarize-tool-d9ca2137-plan.md"
+}

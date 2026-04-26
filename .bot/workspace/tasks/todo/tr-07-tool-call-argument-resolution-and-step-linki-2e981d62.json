@@ -1,0 +1,65 @@
+{
+  "working_dir": null,
+  "slug": "tr-07",
+  "type": "prompt",
+  "dependencies": [
+    "tr-06"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Agent/Resolve-ToolCall.ps1",
+    "tests/Unit/Tools.CallResolution.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.4 Planner response contract example (lines 928-989)",
+    "§7.4 — example shows `input_from_step` semantics."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/tr-07-tool-call-resolution.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "planner",
+    "resolution",
+    "steps"
+  ],
+  "description": "Map planner step arguments and inter-step references (`input_from_step`) into concrete invocation parameters. Validate types against the tool's `input_schema`. Refuse plans whose references don't resolve.",
+  "subgroup": "planner",
+  "group": "tool-runtime",
+  "ai_hours": null,
+  "notes": [
+    "Document the `input_from_step` contract in `docs/AGENT_RUNTIME.md`."
+  ],
+  "steps": [
+    "TDD: Plain arg dictionary maps to tool parameters.",
+    "TDD: `input_from_step: 1` resolves to the previous step's output.",
+    "TDD: Type mismatch (string where int expected) fails.",
+    "TDD: Unresolvable reference fails.",
+    "TDD: Required input missing fails.",
+    "Author `Private/Agent/Resolve-ToolCall.ps1`.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 7,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 37,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[tr-07] Tool-call argument resolution and step linking",
+  "id": "2e981d62-a5b5-4e7d-9e29-8895ace73c3e",
+  "plan_path": ".bot/workspace/plans/tr-07-tool-call-argument-resolution-and-step-linki-2e981d62-plan.md"
+}

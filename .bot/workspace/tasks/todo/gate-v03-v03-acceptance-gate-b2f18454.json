@@ -1,0 +1,79 @@
+{
+  "working_dir": null,
+  "slug": "gate-v03",
+  "type": "prompt",
+  "dependencies": [
+    "gate-v02",
+    "biz-01",
+    "biz-02",
+    "biz-03",
+    "biz-04",
+    "biz-05",
+    "biz-06",
+    "biz-07",
+    "biz-08",
+    "biz-09",
+    "biz-10",
+    "biz-11",
+    "biz-12"
+  ],
+  "deliverables": [
+    "docs/RELEASE_NOTES_v0.3.md"
+  ],
+  "created_at": "2026-04-26T09:01:22Z",
+  "acceptance_criteria": [
+    "Outlook tooling is disabled by default.",
+    "User can explicitly configure an Outlook / Microsoft 365 provider.",
+    "Email search is read-only and may run in `/x` if policy allows.",
+    "Email mark / move / categorize requires explicit confirmation.",
+    "Email send is blocked or future-only.",
+    "Email search result UI shows ranked candidates.",
+    "Email body is not logged by default.",
+    "Mocked Pester tests cover all Outlook workflows.",
+    "Provider auth failures stop workflow safely.",
+    "Documentation explains Graph / Microsoft 365 CLI setup and privacy model."
+  ],
+  "prd_refs": [
+    "PRD §15.3 v0.3 Outlook/business connector acceptance (lines 2879-2892)"
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/gate-v03-acceptance.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "gate",
+    "acceptance",
+    "v0.3"
+  ],
+  "description": "Checklist gate that closes the v0.3 milestone. Verify all 10 acceptance criteria from PRD §15.3.",
+  "subgroup": "acceptance",
+  "group": "gate",
+  "ai_hours": null,
+  "notes": [
+    "Privacy is the critical concern; double-check redaction pipelines for email content."
+  ],
+  "steps": [
+    "Walk every criterion.",
+    "File defects.",
+    "Write `docs/RELEASE_NOTES_v0.3.md`.",
+    "Tag `v0.3.0`."
+  ],
+  "sequence": 999,
+  "applicable_decisions": [],
+  "version": "v0.3",
+  "priority": 100,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "XS",
+  "name": "[gate-v03] v0.3 acceptance gate",
+  "id": "b2f18454-2b2d-43c6-b567-579e6698aca2",
+  "plan_path": ".bot/workspace/plans/gate-v03-v03-acceptance-gate-b2f18454-plan.md"
+}

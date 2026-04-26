@@ -1,0 +1,75 @@
+{
+  "working_dir": null,
+  "slug": "saf-07",
+  "type": "prompt",
+  "dependencies": [
+    "saf-06"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Safety/Resolve-ExecutionGate.ps1",
+    "tests/Unit/Safety.Gate.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "All matrix cells covered by tests.",
+    "Pure function, no side effects."
+  ],
+  "prd_refs": [
+    "PRD §6.12 Execution gating (lines 763-771)",
+    "PRD §11.3 Execution gate tests (lines 2664-2673)",
+    "§6.12 — execution gating matrix.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/saf-07-execution-gate.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "safety",
+    "gate",
+    "mode",
+    "execution"
+  ],
+  "description": "Apply the §6.12 mode × class matrix to determine the gate decision: `auto`, `ask`, `ask-with-warning`, `strict-warning`, `refuse`, or `explain-only`. The gate is the single source of truth for whether to run a command.",
+  "subgroup": "gate",
+  "group": "safety",
+  "ai_hours": null,
+  "notes": [
+    "Keep the matrix as a hashtable so it is trivially auditable."
+  ],
+  "steps": [
+    "TDD: `/x` + read-only → `auto`.",
+    "TDD: `/x` + benign-write + policy-approved → `auto`.",
+    "TDD: `/x` + benign-write + policy-disapproved → `ask` (escalate to `/`).",
+    "TDD: `/x` + risky-write → `stop` (require `/`).",
+    "TDD: `/x` + blocked → `refuse`.",
+    "TDD: `//` + any → `explain-only`.",
+    "TDD: `/?` + any → `explain-only`.",
+    "TDD: `/!` + read-only → `ask`.",
+    "TDD: `/!` + blocked → `refuse`.",
+    "TDD: `/` + read-only → `ask`.",
+    "TDD: `/` + benign-write → `ask`.",
+    "TDD: `/` + risky-write → `ask-with-warning`.",
+    "Author `Private/Safety/Resolve-ExecutionGate.ps1` as a pure function over `(Mode, Class, Policy)`.",
+    "Tests cover the full §6.12 table."
+  ],
+  "sequence": 7,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 17,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[saf-07] Mode × class execution gate",
+  "id": "e9301c36-1c93-4622-ad73-7bdff31d40fa",
+  "plan_path": ".bot/workspace/plans/saf-07-mode-class-execution-gate-e9301c36-plan.md"
+}

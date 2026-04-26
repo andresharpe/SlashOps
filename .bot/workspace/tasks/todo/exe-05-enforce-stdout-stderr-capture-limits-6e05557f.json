@@ -1,0 +1,66 @@
+{
+  "working_dir": null,
+  "slug": "exe-05",
+  "type": "prompt",
+  "dependencies": [
+    "exe-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Execution/Limit-OutputBytes.ps1",
+    "tests/Unit/Execution.Limits.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Marker visible to humans."
+  ],
+  "prd_refs": [
+    "PRD §9.4 execution.maxStdoutBytes / maxStderrBytes (lines 1719-1721)",
+    "PRD §9.4 logging.maxRunLogBytes (line 1764)",
+    "§9.4 — byte limits."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/exe-05-stdout-capture-limits.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "execution",
+    "limits",
+    "capture"
+  ],
+  "description": "Enforce byte limits on captured stdout / stderr / run log files. Truncate with a clear marker (`...[truncated to N bytes]...`) so downstream observation conversion (tr-09) can flag it. Limit applies on disk and on the in-memory string returned to the caller.",
+  "subgroup": "limits",
+  "group": "execution",
+  "ai_hours": null,
+  "notes": [
+    "Use byte length (`[Text.Encoding]::UTF8.GetByteCount`), not string length, since multi-byte characters near the boundary can split."
+  ],
+  "steps": [
+    "TDD: Output above `maxStdoutBytes` truncated to that size.",
+    "TDD: Truncation marker appended.",
+    "TDD: Output below limit unchanged.",
+    "TDD: Limit configurable per-call to support per-tool overrides later.",
+    "Author `Private/Execution/Limit-OutputBytes.ps1` taking `(Text, MaxBytes, Marker = '...[truncated]...')`.",
+    "Wire into `Invoke-GeneratedCommand` (exe-01) and any future tool-output writer.",
+    "Tests cover every bullet."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 15,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[exe-05] Enforce stdout / stderr capture limits",
+  "id": "6e05557f-0b6d-4f53-9b0b-c416a5bb753b",
+  "plan_path": ".bot/workspace/plans/exe-05-enforce-stdout-stderr-capture-limits-6e05557f-plan.md"
+}

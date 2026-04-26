@@ -1,0 +1,71 @@
+{
+  "working_dir": null,
+  "slug": "tr-04",
+  "type": "prompt",
+  "dependencies": [
+    "tr-02",
+    "saf-07"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Safety/Test-ToolCallPolicy.ps1",
+    "src/SlashOps/Private/Safety/Test-AgentPlanPolicy.ps1",
+    "tests/Unit/Tools.PolicyCheck.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.14 Safety matrix for tools (lines 1212-1234)",
+    "PRD §11.3 Tool policy tests (lines 2590-2596)",
+    "§7.14 — safety matrix.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/tr-04-tool-call-policy.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "tools",
+    "policy",
+    "safety"
+  ],
+  "description": "Validate planner-emitted tool calls and full plans against policy. Rules: tool must be registered, tool must be enabled, mutation tools require confirmation, fast-mode eligibility comes from the manifest (`supports_fast_mode`), email-send is forbidden, cloud / package mutations are forbidden in `/x`.",
+  "subgroup": "policy",
+  "group": "tool-runtime",
+  "ai_hours": null,
+  "notes": [
+    "Mutation pause (tr-08) and confirmation UX (saf-08) are downstream from this; this task only decides allowed / not-allowed."
+  ],
+  "steps": [
+    "TDD: Plan calling unregistered tool fails.",
+    "TDD: Plan calling disabled tool fails.",
+    "TDD: Plan with email-send step fails.",
+    "TDD: Plan with email-mark step requires confirmation.",
+    "TDD: `/x` plan with cloud-mutation step fails.",
+    "TDD: `/x` plan with package-install step fails.",
+    "TDD: Read-only plan in `/x` passes.",
+    "Author both private helpers.",
+    "Tests cover §7.14 matrix exhaustively."
+  ],
+  "sequence": 4,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 34,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[tr-04] Tool-call and agent-plan policy",
+  "id": "58649e6a-21bd-4454-a1b5-0b2391e7a7c0",
+  "plan_path": ".bot/workspace/plans/tr-04-tool-call-and-agent-plan-policy-58649e6a-plan.md"
+}

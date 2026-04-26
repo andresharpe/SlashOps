@@ -1,0 +1,87 @@
+{
+  "working_dir": null,
+  "slug": "cfg-08",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-05",
+    "cfg-07"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Get-SlashOpsConfig.ps1",
+    "src/SlashOps/Public/Set-SlashOpsConfig.ps1",
+    "src/SlashOps/Public/Edit-SlashOpsConfig.ps1",
+    "src/SlashOps/Public/Reset-SlashOpsConfig.ps1",
+    "src/SlashOps/Public/Test-SlashOpsConfig.ps1",
+    "src/SlashOps/Public/Get-SlashOpsPolicy.ps1",
+    "src/SlashOps/Public/Set-SlashOpsPolicy.ps1",
+    "src/SlashOps/Public/Edit-SlashOpsPolicy.ps1",
+    "src/SlashOps/Public/Test-SlashOpsPolicy.ps1",
+    "src/SlashOps/Private/Config/Set-ConfigValue.ps1",
+    "tests/Unit/Config.PublicCmds.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Every cmdlet listed in deliverables is exported.",
+    "All TDD tests pass.",
+    "ShouldProcess semantics work for `Set-`, `Reset-`.",
+    "Backup + restore proven by tests."
+  ],
+  "prd_refs": [
+    "PRD §9.8 Config commands (lines 2031-2108)",
+    "§9.8 — full cmdlet list and behaviour requirements.",
+    "§9.5 — naming convention: dot-separated camelCase paths."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg-08-config-public-cmds.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "config",
+    "public-api",
+    "cmdlets"
+  ],
+  "description": "Expose the public config / policy commands per PRD §9.8. Setters accept dot-paths (e.g. `model.generationModel`), validate the setting exists unless `-AllowNew`, back up before write (cfg-05), validate the result (cfg-04), and restore on failure. Editors open the file in the user's editor (`$env:EDITOR`/`$env:VISUAL`/`code`/platform default), validate after exit, and offer restore.",
+  "subgroup": "public",
+  "group": "config",
+  "ai_hours": null,
+  "notes": [
+    "Dot-path setter must handle nested objects and arrays — write tests for both.",
+    "Editor invocation must be mockable; do not call `Start-Process` directly inside the cmdlet — use a private helper that tests can override."
+  ],
+  "steps": [
+    "TDD: `Get-SlashOpsConfig` returns the user config object.",
+    "TDD: `Get-SlashOpsConfig -Raw` returns the raw JSON text.",
+    "TDD: `Set-SlashOpsConfig model.generationModel qwen3-coder:30b` round-trips the value.",
+    "TDD: `Set-SlashOpsConfig model.generationModel ''` fails validation.",
+    "TDD: `Set-SlashOpsConfig some.unknown.path 'x'` fails without `-AllowNew`.",
+    "TDD: `Set-SlashOpsConfig` backs up before writing.",
+    "TDD: `Set-SlashOpsConfig` restores from backup if post-write validation fails.",
+    "TDD: `Edit-SlashOpsConfig` opens an editor (mock) and validates after.",
+    "TDD: `Reset-SlashOpsConfig` requires confirmation, backs up old config, writes defaults, preserves history.",
+    "TDD: `Test-SlashOpsConfig` returns structured `Passed/Errors/Warnings/Path`.",
+    "TDD: Same suite passes for `*-SlashOpsPolicy`.",
+    "Author each public cmdlet thin-wrapping a private helper. Reuse `Set-ConfigValue.ps1` for dot-path mutation.",
+    "`Edit-*` chooses editor by precedence: `$env:EDITOR` → `$env:VISUAL` → `code` if on PATH → `notepad` (Windows) → `nano` (Linux/macOS).",
+    "Confirmation prompts for `Reset-*` honour `-Confirm` / `-Force` ShouldProcess semantics.",
+    "Tests use `TestDrive:` and `Mock` for editor invocation."
+  ],
+  "sequence": 8,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 18,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg-08] Public config and policy commands",
+  "id": "24e6edf0-243e-43b1-8e20-32e4e0ba34ae",
+  "plan_path": ".bot/workspace/plans/cfg-08-public-config-and-policy-commands-24e6edf0-plan.md"
+}

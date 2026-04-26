@@ -1,0 +1,70 @@
+{
+  "working_dir": null,
+  "slug": "mdl-02",
+  "type": "prompt",
+  "dependencies": [
+    "mdl-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Model/Invoke-OllamaChat.ps1",
+    "tests/Unit/Model.Chat.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Retry behaviour proven."
+  ],
+  "prd_refs": [
+    "PRD §3.2 Ollama integration (lines 129-148)",
+    "PRD §6.5 Model request contract (lines 550-583)",
+    "§3.2 — OpenAI-compatible endpoint, `api_key='ollama'`.",
+    "§6.5 — JSON mode required, no Markdown output."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/mdl-02-ollama-chat.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "model",
+    "ollama",
+    "chat",
+    "json-mode"
+  ],
+  "description": "Issue chat-completion requests against `/v1/chat/completions` with configurable model, system prompt, user messages, temperature, top_p, timeout, and JSON-mode toggle. Surface response content as a single string for parsers.",
+  "subgroup": "chat",
+  "group": "model",
+  "ai_hours": null,
+  "notes": [
+    "Some Ollama versions ignore `response_format`; do not fail if the field is unsupported — the parse + repair layer (mdl-04) handles output discipline."
+  ],
+  "steps": [
+    "TDD: Sends `Authorization: Bearer ollama` header (per §3.2 OpenAI-compatible client).",
+    "TDD: Sends `Content-Type: application/json`.",
+    "TDD: Body includes `model`, `messages`, `temperature`, `response_format` when JSON mode on.",
+    "TDD: Timeout per `model.timeoutSeconds`.",
+    "TDD: Retry once on transient failure; otherwise returns structured error.",
+    "TDD: Returns `Choices[0].Message.Content` as a string.",
+    "Author `Private/Model/Invoke-OllamaChat.ps1` using `Invoke-RestMethod -TimeoutSec`.",
+    "Mock the network call in tests.",
+    "Surface non-2xx responses with a structured error including status + body."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 12,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[mdl-02] Invoke-OllamaChat (chat completions)",
+  "id": "6d4cae76-ef45-42e1-9c89-9a60c4a5eb60",
+  "plan_path": ".bot/workspace/plans/mdl-02-invoke-ollamachat-chat-completions-6d4cae76-plan.md"
+}

@@ -1,0 +1,69 @@
+{
+  "working_dir": null,
+  "slug": "mdl-04",
+  "type": "prompt",
+  "dependencies": [
+    "mdl-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Model/Repair-ModelJson.ps1",
+    "tests/Unit/Model.Json.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "All TDD tests pass.",
+    "Repair attempts strictly limited to one."
+  ],
+  "prd_refs": [
+    "PRD §6.5 Model request contract — hard requirements (lines 575-583)",
+    "PRD §11.3 Model JSON tests (lines 2554-2562)",
+    "§6.5 — JSON parse + one repair + fail-closed.",
+    "§11.3 — Model JSON tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/mdl-04-json-parse-repair.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "model",
+    "json",
+    "parse",
+    "repair"
+  ],
+  "description": "Parse model output as strict JSON. If parsing fails, perform exactly one repair attempt — invoke the model again with the malformed output and a \"fix to valid JSON only\" instruction. If the second attempt also fails, return a structured failure and refuse to execute.",
+  "subgroup": "parsing",
+  "group": "model",
+  "ai_hours": null,
+  "notes": [
+    "Be defensive about model output containing leading/trailing whitespace or BOM — strip before parsing, but do not strip aggressively (whitespace inside strings is valid JSON)."
+  ],
+  "steps": [
+    "TDD: Valid JSON parses without invoking the model.",
+    "TDD: Markdown-fenced JSON is unwrapped or rejected (one repair attempt).",
+    "TDD: Invalid JSON triggers exactly one repair attempt.",
+    "TDD: Two failures → fail-closed result (`Passed = $false`).",
+    "TDD: Missing required schema fields (`command` for v0.1) → fail-closed.",
+    "TDD: Non-PowerShell shell content rejected.",
+    "Author `Private/Model/Repair-ModelJson.ps1` taking `(RawOutput, RepairFn)` where `RepairFn` is an injectable lambda that invokes `Invoke-OllamaChat` so tests can mock it.",
+    "Tests provide canned malformed strings and assert the repair path is hit at most once."
+  ],
+  "sequence": 4,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 14,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[mdl-04] Strict JSON parsing with one repair attempt",
+  "id": "960fd059-d573-42e9-b01f-564e53e8e257",
+  "plan_path": ".bot/workspace/plans/mdl-04-strict-json-parsing-with-one-repair-attempt-960fd059-plan.md"
+}

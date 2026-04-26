@@ -1,0 +1,72 @@
+{
+  "working_dir": null,
+  "slug": "cfg-03",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/New-DefaultPolicy.ps1",
+    "tests/Unit/Config.Defaults.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Default policy round-trips to JSON identically to §9.6.",
+    "All regex patterns compile.",
+    "Tests pass."
+  ],
+  "prd_refs": [
+    "PRD §9.6 Policy config schema (lines 1869-1987)",
+    "PRD §9.9 First-run config creation (lines 2110-2139)",
+    "§9.6 — full schema.",
+    "§9.12 — these defaults form the safety floor that user/project config cannot weaken."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg-03-default-policy.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "config",
+    "policy",
+    "safety",
+    "defaults"
+  ],
+  "description": "Produce the default `policy.json` — safe write roots, protected roots, `neverFastExecute` list, `fastAllowedCommands` list, blocked / risky regex patterns, blocked-behavior toggles, and confirmation tokens — exactly as in PRD §9.6.",
+  "subgroup": "defaults",
+  "group": "config",
+  "ai_hours": null,
+  "notes": [
+    "Regex strings embed double escaping in JSON (`\\\\b`); ensure tests pull the parsed string and feed it directly to `[regex]::new`.",
+    "Do not modify regex patterns — they are part of the safety contract documented in PRD."
+  ],
+  "steps": [
+    "TDD: Default policy contains all sections required by §9.6.",
+    "TDD: `schema_version` is `\"1\"`.",
+    "TDD: `policy.protectedRoots` includes both `~` and `~/.ssh` plus the cross-platform list.",
+    "TDD: All `blockedRegexPatterns` compile as valid .NET regex.",
+    "TDD: All `riskyRegexPatterns` compile as valid .NET regex.",
+    "TDD: `policy.allowProjectPolicyRelaxation` defaults to `false`.",
+    "TDD: `policy.confirmation` tokens default to `EXECUTE`, `INSTALL`, `CLOUD`, `PULL`.",
+    "Author `Private/Config/New-DefaultPolicy.ps1` returning an `[ordered]` hashtable matching §9.6.",
+    "Pester tests verify presence of each list, regex compilation, and default token values."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 13,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg-03] Default policy (policy.json) generator",
+  "id": "45db3104-c189-42ea-be47-1334fc6a368b",
+  "plan_path": ".bot/workspace/plans/cfg-03-default-policy-policyjson-generator-45db3104-plan.md"
+}

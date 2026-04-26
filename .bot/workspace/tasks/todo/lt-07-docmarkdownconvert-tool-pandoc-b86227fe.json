@@ -1,0 +1,69 @@
+{
+  "working_dir": null,
+  "slug": "lt-07",
+  "type": "prompt",
+  "dependencies": [
+    "tr-03"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Documents/Invoke-MarkdownConvert.ps1",
+    "src/SlashOps/ToolManifests/doc.markdown.convert.json",
+    "tests/Unit/Tools.Doc.MarkdownConvert.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.7 Required v0.2 local tools (lines 1057-1073)",
+    "PRD §11.3 Markdown conversion test (line 2651)",
+    "§7.7 — tool list.",
+    "§11.3 — required test."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/lt-07-doc-markdown-convert.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "tool",
+    "documents",
+    "pandoc"
+  ],
+  "description": "Convert Markdown to PDF / DOCX / HTML via Pandoc. When Pandoc is missing, return a structured `needs_dependency` observation pointing at the platform install command. Output path must be inside a safe write root (saf-03).",
+  "subgroup": "documents",
+  "group": "local-tools",
+  "ai_hours": null,
+  "notes": [
+    "Pandoc PDF output requires a TeX install on some platforms; surface this as a sub-dependency hint when PDF format requested."
+  ],
+  "steps": [
+    "TDD: Pandoc available + valid input → produces output file (mocked invocation).",
+    "TDD: Pandoc missing → `needs_dependency` observation with platform install hint.",
+    "TDD: Output path outside safe write root → refused.",
+    "TDD: Existing output file → confirmation required unless overwrite explicit.",
+    "TDD: Manifest passes validation.",
+    "Author the tool function invoking `pandoc <in> -o <out>`.",
+    "Author manifest with `required_commands: ['pandoc']`, `default_risk: benign-write`, `supports_fast_mode: true`.",
+    "Tests mock pandoc invocation."
+  ],
+  "sequence": 7,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 37,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[lt-07] doc.markdown.convert tool (Pandoc)",
+  "id": "b86227fe-7643-4bb4-9028-5bef9b56d35f",
+  "plan_path": ".bot/workspace/plans/lt-07-docmarkdownconvert-tool-pandoc-b86227fe-plan.md"
+}

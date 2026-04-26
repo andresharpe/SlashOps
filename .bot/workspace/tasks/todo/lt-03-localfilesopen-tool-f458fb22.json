@@ -1,0 +1,70 @@
+{
+  "working_dir": null,
+  "slug": "lt-03",
+  "type": "prompt",
+  "dependencies": [
+    "tr-03"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/Local/Invoke-LocalFileOpen.ps1",
+    "src/SlashOps/ToolManifests/local.files.open.json",
+    "tests/Unit/Tools.Local.Open.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Manifest valid."
+  ],
+  "prd_refs": [
+    "PRD §7.7 Required v0.2 local tools (lines 1057-1073)",
+    "PRD §17 Q14 (line 2974)",
+    "§7.7 — tool list.",
+    "§17 Q14 — GUI app policy."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/lt-03-local-files-open.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "tool",
+    "files",
+    "open"
+  ],
+  "description": "Open a local file or folder in the default app or VS Code (when `code` is on PATH). Per §17 Q14, GUI app open is allowed in `/x` for local paths but the first invocation in a session prompts confirmation.",
+  "subgroup": "files",
+  "group": "local-tools",
+  "ai_hours": null,
+  "notes": [
+    "macOS: `open`. Linux: `xdg-open`. Windows: `Start-Process`."
+  ],
+  "steps": [
+    "TDD: Local path opens via platform default (mocked).",
+    "TDD: VS Code chosen when `code` is on PATH and `-Editor 'code'` requested.",
+    "TDD: First-time confirmation honoured.",
+    "TDD: Refuses non-local URLs.",
+    "TDD: Manifest passes validation.",
+    "Author the tool function with platform branches.",
+    "Author the manifest with `default_risk: benign`.",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 33,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[lt-03] local.files.open tool",
+  "id": "f458fb22-0d5e-4d33-86ad-4261959b848d",
+  "plan_path": ".bot/workspace/plans/lt-03-localfilesopen-tool-f458fb22-plan.md"
+}

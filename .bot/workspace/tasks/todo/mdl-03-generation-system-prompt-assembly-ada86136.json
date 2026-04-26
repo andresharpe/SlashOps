@@ -1,0 +1,68 @@
+{
+  "working_dir": null,
+  "slug": "mdl-03",
+  "type": "prompt",
+  "dependencies": [
+    "ctx-05"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Model/New-SystemPrompt.ps1",
+    "tests/Unit/Model.SystemPrompt.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Output deterministic for fixed inputs."
+  ],
+  "prd_refs": [
+    "PRD §6.6 Model system prompt (lines 585-610)",
+    "PRD §7.15 Tool prompting rules (lines 1235-1257)",
+    "§6.6 — baseline rules.",
+    "§7.15 — tool-aware prompt extensions for v0.2."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/mdl-03-system-prompt.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "model",
+    "prompts",
+    "system",
+    "generation"
+  ],
+  "description": "Assemble the system prompt fed to Ollama. v0.1 uses the §6.6 baseline (PowerShell 7 only, no aliases, no Markdown, bounded operations, relative-time rules). v0.2+ extends the prompt with tool-registry awareness via §7.15.",
+  "subgroup": "prompts",
+  "group": "model",
+  "ai_hours": null,
+  "notes": [
+    "Keep the baseline rules in a `data` block so they are easy to diff and review."
+  ],
+  "steps": [
+    "TDD: Output starts with the §6.6 baseline rules verbatim.",
+    "TDD: Output appends the prompt context JSON.",
+    "TDD: Output forbids Markdown fences and prose outside JSON.",
+    "TDD: Output includes alias-free instruction.",
+    "TDD: Length stays under a configured ceiling (`context.maxContextBytes`).",
+    "Author `Private/Model/New-SystemPrompt.ps1` taking `(Context, Mode, Toolset = @())`. v0.1 ignores `Toolset`; v0.2 reuses this same function with the tool registry summary appended.",
+    "Tests assert the baseline string is present and the context JSON is embedded."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 13,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[mdl-03] Generation system prompt assembly",
+  "id": "ada86136-f097-4046-9c89-ce5f3ef6a5e2",
+  "plan_path": ".bot/workspace/plans/mdl-03-generation-system-prompt-assembly-ada86136-plan.md"
+}

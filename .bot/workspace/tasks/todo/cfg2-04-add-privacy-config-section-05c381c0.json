@@ -1,0 +1,68 @@
+{
+  "working_dir": null,
+  "slug": "cfg2-04",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-08",
+    "exe-03"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/New-DefaultConfig.ps1 (update)",
+    "tests/Unit/Config.Privacy.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §9.5 privacy config (lines 1840-1849)",
+    "PRD §7.17 Tool privacy (lines 1271-1281)",
+    "§9.5 — privacy schema.",
+    "§7.17 — privacy rules."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg2-04-privacy-section.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "config",
+    "privacy"
+  ],
+  "description": "Extend default config with `privacy` block: `logContent`, `logDocumentText`, `logEmailBody`, `sendDocumentTextToModel`, `sendEmailBodyToModel`, `allowRemoteProviderForSensitiveContent`, `redactBeforeModel`. Defaults bias toward minimal logging and local-only model calls.",
+  "subgroup": "privacy",
+  "group": "config2",
+  "ai_hours": null,
+  "notes": [
+    "Document the rule that this section can only be relaxed via user policy, never project policy."
+  ],
+  "steps": [
+    "TDD: Defaults match §9.5.",
+    "TDD: `logEmailBody` defaults to `false`.",
+    "TDD: `sendEmailBodyToModel` defaults to `false`.",
+    "TDD: `allowRemoteProviderForSensitiveContent` defaults to `false`.",
+    "TDD: Wire `redactBeforeModel` into the system-prompt assembler (mdl-03) and tool-output sender.",
+    "Update `New-DefaultConfig.ps1`.",
+    "Tests cover defaults.",
+    "Hook into mdl-03 / observation sender."
+  ],
+  "sequence": 4,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 34,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg2-04] Add privacy config section",
+  "id": "05c381c0-cbcd-44af-a8ff-94f24b3860a2",
+  "plan_path": ".bot/workspace/plans/cfg2-04-add-privacy-config-section-05c381c0-plan.md"
+}

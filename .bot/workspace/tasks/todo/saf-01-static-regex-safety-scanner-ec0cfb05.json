@@ -1,0 +1,77 @@
+{
+  "working_dir": null,
+  "slug": "saf-01",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-07"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Safety/Test-StaticSafety.ps1",
+    "tests/Unit/Safety.Static.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "All TDD bullets pass.",
+    "Function returns findings as objects, not strings."
+  ],
+  "prd_refs": [
+    "PRD §6.8 Static safety scan (lines 624-680)",
+    "PRD §9.6 policy.blockedRegexPatterns / riskyRegexPatterns (lines 1946-1970)",
+    "PRD §11.3 Static safety tests (lines 2563-2572)",
+    "§6.8 — full pattern list.",
+    "§9.6 — regex policy structure.",
+    "§11.3 — required tests."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/saf-01-static-regex-scan.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "safety",
+    "static",
+    "regex"
+  ],
+  "description": "Apply blocked/risky/benign regex patterns from policy to the generated command string. Return findings as a structured list of `{Pattern, Class, Match}`. The classifier later combines these with AST + path + tool checks (saf-06).",
+  "subgroup": "static",
+  "group": "safety",
+  "ai_hours": null,
+  "notes": [
+    "Regex is the cheapest first defence; AST (saf-02) catches obfuscation. Both must agree before benign-write classification."
+  ],
+  "steps": [
+    "TDD: `Invoke-Expression` matches blocked.",
+    "TDD: `iex` matches blocked.",
+    "TDD: `curl ... | sh/bash/pwsh/powershell/iex` matches blocked.",
+    "TDD: `-EncodedCommand` matches blocked.",
+    "TDD: `Format-Volume` matches blocked.",
+    "TDD: `Start-Process -Verb RunAs` matches blocked.",
+    "TDD: `Remove-Item` matches risky.",
+    "TDD: `Move-Item ... *` matches risky.",
+    "TDD: `Copy-Item ... -Force` matches risky.",
+    "TDD: `git push --force` matches risky.",
+    "TDD: `Get-ChildItem` does not match any blocked/risky patterns.",
+    "TDD: `pandoc input -o output` does not match.",
+    "Author `Private/Safety/Test-StaticSafety.ps1` taking `(CommandText, Policy)` and returning findings list.",
+    "Compile each policy regex once per call.",
+    "Tests cover every PRD §6.8 pattern."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 11,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[saf-01] Static regex safety scanner",
+  "id": "ec0cfb05-78b8-4478-a3dd-96142ecafeb9",
+  "plan_path": ".bot/workspace/plans/saf-01-static-regex-safety-scanner-ec0cfb05-plan.md"
+}

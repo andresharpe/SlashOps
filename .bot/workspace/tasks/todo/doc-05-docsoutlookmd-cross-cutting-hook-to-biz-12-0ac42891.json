@@ -1,0 +1,57 @@
+{
+  "working_dir": null,
+  "slug": "doc-05",
+  "type": "prompt",
+  "dependencies": [
+    "biz-12"
+  ],
+  "deliverables": [
+    "docs/OUTLOOK.md"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "File present (delivered by `biz-12`).",
+    "Cross-links resolved."
+  ],
+  "prd_refs": [
+    "PRD §7.9 Outlook/Microsoft 365 handling (lines 1091-1127)"
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/doc-05-outlook-md.md",
+  "applicable_agents": [
+    ".claude/agents/planner.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "docs",
+    "outlook",
+    "business"
+  ],
+  "description": "This task is the cross-cutting placeholder for the Outlook docs. The actual content lives in `biz-12`; this entry exists so the docs index in `doc-08` and `rel-04` references a stable doc id.",
+  "subgroup": "outlook",
+  "group": "docs",
+  "ai_hours": null,
+  "notes": [
+    "Avoid duplicating content here; `biz-12` is canonical."
+  ],
+  "steps": [
+    "Move `docs/OUTLOOK.md` into the docs site nav once `biz-12` is `done`.",
+    "Cross-link from `doc-04 AGENT_RUNTIME.md`."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.3",
+  "priority": 100,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "XS",
+  "name": "[doc-05] docs/OUTLOOK.md (cross-cutting hook to biz-12)",
+  "id": "0ac42891-66ef-4c4d-966a-1d42687868f5",
+  "plan_path": ".bot/workspace/plans/doc-05-docsoutlookmd-cross-cutting-hook-to-biz-12-0ac42891-plan.md"
+}

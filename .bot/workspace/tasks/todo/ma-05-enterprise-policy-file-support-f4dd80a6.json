@@ -1,0 +1,66 @@
+{
+  "working_dir": null,
+  "slug": "ma-05",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-11"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/Resolve-EnterprisePolicy.ps1",
+    "tests/Unit/Config.EnterprisePolicy.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §16 v0.4 enterprise policy file support (line 2944)",
+    "PRD §17 Q8 (line 2968)",
+    "§16 — v0.4 scope.",
+    "§17 Q8 — precedence question."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ma-05-enterprise-policy.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.4",
+    "enterprise",
+    "policy"
+  ],
+  "description": "Support an admin-managed enterprise policy file (e.g. `/etc/slashops/policy.json` on Linux, `%ProgramData%\\SlashOps\\policy.json` on Windows). Enterprise policy merges into the effective policy with the highest precedence among file layers (above user policy), per §17 Q8.",
+  "subgroup": "policy",
+  "group": "mature-agent",
+  "ai_hours": null,
+  "notes": [
+    "Enterprise file path differs by platform; document both in `docs/CONFIGURATION.md`."
+  ],
+  "steps": [
+    "TDD: Enterprise policy file loaded when present.",
+    "TDD: Enterprise policy overrides user policy where configured.",
+    "TDD: Enterprise policy cannot be weakened by user / project.",
+    "TDD: Missing enterprise file is silently skipped.",
+    "Author `Resolve-EnterprisePolicy.ps1`.",
+    "Update precedence layer in `cfg-07` (effective config merge).",
+    "Tests cover every TDD bullet."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.4",
+  "priority": 75,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "M",
+  "name": "[ma-05] Enterprise policy file support",
+  "id": "f4dd80a6-1875-4b1f-a159-f1daa1d7b297",
+  "plan_path": ".bot/workspace/plans/ma-05-enterprise-policy-file-support-f4dd80a6-plan.md"
+}

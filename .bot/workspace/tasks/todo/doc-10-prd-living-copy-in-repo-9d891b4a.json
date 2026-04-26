@@ -1,0 +1,56 @@
+{
+  "working_dir": null,
+  "slug": "doc-10",
+  "type": "prompt",
+  "dependencies": [
+    "f-01"
+  ],
+  "deliverables": [
+    "PRD.md"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "`PRD.md` byte size matches the source on each refresh."
+  ],
+  "prd_refs": [
+    "PRD entire document"
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/doc-10-prd-living-copy.md",
+  "applicable_agents": [
+    ".claude/agents/planner.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "docs",
+    "prd"
+  ],
+  "description": "The PRD copy created by `f-01` is the canonical living version. This task tracks updates: when the source PRD in `~/Downloads` changes, refresh `PRD.md` and record the changeset in the commit message and `CHANGELOG.md`.",
+  "subgroup": "prd",
+  "group": "docs",
+  "ai_hours": null,
+  "notes": [
+    "A changed PRD section may invalidate existing `prd_refs` line ranges; budget time to update them."
+  ],
+  "steps": [
+    "After every source-PRD revision, copy the new file over `PRD.md`.",
+    "Record the version + date in `CHANGELOG.md`.",
+    "File task-level updates against any tasks whose `prd_refs` no longer match."
+  ],
+  "sequence": 10,
+  "applicable_decisions": [],
+  "version": "all",
+  "priority": 100,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:22Z",
+  "status": "todo",
+  "effort": "XS",
+  "name": "[doc-10] PRD living copy in repo",
+  "id": "9d891b4a-5776-40cc-a1a6-03331cbc2291",
+  "plan_path": ".bot/workspace/plans/doc-10-prd-living-copy-in-repo-9d891b4a-plan.md"
+}

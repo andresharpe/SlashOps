@@ -1,0 +1,71 @@
+{
+  "working_dir": null,
+  "slug": "cfg-05",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-04"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/ConvertTo-ConfigBackup.ps1",
+    "tests/Unit/Config.Backup.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Backup files created with correct naming.",
+    "Restore copies content back faithfully.",
+    "Tests pass."
+  ],
+  "prd_refs": [
+    "PRD §9.8 Set-SlashOpsConfig requirements (lines 2074-2082)",
+    "PRD §9.10 Config migration backup path (lines 2141-2157)",
+    "§9.8 `Set-SlashOpsConfig` requires backup before write and restore on invalid result.",
+    "§9.10 example backup path: `~/.slashops/backups/config.2026-04-26T143012.v1.json`."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg-05-backup-before-write.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "config",
+    "backup",
+    "safety",
+    "io"
+  ],
+  "description": "Provide a backup helper for config and policy mutations. Every `Set-`, `Edit-`, `Reset-`, or `Invoke-ConfigMigration` call must pass through this helper to write a timestamped copy under `~/.slashops/backups/` before touching the live file. On post-write validation failure, the caller restores from the backup.",
+  "subgroup": "io",
+  "group": "config",
+  "ai_hours": null,
+  "notes": [
+    "Use `Copy-Item` rather than reading + writing to avoid encoding drift.",
+    "Backups directory must be created lazily — first call creates it."
+  ],
+  "steps": [
+    "TDD: Backup creates `~/.slashops/backups/{filename}.{timestamp}.{schemaVersion}.json` with original content.",
+    "TDD: Timestamp uses `yyyy-MM-ddTHHmmss` in local time, matching PRD §9.10 example.",
+    "TDD: Helper is idempotent for the same file within the same second (suffix bumped).",
+    "TDD: Helper returns the backup path so callers can restore.",
+    "TDD: Restore-from-backup helper recreates the original file atomically.",
+    "Author `Private/Config/ConvertTo-ConfigBackup.ps1` taking `(Path)` and returning the backup path.",
+    "Add a `Restore-ConfigBackup` companion (private) that copies a backup back into place.",
+    "Pester tests cover every TDD bullet using `TestDrive:`."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 15,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg-05] Backup-before-write helper for config files",
+  "id": "5fc8cdd0-a13a-47bc-b21b-e30cb1b16f9e",
+  "plan_path": ".bot/workspace/plans/cfg-05-backup-before-write-helper-for-config-files-5fc8cdd0-plan.md"
+}

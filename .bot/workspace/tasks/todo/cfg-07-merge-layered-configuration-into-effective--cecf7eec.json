@@ -1,0 +1,79 @@
+{
+  "working_dir": null,
+  "slug": "cfg-07",
+  "type": "prompt",
+  "dependencies": [
+    "cfg-04",
+    "cfg-06"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Config/Merge-Config.ps1",
+    "src/SlashOps/Private/Config/Get-EffectiveConfig.ps1",
+    "tests/Unit/Config.Merge.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "All TDD tests pass.",
+    "Source attribution covers every leaf in the effective object.",
+    "No filesystem write.",
+    "Deterministic output."
+  ],
+  "prd_refs": [
+    "PRD §9.3 Configuration precedence (lines 1660-1690)",
+    "PRD §9.13 Config TDD requirements (lines 2189-2214)",
+    "§9.3 lists the six precedence layers in order.",
+    "§9.13 enumerates the TDD requirements.",
+    "§9.7 — project config rules (cannot weaken protected roots by default).",
+    "§9.12 — safety floor enforcement."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/cfg-07-merge-effective-config.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "config",
+    "precedence",
+    "merge"
+  ],
+  "description": "Merge configuration from six layers, lowest to highest precedence: module defaults → user config → user policy → project config → environment variables → CLI parameters. The merge produces an `effective config` object plus a parallel source-attribution map (which layer set each leaf value), so `Get-SlashOpsEffectiveConfig -Detailed` can show provenance.",
+  "subgroup": "merge",
+  "group": "config",
+  "ai_hours": null,
+  "notes": [
+    "Deep merge of arrays is the trickiest part — prefer \"replace\" semantics; document any additive exceptions inline.",
+    "`policy.safeWriteRoots` from project config is additive (per §9.7) when relative to project root — apply that exception explicitly."
+  ],
+  "steps": [
+    "TDD: Module defaults present when no other layer overrides.",
+    "TDD: User config overrides defaults for matching keys only.",
+    "TDD: User policy overrides user config for safety-related keys.",
+    "TDD: Project config overrides user-layer values for keys it contains.",
+    "TDD: Environment variables (`SLASHOPS_MODEL`, `SLASHOPS_ENDPOINT`, etc.) override file layers.",
+    "TDD: CLI parameters override environment variables.",
+    "TDD: Source attribution returns the highest-precedence layer for each leaf value.",
+    "TDD: Project config cannot weaken `policy.protectedRoots` unless `policy.allowProjectPolicyRelaxation = true` (per §9.7 + cfg-11).",
+    "TDD: Merging is deterministic: same inputs → same outputs.",
+    "Author `Private/Config/Merge-Config.ps1` taking layered hashtables and an explicit precedence array. Recursively deep-merge, with arrays replaced (not concatenated) unless the key path is on a documented \"additive\" allowlist.",
+    "Author `Private/Config/Get-EffectiveConfig.ps1` orchestrating: load defaults (cfg-02/03) → load user config (cfg-04) → load user policy (cfg-04) → discover and load project config (cfg-06) → read env vars per §9.2 → apply CLI param hashtable. Produce `(Effective, Sources)` tuple.",
+    "Tests cover every precedence pair from §9.3 and the source-attribution shape."
+  ],
+  "sequence": 7,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 17,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[cfg-07] Merge layered configuration into effective config",
+  "id": "cecf7eec-2d5d-45f9-9d27-d4903ab1776b",
+  "plan_path": ".bot/workspace/plans/cfg-07-merge-layered-configuration-into-effective--cecf7eec-plan.md"
+}

@@ -1,0 +1,67 @@
+{
+  "working_dir": null,
+  "slug": "ctx-04",
+  "type": "prompt",
+  "dependencies": [
+    "ctx-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Context/Get-GitContext.ps1",
+    "tests/Unit/Context.Git.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Works without git installed."
+  ],
+  "prd_refs": [
+    "PRD §6.3 Environment context (lines 501-528)",
+    "PRD §9.4 user config context.includeGitContext (line 1742)",
+    "§6.3 — git context is part of the prompt context payload.",
+    "§9.4 — `context.includeGitContext` toggles inclusion."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ctx-04-git-context.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "context",
+    "git",
+    "repo"
+  ],
+  "description": "When inside a git repository, surface branch, dirty flag, upstream, and a small commit-summary so the planner can phrase prompts like \"show changed files in this repo\" intelligently. Inclusion is gated on `context.includeGitContext = true` (default true).",
+  "subgroup": "git",
+  "group": "context",
+  "ai_hours": null,
+  "notes": [
+    "Avoid issuing slow git commands; one-line calls only."
+  ],
+  "steps": [
+    "TDD: Outside a repo, returns `$null` (no error).",
+    "TDD: Inside a clean repo, returns object with `branch`, `dirty = $false`, `upstream`.",
+    "TDD: Inside a dirty repo, returns `dirty = $true`.",
+    "TDD: Honours `context.includeGitContext = false` by returning `$null`.",
+    "TDD: Function does not run when `git` is not on PATH; returns `$null` with a warning.",
+    "Author `Private/Context/Get-GitContext.ps1` invoking `git -C $PWD rev-parse --is-inside-work-tree`, branch via `git symbolic-ref --short HEAD`, dirty via `git status --porcelain`.",
+    "Tests mock `git` invocation through a thin wrapper (`Invoke-GitCli`) so platform behaviour is irrelevant."
+  ],
+  "sequence": 4,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 14,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ctx-04] Git repository context",
+  "id": "8b7d674b-4788-48a7-8cfd-d7ffe91f36a0",
+  "plan_path": ".bot/workspace/plans/ctx-04-git-repository-context-8b7d674b-plan.md"
+}

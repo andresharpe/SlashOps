@@ -1,0 +1,64 @@
+{
+  "working_dir": null,
+  "slug": "ui2-01",
+  "type": "prompt",
+  "dependencies": [
+    "ui-03"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/UI/Write-SlashOpsToolPlan.ps1",
+    "tests/Unit/UI.ToolPlan.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.16 Tool result UI (lines 1259-1269)",
+    "§7.16 — tool result UI."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ui2-01-tool-plan-render.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "ui-ux",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.2",
+    "ui",
+    "plan",
+    "fxconsole"
+  ],
+  "description": "Render multi-step plans with intent + risk header, dependency status table, and step table. Used for `Invoke-SlashOpsPlan` and tool-using flows.",
+  "subgroup": "plan",
+  "group": "ui2",
+  "ai_hours": null,
+  "notes": [
+    "Long step tables truncate with a \"+N more\" footer."
+  ],
+  "steps": [
+    "TDD: Header shows intent and risk class.",
+    "TDD: Dependency table lists `requires_tools` with present / missing flags.",
+    "TDD: Step table shows step type (`tool_call` / `command`), tool name or shell, summary.",
+    "TDD: Honours `ui.useFxConsole = false` fallback.",
+    "Author `Private/UI/Write-SlashOpsToolPlan.ps1` calling FxConsole functions.",
+    "Tests stub FxConsole."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.2",
+  "priority": 31,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ui2-01] Tool plan rendering (intent + risk + steps)",
+  "id": "740143f8-94e2-4c04-ac9d-c50b260a0739",
+  "plan_path": ".bot/workspace/plans/ui2-01-tool-plan-rendering-intent-risk-steps-740143f8-plan.md"
+}

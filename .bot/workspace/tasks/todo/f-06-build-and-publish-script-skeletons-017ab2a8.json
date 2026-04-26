@@ -1,0 +1,70 @@
+{
+  "working_dir": null,
+  "slug": "f-06",
+  "type": "prompt",
+  "dependencies": [
+    "f-03"
+  ],
+  "deliverables": [
+    "build/build.ps1",
+    "build/publish.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Both scripts run end-to-end on a clean tree.",
+    "`-WhatIf` on publish does not invoke `Publish-Module`.",
+    "Dirty-tree guard works.",
+    "Scripts emit a final pass/fail line for CI consumption."
+  ],
+  "prd_refs": [
+    "PRD §11.5 Build/test commands (lines 2714-2722)",
+    "PRD §12.2 Local publish test (lines 2742-2754)",
+    "PRD §12.3 Gallery publish (lines 2755-2772)",
+    "§11.5 — canonical commands the scripts wrap.",
+    "§12.2 — local PSRepository smoke test (full implementation in `pub-03`).",
+    "§12.3 — Gallery publish requirements: API key from env, `-WhatIf` support, version display."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/f-06-build-publish-scripts.md",
+  "applicable_agents": [
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "foundation",
+    "build",
+    "publish",
+    "scripting"
+  ],
+  "description": "Create skeletons for `build/build.ps1` and `build/publish.ps1`. The skeletons orchestrate test → lint → manifest test, but do not yet publish; final publish logic lives in `pub-03` and `pub-04`. Establishing the entry points now lets CI (`rel-02`) and the gate tasks call them without further plumbing.",
+  "subgroup": "build",
+  "group": "foundation",
+  "ai_hours": null,
+  "notes": [
+    "API key handling stays out of these skeletons; `pub-04` adds the SecretManagement-or-env hook."
+  ],
+  "steps": [
+    "TDD: `pwsh -File ./build/build.ps1` runs `test.ps1`, `lint.ps1`, then `Test-ModuleManifest` and exits 0 on success.",
+    "TDD: `pwsh -File ./build/build.ps1 -SkipTests` skips tests but still lints + tests manifest.",
+    "TDD: `pwsh -File ./build/publish.ps1 -WhatIf` prints planned actions and exits 0 without publishing.",
+    "Author `build/build.ps1` with parameters `-SkipTests` and `-SkipLint`. Sequence: tests → lint → `Test-ModuleManifest ./src/SlashOps/SlashOps.psd1`.",
+    "Author `build/publish.ps1` with parameters `-Repository` (default `PSGallery`), `-WhatIf`, `-Force`. Skeleton must guard against publishing with a dirty git tree unless `-Force`.",
+    "Both scripts must accept `-Verbose` and surface clear failure messages."
+  ],
+  "sequence": 6,
+  "applicable_decisions": [],
+  "version": "n/a",
+  "priority": 6,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[f-06] Build and publish script skeletons",
+  "id": "017ab2a8-5514-4182-beae-f66ee7931c5d",
+  "plan_path": ".bot/workspace/plans/f-06-build-and-publish-script-skeletons-017ab2a8-plan.md"
+}

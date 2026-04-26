@@ -1,0 +1,56 @@
+{
+  "working_dir": null,
+  "slug": "doc-07",
+  "type": "prompt",
+  "dependencies": [
+    "pub-04"
+  ],
+  "deliverables": [
+    "docs/PUBLISHING.md"
+  ],
+  "created_at": "2026-04-26T09:01:22Z",
+  "acceptance_criteria": [
+    "File present, content-complete."
+  ],
+  "prd_refs": [
+    "PRD §12 Publishing requirements (lines 2725-2772)"
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/doc-07-publishing-md.md",
+  "applicable_agents": [
+    ".claude/agents/planner.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "docs",
+    "publishing",
+    "gallery"
+  ],
+  "description": "Reference for the maintainer publishing flow: prepublish checks, local repository test, signing (when enabled), Gallery publish, version bump rules.",
+  "subgroup": "publishing",
+  "group": "docs",
+  "ai_hours": null,
+  "notes": [
+    "Maintainer-facing doc; keep it terse but exact."
+  ],
+  "steps": [
+    "Sections: pre-publish checklist, local PSRepository smoke test, signing, Gallery publish, version bump.",
+    "Include the exact commands."
+  ],
+  "sequence": 7,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 97,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "XS",
+  "name": "[doc-07] docs/PUBLISHING.md",
+  "id": "c37762e9-3e2e-4750-9d20-48e184640263",
+  "plan_path": ".bot/workspace/plans/doc-07-docspublishingmd-c37762e9-plan.md"
+}

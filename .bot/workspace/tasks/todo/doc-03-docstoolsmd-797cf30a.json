@@ -1,0 +1,56 @@
+{
+  "working_dir": null,
+  "slug": "doc-03",
+  "type": "prompt",
+  "dependencies": [
+    "tr-03"
+  ],
+  "deliverables": [
+    "docs/TOOLS.md"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "File present, content-complete."
+  ],
+  "prd_refs": [
+    "PRD §7.6-§7.8 (lines 1019-1090)"
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/doc-03-tools-md.md",
+  "applicable_agents": [
+    ".claude/agents/planner.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "docs",
+    "tools",
+    "registry"
+  ],
+  "description": "Reference for the tool registry: manifest schema, built-in tool list with risk + fast-mode + dependencies, examples of registering and invoking a tool.",
+  "subgroup": "tools",
+  "group": "docs",
+  "ai_hours": null,
+  "notes": [
+    "Keep the catalogue table generated from manifests where possible to avoid drift."
+  ],
+  "steps": [
+    "Sections: registry overview, manifest schema, built-in tool catalogue, custom tools (out of scope until v1.0).",
+    "Tool catalogue table: name, description, risk, fast-mode, dependencies, supported platforms."
+  ],
+  "sequence": 3,
+  "applicable_decisions": [],
+  "version": "all",
+  "priority": 93,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "XS",
+  "name": "[doc-03] docs/TOOLS.md",
+  "id": "797cf30a-9030-4fa4-b8de-c25ccc76a682",
+  "plan_path": ".bot/workspace/plans/doc-03-docstoolsmd-797cf30a-plan.md"
+}

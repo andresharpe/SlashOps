@@ -1,0 +1,65 @@
+{
+  "working_dir": null,
+  "slug": "ui-05",
+  "type": "prompt",
+  "dependencies": [
+    "ui-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/UI/Write-SlashOpsResult.ps1",
+    "src/SlashOps/Private/UI/Use-SlashOpsSpinner.ps1",
+    "tests/Unit/UI.Result.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §6.15 Output rendering (lines 840-875)",
+    "§6.15 — execution spinner / progress / result."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ui-05-execution-status.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "ui-ux",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "ui",
+    "spinner",
+    "result",
+    "fxconsole"
+  ],
+  "description": "Wrap long-running execution in `Invoke-FxJob`-driven spinners; render the final success / error panel with timing and exit code. Stdout / stderr summaries shown only when `ui.showContextSummary = true`.",
+  "subgroup": "panels",
+  "group": "ui",
+  "ai_hours": null,
+  "notes": [
+    "Spinner must terminate on exception — wrap in `try { ... } finally { ... }` to clean up the FxJob handle."
+  ],
+  "steps": [
+    "TDD: Spinner starts before invocation and stops after.",
+    "TDD: Success panel shows duration and exit code.",
+    "TDD: Error panel shows exit code and stderr summary.",
+    "TDD: Honours `ui.useFxConsole = false` fallback.",
+    "Author the helpers wrapping `Invoke-FxJob` and `Write-FxStatus`.",
+    "Tests stub FxConsole."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 15,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ui-05] Execution spinner and result panel",
+  "id": "70b19209-a16b-470e-b450-d3001ddc7702",
+  "plan_path": ".bot/workspace/plans/ui-05-execution-spinner-and-result-panel-70b19209-plan.md"
+}

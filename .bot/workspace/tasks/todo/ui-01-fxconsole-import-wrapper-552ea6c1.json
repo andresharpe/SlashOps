@@ -1,0 +1,70 @@
+{
+  "working_dir": null,
+  "slug": "ui-01",
+  "type": "prompt",
+  "dependencies": [
+    "f-04"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/UI/Import-FxConsole.ps1",
+    "src/SlashOps/Private/UI/Use-FxConsole.ps1",
+    "tests/Unit/UI.Bootstrap.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Idempotent.",
+    "Fallback works when disabled."
+  ],
+  "prd_refs": [
+    "PRD §3.1 FxConsole integration (lines 91-127)",
+    "PRD §6.15 Output rendering with FxConsole (lines 840-875)",
+    "§3.1 — vendored FxConsole.",
+    "§6.15 — UI requirements."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/ui-01-fxconsole-import.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "ui-ux",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "ui",
+    "fxconsole",
+    "import",
+    "bootstrap"
+  ],
+  "description": "Provide a single private helper that imports the vendored FxConsole module, sets the configured theme (`ui.theme`, default `amber`), and is safe to call repeatedly. Other UI helpers call this lazily so non-UI code paths never load FxConsole.",
+  "subgroup": "bootstrap",
+  "group": "ui",
+  "ai_hours": null,
+  "notes": [
+    "Tests must stub FxConsole, not load the real module — keep them fast."
+  ],
+  "steps": [
+    "TDD: First call imports the vendored module and sets theme.",
+    "TDD: Subsequent calls are no-ops.",
+    "TDD: Honours `ui.useFxConsole = false` by silently degrading to `Write-Host` fallback.",
+    "TDD: Theme name comes from effective config.",
+    "Author `Private/UI/Import-FxConsole.ps1` using `Import-Module` against the vendored path.",
+    "Author `Private/UI/Use-FxConsole.ps1` returning a boolean indicating whether FxConsole is active.",
+    "Tests use `TestDrive:` with a stub `FxConsole` module to assert idempotency."
+  ],
+  "sequence": 1,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 11,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:23Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[ui-01] FxConsole import wrapper",
+  "id": "552ea6c1-7aa1-409d-9c7f-47593321246e",
+  "plan_path": ".bot/workspace/plans/ui-01-fxconsole-import-wrapper-552ea6c1-plan.md"
+}

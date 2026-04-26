@@ -1,0 +1,71 @@
+{
+  "working_dir": null,
+  "slug": "set-02",
+  "type": "prompt",
+  "dependencies": [
+    "set-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Install-SlashOpsOllama.ps1",
+    "src/SlashOps/Private/Setup/Install-Ollama.ps1",
+    "tests/Unit/Setup.Ollama.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Cmdlet exported.",
+    "No silent installs."
+  ],
+  "prd_refs": [
+    "PRD §8.5 Ollama installation behavior (lines 1422-1476)",
+    "PRD §13.3 Remote execution policy (lines 2796-2806)",
+    "§8.5 — platform-specific behaviour.",
+    "§13.3 — remote execution policy: never `curl | sh` automatically."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/set-02-install-ollama.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "setup",
+    "ollama",
+    "install",
+    "platform"
+  ],
+  "description": "Install Ollama using platform package managers when available, never silently. On Windows: `winget install Ollama.Ollama`. On macOS: `brew install --cask ollama`. On Linux: display the official `curl | sh` command and require explicit confirmation; never auto-run remote scripts.",
+  "subgroup": "ollama",
+  "group": "setup",
+  "ai_hours": null,
+  "notes": [
+    "Copy/paste UX: print the exact command in a copyable card so the user can run it themselves."
+  ],
+  "steps": [
+    "TDD: Already-installed → no-op with diagnostic.",
+    "TDD: Missing `winget` on Windows → display official URL, do not auto-download.",
+    "TDD: Missing `brew` on macOS → display official URL.",
+    "TDD: Linux always requires explicit confirmation before showing the install.sh command and never executes it.",
+    "TDD: `SLASHOPS_NONINTERACTIVE = 1` blocks all install paths.",
+    "Author `Public/Install-SlashOpsOllama.ps1` branching on platform.",
+    "Author `Private/Setup/Install-Ollama.ps1` for shared helpers (e.g., package-manager detection).",
+    "Tests mock `Get-Command winget` / `brew` and `$IsLinux`."
+  ],
+  "sequence": 2,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 12,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[set-02] Install-SlashOpsOllama (per-platform)",
+  "id": "029f10b8-87ae-42f9-b628-90f6dec5d6d0",
+  "plan_path": ".bot/workspace/plans/set-02-install-slashopsollama-per-platform-029f10b8-plan.md"
+}

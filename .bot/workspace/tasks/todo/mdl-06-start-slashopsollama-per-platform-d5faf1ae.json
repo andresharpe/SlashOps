@@ -1,0 +1,67 @@
+{
+  "working_dir": null,
+  "slug": "mdl-06",
+  "type": "prompt",
+  "dependencies": [
+    "mdl-01"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Start-SlashOpsOllama.ps1",
+    "tests/Unit/Model.Lifecycle.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "No auto-install.",
+    "Cmdlet exported."
+  ],
+  "prd_refs": [
+    "PRD §8.5 Ollama installation behavior (lines 1422-1476)",
+    "PRD §6.1 Module commands — Model and Ollama (lines 419-427)",
+    "§8.5 — platform-specific install + start behaviour.",
+    "§6.1 — public function name."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/mdl-06-start-ollama.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "core",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "model",
+    "ollama",
+    "lifecycle"
+  ],
+  "description": "Start the Ollama service if it is installed but not running. On Windows, prefer launching the desktop app or `Start-Service`. On macOS, `open -a Ollama`. On Linux, `systemctl start ollama` if systemd is available, else display manual instructions. Never auto-install — the caller must run `Install-SlashOpsOllama` first.",
+  "subgroup": "lifecycle",
+  "group": "model",
+  "ai_hours": null,
+  "notes": [
+    "Linux without systemd needs explicit manual instructions; do not assume `service` either."
+  ],
+  "steps": [
+    "TDD: When Ollama is already reachable, returns `AlreadyRunning = $true` without launching anything.",
+    "TDD: When not reachable but installed, attempts platform-appropriate start (mocked).",
+    "TDD: When not installed, returns guidance to call `Install-SlashOpsOllama` and does not attempt start.",
+    "TDD: Honours `SLASHOPS_NONINTERACTIVE = 1` by failing without prompting.",
+    "Author `Public/Start-SlashOpsOllama.ps1` branching on `$IsWindows`/`$IsMacOS`/`$IsLinux`.",
+    "Mock platform branches in tests via thin private helpers."
+  ],
+  "sequence": 6,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 16,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:24Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[mdl-06] Start-SlashOpsOllama (per-platform)",
+  "id": "d5faf1ae-17da-49c3-86de-216c34e93537",
+  "plan_path": ".bot/workspace/plans/mdl-06-start-slashopsollama-per-platform-d5faf1ae-plan.md"
+}

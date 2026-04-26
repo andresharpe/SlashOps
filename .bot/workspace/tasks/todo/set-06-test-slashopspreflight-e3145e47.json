@@ -1,0 +1,66 @@
+{
+  "working_dir": null,
+  "slug": "set-06",
+  "type": "prompt",
+  "dependencies": [
+    "set-05",
+    "ui-02"
+  ],
+  "deliverables": [
+    "src/SlashOps/Public/Test-SlashOpsPreflight.ps1",
+    "tests/Unit/Setup.Preflight.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass.",
+    "Cmdlet exported."
+  ],
+  "prd_refs": [
+    "PRD §8.9 Preflight test (lines 1547-1591)",
+    "§8.9 — full check list."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/set-06-test-preflight.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "setup",
+    "preflight",
+    "diagnostics"
+  ],
+  "description": "Run the §8.9 preflight checklist: PowerShell version, manifest, FxConsole, config / policy readability, effective merge, history path, Ollama executable, Ollama server, default model, JSON-capable model, AST parser, alias install (if requested), tool inventory. Output is structured (`Passed`, `Checks`, `MissingRequired`, `MissingOptional`, `Remediation`) per §8.9.",
+  "subgroup": "preflight",
+  "group": "setup",
+  "ai_hours": null,
+  "notes": [
+    "Render the result via `Write-SlashOpsPreflight` (ui-02), not `Write-Host`."
+  ],
+  "steps": [
+    "TDD: All checks passing → `Passed = $true`.",
+    "TDD: Missing Ollama → `Passed = $false` with remediation pointing to `Install-SlashOpsOllama`.",
+    "TDD: Missing model → remediation pointing to `Install-SlashOpsModel`.",
+    "TDD: Missing optional tool (e.g. pandoc) → entry in `MissingOptional`, not `MissingRequired`.",
+    "TDD: Output is JSON-serialisable.",
+    "Author `Public/Test-SlashOpsPreflight.ps1` chaining individual checks.",
+    "Tests mock each check."
+  ],
+  "sequence": 6,
+  "applicable_decisions": [],
+  "version": "v0.1",
+  "priority": 16,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:27Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[set-06] Test-SlashOpsPreflight",
+  "id": "e3145e47-2b26-447a-9f7e-8610797f2471",
+  "plan_path": ".bot/workspace/plans/set-06-test-slashopspreflight-e3145e47-plan.md"
+}

@@ -1,0 +1,64 @@
+{
+  "working_dir": null,
+  "slug": "rel-05",
+  "type": "prompt",
+  "dependencies": [
+    "saf-07",
+    "exe-03",
+    "ma-04"
+  ],
+  "deliverables": [
+    "docs/SECURITY_REVIEW_v1.0.md"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "Review document complete.",
+    "All open issues either resolved or accepted with rationale."
+  ],
+  "prd_refs": [
+    "PRD §16 v1.0 security review completed (line 2955)",
+    "PRD §13 Security and privacy (lines 2775-2816)",
+    "§16 — v1.0 scope.",
+    "§13 — security and privacy."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/rel-05-security-review.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v1.0",
+    "security",
+    "review"
+  ],
+  "description": "Conduct a security review covering the safety pipeline, transcript redaction, policy floor, profile-install behaviour, model-call data flow, and provider auth handling. Document findings and remediations.",
+  "subgroup": "security",
+  "group": "release",
+  "ai_hours": null,
+  "notes": [
+    "Engage an external reviewer if budget allows; document the reviewer's identity and date."
+  ],
+  "steps": [
+    "Walk PRD §6.7–§6.13 + §13 against the implementation.",
+    "Threat-model each tool category (local, document, mail, github, git, cloud).",
+    "Author `docs/SECURITY_REVIEW_v1.0.md` with findings + remediations.",
+    "File defects against tasks for any open issues."
+  ],
+  "sequence": 5,
+  "applicable_decisions": [],
+  "version": "v1.0",
+  "priority": 90,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:26Z",
+  "status": "todo",
+  "effort": "L",
+  "name": "[rel-05] Security review",
+  "id": "986dfa51-699d-44cb-b7b9-bc6a010eb661",
+  "plan_path": ".bot/workspace/plans/rel-05-security-review-986dfa51-plan.md"
+}

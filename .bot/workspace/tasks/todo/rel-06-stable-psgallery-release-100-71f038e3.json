@@ -1,0 +1,65 @@
+{
+  "working_dir": null,
+  "slug": "rel-06",
+  "type": "prompt",
+  "dependencies": [
+    "rel-01",
+    "rel-02",
+    "rel-03",
+    "rel-04",
+    "rel-05"
+  ],
+  "deliverables": [
+    "CHANGELOG.md (update)",
+    "docs/RELEASE_NOTES_v1.0.md"
+  ],
+  "created_at": "2026-04-26T09:01:22Z",
+  "acceptance_criteria": [
+    "Module installable from PSGallery as `1.0.0`.",
+    "Tag `v1.0.0` pushed."
+  ],
+  "prd_refs": [
+    "PRD §16 v1.0 PowerShell Gallery stable release (line 2956)",
+    "§16 — v1.0 scope."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/rel-06-stable-gallery-release.md",
+  "applicable_agents": [
+    ".claude/agents/reviewer.md"
+  ],
+  "category": "infrastructure",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v1.0",
+    "release",
+    "gallery"
+  ],
+  "description": "Bump `ModuleVersion` to `1.0.0`, write release notes, run the prepublish chain, and publish to PSGallery.",
+  "subgroup": "gallery",
+  "group": "release",
+  "ai_hours": null,
+  "notes": [
+    "This is the irreversible-ish step; ensure all gates passed first."
+  ],
+  "steps": [
+    "Bump version in `SlashOps.psd1`.",
+    "Update `CHANGELOG.md`.",
+    "Author `docs/RELEASE_NOTES_v1.0.md`.",
+    "Run `pub-02` then `pub-04`."
+  ],
+  "sequence": 6,
+  "applicable_decisions": [],
+  "version": "v1.0",
+  "priority": 91,
+  "tdd_first": false,
+  "updated_at": "2026-04-26T09:01:28Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[rel-06] Stable PSGallery release (1.0.0)",
+  "id": "71f038e3-5822-44e2-8987-9bab5cb78b25",
+  "plan_path": ".bot/workspace/plans/rel-06-stable-psgallery-release-100-71f038e3-plan.md"
+}

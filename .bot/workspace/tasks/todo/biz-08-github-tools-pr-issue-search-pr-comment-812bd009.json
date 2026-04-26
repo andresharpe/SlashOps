@@ -1,0 +1,72 @@
+{
+  "working_dir": null,
+  "slug": "biz-08",
+  "type": "prompt",
+  "dependencies": [
+    "tr-03"
+  ],
+  "deliverables": [
+    "src/SlashOps/Private/Tools/GitHub/Invoke-GitHubPrSearch.ps1",
+    "src/SlashOps/Private/Tools/GitHub/Invoke-GitHubIssueSearch.ps1",
+    "src/SlashOps/Private/Tools/GitHub/Invoke-GitHubPrComment.ps1",
+    "src/SlashOps/ToolManifests/github.pr.search.json",
+    "src/SlashOps/ToolManifests/github.issue.search.json",
+    "src/SlashOps/ToolManifests/github.pr.comment.json",
+    "tests/Unit/Tools.GitHub.Tests.ps1"
+  ],
+  "created_at": "2026-04-26T09:01:21Z",
+  "acceptance_criteria": [
+    "TDD tests pass."
+  ],
+  "prd_refs": [
+    "PRD §7.8 Optional v0.3 business/dev tools (lines 1076-1090)",
+    "§7.8 — tool list."
+  ],
+  "human_hours": null,
+  "needs_interview": false,
+  "source_markdown_path": "./plan/tasks/todo/biz-08-github-tools.md",
+  "applicable_agents": [
+    ".claude/agents/tester.md",
+    ".claude/agents/implementer.md"
+  ],
+  "category": "feature",
+  "applicable_standards": [],
+  "applicable_skills": [],
+  "completed_at": null,
+  "group_id": null,
+  "tags": [
+    "v0.3",
+    "github",
+    "pr",
+    "issue",
+    "comment"
+  ],
+  "description": "GitHub tools wrapping `gh` CLI: search PRs, search issues, comment on PR (with confirmation). Comment requires explicit confirmation per `github_mutation` intent.",
+  "subgroup": "github",
+  "group": "business",
+  "ai_hours": null,
+  "notes": [
+    "`gh` auth: surface `gh auth status` as a precondition observation."
+  ],
+  "steps": [
+    "TDD: PR search returns ranked PRs.",
+    "TDD: Issue search returns ranked issues.",
+    "TDD: PR comment requires `EXECUTE` confirmation.",
+    "TDD: Missing `gh` → dependency observation.",
+    "TDD: All manifests pass validation.",
+    "Author each tool wrapping `gh` invocations.",
+    "Author each manifest.",
+    "Tests mock `gh` invocations."
+  ],
+  "sequence": 8,
+  "applicable_decisions": [],
+  "version": "v0.3",
+  "priority": 58,
+  "tdd_first": true,
+  "updated_at": "2026-04-26T09:01:25Z",
+  "status": "todo",
+  "effort": "S",
+  "name": "[biz-08] GitHub tools (PR / issue search, PR comment)",
+  "id": "812bd009-91e8-4bf7-8b3a-59f9ee2639aa",
+  "plan_path": ".bot/workspace/plans/biz-08-github-tools-pr-issue-search-pr-comment-812bd009-plan.md"
+}
