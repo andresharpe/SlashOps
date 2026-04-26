@@ -1,0 +1,45 @@
+{
+  "dependencies": [],
+  "description": "Conduct comprehensive internet research covering business context, regulatory requirements, alternative products/approaches, and technical documentation for SlashOps.\n\nOutput: .bot/workspace/product/research-internet.md",
+  "type": "prompt",
+  "updated_at": "2026-04-26T09:30:34Z",
+  "applicable_decisions": [],
+  "needs_interview": false,
+  "name": "Deep Internet Research for SlashOps",
+  "applicable_agents": [
+    ".bot/recipes/agents/researcher/AGENT.md"
+  ],
+  "working_dir": null,
+  "applicable_skills": [],
+  "steps": [
+    "Read product.md for project name and goals",
+    "Load research methodology from recipes/research/public.md",
+    "Research business context, regulatory landscape, and compliance requirements",
+    "Identify alternative products, competing approaches, and industry benchmarks",
+    "Gather technical documentation, API references, and integration patterns",
+    "Write structured report to .bot/workspace/product/research-internet.md"
+  ],
+  "completed_at": null,
+  "id": "bc03756d-0043-4b4e-ae4c-a06b2be8dfd8",
+  "research_prompt": "public.md",
+  "status": "todo",
+  "effort": "L",
+  "created_at": "2026-04-26T09:30:34Z",
+  "priority": 1,
+  "human_hours": null,
+  "skip_analysis": false,
+  "category": "core",
+  "applicable_standards": [
+    ".bot/recipes/standards/global/research-output.md"
+  ],
+  "ai_hours": null,
+  "acceptance_criteria": [
+    "research-internet.md written to .bot/workspace/product/",
+    "Business context and market landscape documented",
+    "Regulatory and compliance requirements researched",
+    "Alternative products and approaches evaluated",
+    "Technical documentation and patterns catalogued",
+    "All sources cited with URLs"
+  ],
+  "skip_worktree": false
+}
