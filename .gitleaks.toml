@@ -1,0 +1,22 @@
+# Gitleaks configuration for SlashOps.
+# Extends the default ruleset and adds an allowlist for known-safe placeholders
+# in the PRD and task plan.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Known-safe placeholders documented in the PRD"
+paths = [
+    '''^plan/tasks/todo/.*\.md$''',
+    '''^plan/README\.md$''',
+    '''^docs/.*\.md$''',
+]
+
+regexes = [
+    # Ollama's OpenAI-compatible API ignores the api_key value; the literal
+    # string "ollama" is the documented placeholder, not a real secret.
+    '''api_?key["'\s:=]+ollama''',
+    # Documented env var name for the Gallery publish flow; never a value.
+    '''PSGALLERY_API_KEY''',
+]

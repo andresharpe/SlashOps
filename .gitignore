@@ -1,0 +1,36 @@
+# PowerShell module build outputs
+.local-psrepo/
+*.bak
+*.tmp
+
+# Pester
+tests/_results/
+coverage.xml
+
+# Per-run logs and SlashOps state (in case the home dir is symlinked into the repo for testing)
+runs/
+.slashops/
+
+# Editor and IDE
+.vscode/
+.idea/
+*.user.json
+*.swp
+.DS_Store
+Thumbs.db
+
+# Secrets and environment
+.env
+.env.*
+!.env.example
+*.pfx
+*.key
+*.pem
+secrets/
+
+# OS / temp
+*.log
+*.lock
+
+# Plan task workflow
+plan/tasks/done/.archive/

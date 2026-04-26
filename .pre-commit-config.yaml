@@ -1,0 +1,11 @@
+# Pre-commit hooks for SlashOps.
+# To enable, install pre-commit (https://pre-commit.com) and run:
+#   pre-commit install
+# After that, every git commit will run the hooks below.
+
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.0
+    hooks:
+      - id: gitleaks
+        name: gitleaks (secret scan)
