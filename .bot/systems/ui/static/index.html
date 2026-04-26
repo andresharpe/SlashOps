@@ -94,18 +94,6 @@
                             <div class="control-buttons" id="controls">
                                 <!-- Dynamic workflow controls (populated by JS when workflows are installed) -->
                                 <div id="workflow-controls-container"></div>
-                                <!-- Execute Tasks: launches workflow process to execute pending tasks -->
-                                <div class="process-control-row" id="generic-workflow-control">
-                                    <div class="process-control-header">
-                                        <span class="led off" id="workflow-loop-led"></span>
-                                        <span class="process-control-label">Execute Tasks</span>
-                                    </div>
-                                    <div class="process-control-actions">
-                                        <button class="ctrl-btn-xs primary" data-action="start-workflow" title="Execute pending tasks (todo/analysed)">Start</button>
-                                        <button class="ctrl-btn-xs" data-action="stop-workflow" title="Graceful stop: finish current task then end" disabled>Stop</button>
-                                        <button class="ctrl-btn-xs danger" data-action="kill-workflow" title="Immediate: terminate process via PID" disabled>Kill</button>
-                                    </div>
-                                </div>
                             </div>
                             <div class="signal-feedback" id="signal-status"></div>
                         </div>
@@ -1471,7 +1459,7 @@
     <div class="modal-overlay" id="kickstart-modal">
         <div class="modal modal-wide">
             <div class="modal-header">
-                <span class="modal-title">◈ Kickstart Project</span>
+                <span class="modal-title">◈ <span id="kickstart-modal-title">Kickstart Project</span></span>
                 <button class="modal-close" id="kickstart-modal-close"><!-- Close icon loaded dynamically --></button>
             </div>
             <div class="modal-body">
@@ -1500,9 +1488,9 @@
                         <div class="form-option">
                             <label class="form-checkbox-label">
                                 <input type="checkbox" id="kickstart-interview" checked>
-                                <span class="form-checkbox-text" id="kickstart-interview-label">Interview me to clarify requirements</span>
+                                <span class="form-checkbox-text" id="kickstart-interview-label" data-default="Interview me to clarify requirements"></span>
                             </label>
-                            <div class="form-option-hint" id="kickstart-interview-hint">Dotbot will ask clarifying questions before creating product documents</div>
+                            <div class="form-option-hint" id="kickstart-interview-hint" data-default="Dotbot will ask clarifying questions before creating product documents"></div>
                         </div>
                         <div class="form-option">
                             <label class="form-checkbox-label">
@@ -1582,6 +1570,25 @@
 
     <!-- Toast notifications -->
     <div class="toast-container" id="toast-container"></div>
+
+    <!-- Server-injected bootstrap data (issue #269). The server replaces the
+         JSON placeholder below so the first paint already carries project info
+         + product list. The adjacent reader publishes it as window.__DOTBOT_BOOTSTRAP__. -->
+    <script id="__dotbot_bootstrap_data" type="application/json">{{BOOTSTRAP_JSON}}</script>
+    <script>
+        (function () {
+            try {
+                var el = document.getElementById('__dotbot_bootstrap_data');
+                if (!el) return;
+                var txt = el.textContent.trim();
+                // Skip when empty or when the server left an unsubstituted placeholder.
+                if (!txt || txt.indexOf('{{') === 0) return;
+                window.__DOTBOT_BOOTSTRAP__ = JSON.parse(txt);
+            } catch (e) {
+                console.warn('Failed to parse inlined bootstrap data:', e);
+            }
+        })();
+    </script>
 
     <!-- External dependencies -->
     <script src="scope.js"></script>

@@ -1,0 +1,902 @@
+{
+  "version": 1,
+  "generated_at": "2026-04-26T09:10:30Z",
+  "generator": "dotbot init --force",
+  "protected_paths": [
+    ".bot/systems",
+    ".bot/hooks",
+    ".bot/recipes",
+    ".bot/settings/providers",
+    ".bot/settings/settings.default.json",
+    ".bot/settings/theme.default.json",
+    ".bot/go.ps1",
+    ".bot/init.ps1",
+    ".bot/workflow.yaml",
+    ".bot/.gitignore",
+    ".bot/.manifest.json",
+    ".bot/README.md"
+  ],
+  "user_paths": [
+    ".bot/workspace/",
+    ".bot/.control/",
+    ".bot/profile/"
+  ],
+  "files": {
+    ".bot/systems/mcp/core-helpers.psm1": {
+      "sha256": "1603102A5D4B576F110AFE6F8B6B2FF7FB1D2670B3BDB3635CAB4C02BE1ED762",
+      "size": 5092
+    },
+    ".bot/systems/mcp/dotbot-mcp-helpers.ps1": {
+      "sha256": "BFE4E2F689A002D69AE9534798C4E5E2E6D53CDFBF34A0719CB2E9CB6ACA73AC",
+      "size": 2173
+    },
+    ".bot/systems/mcp/dotbot-mcp.ps1": {
+      "sha256": "582BFC713F9BF19A3A095F5809987498BD25A3BDE49EFE476BC68CB9C4868E1D",
+      "size": 11476
+    },
+    ".bot/systems/mcp/metadata.yaml": {
+      "sha256": "1B99FA745ACAB6487657EEDD7469C30D44AF5EC3B6005C0E4AF9F9B1A8BE683D",
+      "size": 251
+    },
+    ".bot/systems/mcp/modules/Extract-CommitInfo.ps1": {
+      "sha256": "E249B0D6E683FACB589BB3207023DBC34F57C567F86441616BE30370B9363FCB",
+      "size": 6211
+    },
+    ".bot/systems/mcp/modules/FrameworkIntegrity.psm1": {
+      "sha256": "0EC543B01571886B188B4148B2FE9CABF65C207F0130E3E9BAA3382CC888053B",
+      "size": 11160
+    },
+    ".bot/systems/mcp/modules/Manifest.psm1": {
+      "sha256": "C8B0B3A55492CCEFCE765F352F97142F71FF847C3BCBEAB3E44517658CCE09C5",
+      "size": 12715
+    },
+    ".bot/systems/mcp/modules/NotificationClient.psm1": {
+      "sha256": "83B25AEE095142C8EB72CCB2A4FE56793D7E5F094B13AF04D867A797647B97DB",
+      "size": 19487
+    },
+    ".bot/systems/mcp/modules/PathSanitizer.psm1": {
+      "sha256": "64C21C89C242040A1A2012D9BC8B113088B0AEAB1E9331ABD34D9F6151B11AC0",
+      "size": 2942
+    },
+    ".bot/systems/mcp/modules/SessionTracking.psm1": {
+      "sha256": "D1EAEDBAC1C6E5B84AF9F640366A346CC958FEAD54001B8B4297141370DE7018",
+      "size": 3888
+    },
+    ".bot/systems/mcp/modules/TaskIndexCache.psm1": {
+      "sha256": "9BFC80AC4ADBA7207D0466A18303522CBD1311A8C04F514F14492C70C0437F12",
+      "size": 33293
+    },
+    ".bot/systems/mcp/modules/TaskMutation.psm1": {
+      "sha256": "28207160A53416ECF8DFBAA6EAE8C7A064DD21052DA98A8537CFDF9377C6F0FE",
+      "size": 24168
+    },
+    ".bot/systems/mcp/modules/TaskStore.psm1": {
+      "sha256": "507A411077CCED9CF0D4E12591F80D925D43FDA1E42747239AC7A4DFC62B7BFB",
+      "size": 16105
+    },
+    ".bot/systems/mcp/README-NEWTOOL.md": {
+      "sha256": "DFED66292C18D8020EED6E3EA001CD16A9C75540343B4F3030719F0D96040857",
+      "size": 3432
+    },
+    ".bot/systems/mcp/tools/decision-create/metadata.yaml": {
+      "sha256": "8EC415665C0FB16F8B35D176F1EEE33EFE615F026E51817CE695514B8775FAC2",
+      "size": 1808
+    },
+    ".bot/systems/mcp/tools/decision-create/script.ps1": {
+      "sha256": "AF5EEEEE5598590AECA475D967906E8542432D76E7113625D6BC2542225DDA2A",
+      "size": 3238
+    },
+    ".bot/systems/mcp/tools/decision-get/metadata.yaml": {
+      "sha256": "E41C3121F45F4ACEFD952C89281206EFDF544A5A525CA0D8AE28D36FBFAB3883",
+      "size": 266
+    },
+    ".bot/systems/mcp/tools/decision-get/script.ps1": {
+      "sha256": "1C09A3D6E1E67F43E4A4D4578E5B09BA700FC59CEB3A299328A8292E469E093B",
+      "size": 1848
+    },
+    ".bot/systems/mcp/tools/decision-list/metadata.yaml": {
+      "sha256": "442E745B0F3D7D2CD290934DE202FA8048BE0193A015B2A6EB0254A3AA8AE115",
+      "size": 308
+    },
+    ".bot/systems/mcp/tools/decision-list/script.ps1": {
+      "sha256": "FC9857FA26FAA47EEDAB5C8AE18559976D33C0B0FE3AF8A691CBF96ECD559F8F",
+      "size": 1722
+    },
+    ".bot/systems/mcp/tools/decision-mark-accepted/metadata.yaml": {
+      "sha256": "E458AB530C7795FE68B68AB7C5B8355547346D618BC02D0EEFE3AA469D881247",
+      "size": 287
+    },
+    ".bot/systems/mcp/tools/decision-mark-accepted/script.ps1": {
+      "sha256": "F9D220FFE3A097FB14D0171D80D7521D2DCAF806E8AB38A3060BC140C397F4FE",
+      "size": 2031
+    },
+    ".bot/systems/mcp/tools/decision-mark-deprecated/metadata.yaml": {
+      "sha256": "F85B1DEAAD20386FDD0C4CD3A263859E6D1058839C7BFA35CA42715480CE9153",
+      "size": 362
+    },
+    ".bot/systems/mcp/tools/decision-mark-deprecated/script.ps1": {
+      "sha256": "4CDE3822D9C08BD4ABBAFDFC9ADB8BD65EB7D95D4E86383BA0D5AF64B0507B42",
+      "size": 1804
+    },
+    ".bot/systems/mcp/tools/decision-mark-superseded/metadata.yaml": {
+      "sha256": "122A80CC347A3A526601814DA52ACE0F5E56C07056EC0982C8529ACA7D80E508",
+      "size": 444
+    },
+    ".bot/systems/mcp/tools/decision-mark-superseded/script.ps1": {
+      "sha256": "3F9BAABFFBDE230F1223AA1F41F0A84CE0243FE2F2E119BE662C56532C9CDAE8",
+      "size": 3001
+    },
+    ".bot/systems/mcp/tools/decision-update/metadata.yaml": {
+      "sha256": "D751DB500D31C45DEB40E54A8B6D128776D9B2C0A4DF06C73F052D83EF96EA03",
+      "size": 1302
+    },
+    ".bot/systems/mcp/tools/decision-update/script.ps1": {
+      "sha256": "ADCA90F2AD0A317C3EF2823F0C2C5AFE182004394E81D339CB86D3DE22D61083",
+      "size": 3188
+    },
+    ".bot/systems/mcp/tools/dev-start/metadata.yaml": {
+      "sha256": "08EAE011D56AB9262C62DA8BF92C705A9E905A4DA330C074A8D90F82AA48E1F8",
+      "size": 417
+    },
+    ".bot/systems/mcp/tools/dev-start/script.ps1": {
+      "sha256": "52634DD89EF387DCB402FF6CEAAD743FBC6BA8629C66889F4281057A81DE1062",
+      "size": 4356
+    },
+    ".bot/systems/mcp/tools/dev-stop/metadata.yaml": {
+      "sha256": "F6272793BD6CF3173CB00AADF9B2CC4C78958B1F67BF49A55F286857BB172172",
+      "size": 317
+    },
+    ".bot/systems/mcp/tools/dev-stop/script.ps1": {
+      "sha256": "66C861D1B1255F0899EAC2D40C88E40CE453E0B5D478DFADE580C533438788B0",
+      "size": 3193
+    },
+    ".bot/systems/mcp/tools/plan-create/metadata.yaml": {
+      "sha256": "16114587DA298094B1B2698414C19273C5EAA6E2C33B297BBC341B6E93739DE9",
+      "size": 349
+    },
+    ".bot/systems/mcp/tools/plan-create/script.ps1": {
+      "sha256": "A3B6C17BD224B1BBD2327D14283D501B9A6C6A76329A7D00BA8F4FF863C5E39B",
+      "size": 2837
+    },
+    ".bot/systems/mcp/tools/plan-get/metadata.yaml": {
+      "sha256": "56E533E2155FF6D411FFF7F02A432EFFDED4F31CC68511C9CDBF9A27A9A29326",
+      "size": 231
+    },
+    ".bot/systems/mcp/tools/plan-get/script.ps1": {
+      "sha256": "43130FD8985CBAB33A3F82808646CD94C2C4C1A25A613779B9AE32A04397FCFC",
+      "size": 2324
+    },
+    ".bot/systems/mcp/tools/plan-update/metadata.yaml": {
+      "sha256": "6BB4EE117AA704D5A64DF1743C6BE68FC78806148DFABFD343C9D227B3C51F6B",
+      "size": 338
+    },
+    ".bot/systems/mcp/tools/plan-update/script.ps1": {
+      "sha256": "7B39CFD1D8350D4B6AA78188F9129E9C99D2DEED5FBD95D54E5E951BAD7CB5EE",
+      "size": 2322
+    },
+    ".bot/systems/mcp/tools/session-get-state/metadata.yaml": {
+      "sha256": "AC256285554B16D2CEBCFD843BCCECD0395A5FB2AE9813EE830D35D57651F39F",
+      "size": 150
+    },
+    ".bot/systems/mcp/tools/session-get-state/script.ps1": {
+      "sha256": "A694C8088437C58EB2C6248F1260165BC0599D0F04857EFB21CD1C4EA27816AE",
+      "size": 787
+    },
+    ".bot/systems/mcp/tools/session-get-stats/metadata.yaml": {
+      "sha256": "9439159F9571B766A00DD666BE472DCF0A785E39F7A48536D2E43843C59E9D2B",
+      "size": 177
+    },
+    ".bot/systems/mcp/tools/session-get-stats/script.ps1": {
+      "sha256": "1EF2453E072E8B0BB416F1F7D8AA4A145F3A679B1F76B58ACCFCE2695C805D1E",
+      "size": 2926
+    },
+    ".bot/systems/mcp/tools/session-increment-completed/metadata.yaml": {
+      "sha256": "EEA6862A53CEFFFC7043CF0DC69CE0651F4E850AE4DB3B8CCE03826DD154555F",
+      "size": 171
+    },
+    ".bot/systems/mcp/tools/session-increment-completed/script.ps1": {
+      "sha256": "DAA3CC4AA5A2660ABEF34C9CF560649173D68AA35764A3928B4D8AE68FE9DBD6",
+      "size": 1739
+    },
+    ".bot/systems/mcp/tools/session-initialize/metadata.yaml": {
+      "sha256": "D52295DAF7CF40A0A9874DC73BC16EDE60E4F2E075752130CD17079D3630B1CA",
+      "size": 350
+    },
+    ".bot/systems/mcp/tools/session-initialize/script.ps1": {
+      "sha256": "2AFFA197D787AB72F28794BF7CC897505AEC073125FB9292E57F3DAD062F1773",
+      "size": 3446
+    },
+    ".bot/systems/mcp/tools/session-update/metadata.yaml": {
+      "sha256": "AB7CD6C6245E2ED357CC5ADC02B9B31CA1DF632BBDB1654B36EE65C32E2BD69A",
+      "size": 807
+    },
+    ".bot/systems/mcp/tools/session-update/script.ps1": {
+      "sha256": "15D121C70CE9DAF6D0113FEEAD8B7CD97E338479F64C77471EE7C0D0B6443C4C",
+      "size": 2265
+    },
+    ".bot/systems/mcp/tools/steering-heartbeat/metadata.yaml": {
+      "sha256": "2892E7C9FAC45662FE27DC1D12A4577BC5DA49DF6FBEEE5AA852EC037D467D5B",
+      "size": 710
+    },
+    ".bot/systems/mcp/tools/steering-heartbeat/script.ps1": {
+      "sha256": "09AF888DC5F5BA40146E69F00EC5CDF0B62BA6A5C599CEEF9C8F56A17483ACC4",
+      "size": 4299
+    },
+    ".bot/systems/mcp/tools/steering-heartbeat/test.ps1": {
+      "sha256": "FF5B02108E56C7FE66DC686137F96AF3375E5F843381C35A0948202F64148557",
+      "size": 3712
+    },
+    ".bot/systems/mcp/tools/task-answer-question/metadata.yaml": {
+      "sha256": "3820F2794CA3C361998460F2C306964C584F2AABC88A49B1E9B69B0AA8E06AD1",
+      "size": 975
+    },
+    ".bot/systems/mcp/tools/task-answer-question/script.ps1": {
+      "sha256": "73E38DF9C44F2C9CE995D227C385D281E699A58BDD52ECA34D3091703D245B97",
+      "size": 17077
+    },
+    ".bot/systems/mcp/tools/task-answer-question/test.ps1": {
+      "sha256": "CFCD72D8C978ACEAAD12C8E54B8E75DAD2E54DD0DD8F76ECA501000A2859CC0B",
+      "size": 5396
+    },
+    ".bot/systems/mcp/tools/task-approve-split/metadata.yaml": {
+      "sha256": "D5A3C947383B406B855F6C777675D3B11AF7216A9C84D35939A580295F887A97",
+      "size": 487
+    },
+    ".bot/systems/mcp/tools/task-approve-split/script.ps1": {
+      "sha256": "EA27FEF58D9E26A8ADCEF060E57B5AC043ACD10A34448AEEB96EA63ECC9D9806",
+      "size": 6687
+    },
+    ".bot/systems/mcp/tools/task-create-bulk/metadata.yaml": {
+      "sha256": "4AC023B6ECAB58C8AA6E527A7650DBBD9E5C6303402B0D1F4AD35B35027DB75D",
+      "size": 4176
+    },
+    ".bot/systems/mcp/tools/task-create-bulk/script.ps1": {
+      "sha256": "1BF2DD8272115B34038C1948E33B5C3F6345A43ED6250463BE75497954C06FB0",
+      "size": 9493
+    },
+    ".bot/systems/mcp/tools/task-create-bulk/test.ps1": {
+      "sha256": "695F86D9CF0AE273A869D8921FFB8F196DCA629EDFD697D8E778BE949F33FDC4",
+      "size": 1404
+    },
+    ".bot/systems/mcp/tools/task-create/metadata.yaml": {
+      "sha256": "8D4005EDBEE2D1F82997C56A95A5A33CDF4FDB4DB49C1CCBD75288953A02A876",
+      "size": 3941
+    },
+    ".bot/systems/mcp/tools/task-create/script.ps1": {
+      "sha256": "0CB7C061ADB69A9F7A0D5D47F0BBA72BA347DC87B6481307BCFDE41E6B300213",
+      "size": 9281
+    },
+    ".bot/systems/mcp/tools/task-create/test.ps1": {
+      "sha256": "29FE72032DEB36B1BDC9DBCE0A3694F39BCF7F49FA9EBF91B09BA51D6BA1852A",
+      "size": 1624
+    },
+    ".bot/systems/mcp/tools/task-get-context/metadata.yaml": {
+      "sha256": "D2D66B4B66BF47961AD7B65E0B645CC82DDE60FD964F22C2A5E0677C43605CDF",
+      "size": 301
+    },
+    ".bot/systems/mcp/tools/task-get-context/script.ps1": {
+      "sha256": "5673B97409A2F9282C5209BC1BA0FA8E4175C307BD0098647AA0240736FA7BAF",
+      "size": 7022
+    },
+    ".bot/systems/mcp/tools/task-get-next/metadata.yaml": {
+      "sha256": "90013A805E28408F94C16FB32C7F8571E2802C6E42B033CBD2B3490D6C4FEDC6",
+      "size": 713
+    },
+    ".bot/systems/mcp/tools/task-get-next/script.ps1": {
+      "sha256": "384B413F5177B6C425304D5192094A742B23E7EC731E35F417A8041B60CD33B6",
+      "size": 10474
+    },
+    ".bot/systems/mcp/tools/task-get-next/test.ps1": {
+      "sha256": "64F839A852ADCAB96E5C132DC7D11FCBB5546337FCDEC008FC6ECAA2D47C2195",
+      "size": 1362
+    },
+    ".bot/systems/mcp/tools/task-get-stats/metadata.yaml": {
+      "sha256": "FDF7B5554FA4B6037048409AA9AF421F1BA0DFB81C29722EBF6BCBB2FFBF9E89",
+      "size": 140
+    },
+    ".bot/systems/mcp/tools/task-get-stats/script.ps1": {
+      "sha256": "51EEF29FC80A522D4EC0B5D6861A2A6C7593034AF92DD81B15AAFE5800ED1038",
+      "size": 1888
+    },
+    ".bot/systems/mcp/tools/task-get-stats/test.ps1": {
+      "sha256": "D4B8C394BC139BDD16D00D12C309E2C5380FFD3BB06462BEA1F1B206A55725B1",
+      "size": 681
+    },
+    ".bot/systems/mcp/tools/task-list/metadata.yaml": {
+      "sha256": "09AE423F39FD4184C70D02377D747BE8E60312C671B96F9D42088978069D35E0",
+      "size": 1286
+    },
+    ".bot/systems/mcp/tools/task-list/script.ps1": {
+      "sha256": "19C59753FCC8B8BBB31669F3E01F9555C05444C7CD50A56A7D7CFFE5E401F860",
+      "size": 4441
+    },
+    ".bot/systems/mcp/tools/task-list/test.ps1": {
+      "sha256": "4E1B4B8F38C808D70BF239705404DB11357B863A2EF65923676BFE012F4DCC07",
+      "size": 1455
+    },
+    ".bot/systems/mcp/tools/task-mark-analysed/metadata.yaml": {
+      "sha256": "9CC1729EF5391BD7ECC9FA1B83BEEF0CFCED0AC8423FBB5F17D56F758702C190",
+      "size": 4268
+    },
+    ".bot/systems/mcp/tools/task-mark-analysed/script.ps1": {
+      "sha256": "F56BF4C7BF62DDBF4CBA92A79F3FB452C5F857A33384983D123669668B85BECD",
+      "size": 4017
+    },
+    ".bot/systems/mcp/tools/task-mark-analysing/metadata.yaml": {
+      "sha256": "7C0C4A9AA39110472AB18547DB5D481FF91BB2661F9A188C41324D71E870114A",
+      "size": 295
+    },
+    ".bot/systems/mcp/tools/task-mark-analysing/script.ps1": {
+      "sha256": "72C5CF4AB4626730D8EAD24331DE34E3CD34EA46FE145F42E642B729E424966F",
+      "size": 2112
+    },
+    ".bot/systems/mcp/tools/task-mark-done/metadata.yaml": {
+      "sha256": "B0E1A7D28E6DCD502B981FEB37BADF9BA367C08D590742482EF978F621B489C8",
+      "size": 252
+    },
+    ".bot/systems/mcp/tools/task-mark-done/script.ps1": {
+      "sha256": "49CD73BCF2B6262B4EA202E4CCEA1BBE64BBA022ED41B9669A04AD5B7FC6A833",
+      "size": 9900
+    },
+    ".bot/systems/mcp/tools/task-mark-done/test.ps1": {
+      "sha256": "0054FB7A43270265C190E3139EFD7714933AE036B8422F81E0F33AB4600DB569",
+      "size": 2508
+    },
+    ".bot/systems/mcp/tools/task-mark-in-progress/metadata.yaml": {
+      "sha256": "4E6AB05C0180DDE4EF8096F0EB144CD2DB5775F6C45C2CB4984E55E93165DE85",
+      "size": 241
+    },
+    ".bot/systems/mcp/tools/task-mark-in-progress/script.ps1": {
+      "sha256": "D7BFA55F8F0A9AF14689B6977D5B695E1AD24D4183A1CAAE45085B4958EF69FB",
+      "size": 3724
+    },
+    ".bot/systems/mcp/tools/task-mark-needs-input/metadata.yaml": {
+      "sha256": "539576CCBAAA8830734924D7C6412009AB9663A9A78BB4D8D6B0F80918ABEFBA",
+      "size": 3860
+    },
+    ".bot/systems/mcp/tools/task-mark-needs-input/script.ps1": {
+      "sha256": "C65D517F42E370C7B3DA67267F5BE725B6ACE616AECB698246A69A3DC5A848B2",
+      "size": 10294
+    },
+    ".bot/systems/mcp/tools/task-mark-skipped/metadata.yaml": {
+      "sha256": "2C9453BBC987BFC61C76C265EB2D68AA485A96C6A4030BFA8264EB40E8F7B9AB",
+      "size": 479
+    },
+    ".bot/systems/mcp/tools/task-mark-skipped/script.ps1": {
+      "sha256": "E367AD110062B4D9943C75FD757D46CC3DC99B47643BDBE6BA5B86EF46C12042",
+      "size": 2751
+    },
+    ".bot/systems/mcp/tools/task-mark-skipped/test.ps1": {
+      "sha256": "C15AFDE116C7794AAD849B1E7F5194B78FB107DD501FC1E1E421215E3D7CC245",
+      "size": 2757
+    },
+    ".bot/systems/mcp/tools/task-mark-todo/metadata.yaml": {
+      "sha256": "E48DC25604C6C75FB316791969164E64B15FBAF5B33E1F5E4FF39DD641C5CBC7",
+      "size": 250
+    },
+    ".bot/systems/mcp/tools/task-mark-todo/script.ps1": {
+      "sha256": "8E5B250800488ED664D138213C0A66BE3A960D573E5B6850DB8BC02D44A70C22",
+      "size": 1254
+    },
+    ".bot/systems/runtime/ClaudeCLI/ClaudeCLI.psd1": {
+      "sha256": "D918F98B077CB4B163F427361B39675A4A7A343728FE8995AE591E57120716B7",
+      "size": 749
+    },
+    ".bot/systems/runtime/ClaudeCLI/ClaudeCLI.psm1": {
+      "sha256": "C2162306DDB7533B2FD34AF1C283A452F8CD1B9D97E83E60985DACD45601874C",
+      "size": 62776
+    },
+    ".bot/systems/runtime/expand-task-groups.ps1": {
+      "sha256": "C0760ABE2BDB70EB09824E48C6FA516C8D4A6C8788DF827F44FADFED7109E7DF",
+      "size": 10656
+    },
+    ".bot/systems/runtime/launch-process.ps1": {
+      "sha256": "BDE7F195698B7559E2D223BD46FB1A1F7EC40C067C20674679007458FA74B448",
+      "size": 19427
+    },
+    ".bot/systems/runtime/modules/cleanup.ps1": {
+      "sha256": "6C910379805011488922DC7F0D981422FC62D2633FE383955DBB48050AD3D5E3",
+      "size": 3200
+    },
+    ".bot/systems/runtime/modules/ConsoleSequenceSanitizer.psm1": {
+      "sha256": "E6AA596BEF46031EA9AFA9DB5F1611B77EA0D0589247031C353A1F7BA433A96A",
+      "size": 1721
+    },
+    ".bot/systems/runtime/modules/DotBotLog.psm1": {
+      "sha256": "366453B7891189BAD975CBAECC011DAED13EE22AB28E5500FCB354E3AB2EDECB",
+      "size": 14126
+    },
+    ".bot/systems/runtime/modules/DotBotTheme.psm1": {
+      "sha256": "0FB30F324D44090ED735F29122D719006EFC622BD2DFFB4478DB43BAC30D6305",
+      "size": 32643
+    },
+    ".bot/systems/runtime/modules/get-failure-reason.ps1": {
+      "sha256": "B80AEBBE84DEC16EE259FEA15C441D14F662CF992F6637858F637B2182C2B86C",
+      "size": 3720
+    },
+    ".bot/systems/runtime/modules/InstanceId.psm1": {
+      "sha256": "81798F0A52ACDEBE479ACBB56E1BD3851FE4947D676D2D462CBF853E6BDD7913",
+      "size": 1483
+    },
+    ".bot/systems/runtime/modules/InterviewLoop.ps1": {
+      "sha256": "804113C5092F73CB9F15C7236A4B2192C0F0D0C96F758BE8AC351F9F1CB10ED1",
+      "size": 13381
+    },
+    ".bot/systems/runtime/modules/ManifestCondition.psm1": {
+      "sha256": "328063A2A19B5C14CC0757FFA38DD05208CD8D40EA9E13A25AF08F3C836A731E",
+      "size": 2942
+    },
+    ".bot/systems/runtime/modules/MergeConflictEscalation.psm1": {
+      "sha256": "66B72494636BE1A69BEB779CBD3D71771FBD0DD7FC1732BC93EB690538ACAE98",
+      "size": 12210
+    },
+    ".bot/systems/runtime/modules/post-script-runner.ps1": {
+      "sha256": "78048FEC8E99D543190137484D72000E01C26BEA588B518A6E8AE55FCC4F142D",
+      "size": 6722
+    },
+    ".bot/systems/runtime/modules/ProcessRegistry.psm1": {
+      "sha256": "2D5D38B10C60C40F43E92B925287A0EC4A81C6BCF4518671A2FAC41E2113C492",
+      "size": 20767
+    },
+    ".bot/systems/runtime/modules/ProcessTypes/Invoke-AnalysisProcess.ps1": {
+      "sha256": "514B1ADAC98EE44CB146E2F5C568B15BBE8448F1B1C1588BDFAFFAD7BCDE8255",
+      "size": 16864
+    },
+    ".bot/systems/runtime/modules/ProcessTypes/Invoke-ExecutionProcess.ps1": {
+      "sha256": "4FAC79DE68B76B493D92DFBF02CD6C34A86B88D9B19262EA0C81CE3BF1069A80",
+      "size": 23699
+    },
+    ".bot/systems/runtime/modules/ProcessTypes/Invoke-KickstartProcess.ps1": {
+      "sha256": "CCB4F0CBB77C8118D5BC6326169F0DCD5F04D39871E5B075FD8F1543FFF8E749",
+      "size": 42495
+    },
+    ".bot/systems/runtime/modules/ProcessTypes/Invoke-PromptProcess.ps1": {
+      "sha256": "7FCC8E23CCDCA8F70515CB11856245824BBE5EEA7EF55A216FB2B7D10D1885C2",
+      "size": 3120
+    },
+    ".bot/systems/runtime/modules/ProcessTypes/Invoke-WorkflowProcess.ps1": {
+      "sha256": "A86D3D3616E9B90FD05520D9B2743A0F9121FFF204B6D6443563467F020238DC",
+      "size": 74236
+    },
+    ".bot/systems/runtime/modules/prompt-builder.ps1": {
+      "sha256": "56B6A62DD444FBB537E75C00922E03DBAF961B9450E6F182B3AFBDE3EF0842CB",
+      "size": 5843
+    },
+    ".bot/systems/runtime/modules/rate-limit-handler.ps1": {
+      "sha256": "4E110DE3BB73F7775E98C9F12F38A6190D95C9A8E04F787AB5E5952C10116ABC",
+      "size": 3633
+    },
+    ".bot/systems/runtime/modules/SettingsLoader.psm1": {
+      "sha256": "A9E0995410DB5CF2C7CA457327BA733C9319B3E9A6C73C193C94DD6CDFF30AC6",
+      "size": 4396
+    },
+    ".bot/systems/runtime/modules/task-reset.ps1": {
+      "sha256": "B27E346859CA4258716AC66F5CDC43F883DB361F0C359D70B2BF3A0CC6F512B1",
+      "size": 14743
+    },
+    ".bot/systems/runtime/modules/test-task-completion.ps1": {
+      "sha256": "2CC8427FBD81F36DF58044F7079A95161958AF6345E3DA379A943A5DA21C2BDC",
+      "size": 2979
+    },
+    ".bot/systems/runtime/modules/workflow-manifest.ps1": {
+      "sha256": "1E77FAB63BCB3B0B9C36D402656D0A2D4606A34D4E1237F5882D77193AAB7680",
+      "size": 22201
+    },
+    ".bot/systems/runtime/modules/WorktreeManager.psm1": {
+      "sha256": "5AA46798D31641CB1CEFA637EFEE7B9D1DE7B9BEFAD4E1AB430EDD98BBD905A7",
+      "size": 47832
+    },
+    ".bot/systems/runtime/post-phase-task-groups.ps1": {
+      "sha256": "8DDD9E5A754FA4E5B523DDCF5793192E2B479E04D4E9844D0E239CCBA73ADD83",
+      "size": 8959
+    },
+    ".bot/systems/runtime/ProviderCLI/parsers/Parse-ClaudeStream.ps1": {
+      "sha256": "D39357B6B3A39A56EAF9AB7BAE69A74068D6129F4A237B8DC72E63A6E8F4C691",
+      "size": 6937
+    },
+    ".bot/systems/runtime/ProviderCLI/parsers/Parse-CodexStream.ps1": {
+      "sha256": "25B9BD3408EBADC14AB93A74002A50A534B11FB22D5BA165000D8C03A00A994E",
+      "size": 6431
+    },
+    ".bot/systems/runtime/ProviderCLI/parsers/Parse-GeminiStream.ps1": {
+      "sha256": "9933245F369E488AF9C004607CBAC2AB7D35CE978342F41B133E48F140934099",
+      "size": 6851
+    },
+    ".bot/systems/runtime/ProviderCLI/ProviderCLI.psm1": {
+      "sha256": "F709F57D34777B072FEE5DFB4A9DABF99A063C16D7566B1C4BE48C980E4CF2AA",
+      "size": 15343
+    },
+    ".bot/systems/ui/modules/AetherAPI.psm1": {
+      "sha256": "3C3F2FB04A978DB44A7E43DE4AAD647D7E0625FB7F0A2E616573D437C859D076",
+      "size": 11787
+    },
+    ".bot/systems/ui/modules/ControlAPI.psm1": {
+      "sha256": "6171C2A9581951A81EEA8C1B3E9E36D2768DB59090A93C01AE09F3659AF05F4A",
+      "size": 13953
+    },
+    ".bot/systems/ui/modules/DecisionAPI.psm1": {
+      "sha256": "55CEEE7795CC797D299B7F9333A01D35BCED5A782BC2A819DBBBD49D024DB8DE",
+      "size": 13736
+    },
+    ".bot/systems/ui/modules/FileWatcher.psm1": {
+      "sha256": "EC2EC8B3052B54F466EA479CEC40842223D3F8BC33CFC83736DF8153DC13482C",
+      "size": 10673
+    },
+    ".bot/systems/ui/modules/GitAPI.psm1": {
+      "sha256": "F0722290FFE4F365B7BC1313256A909D0F7965B8813AA206DCBBD5F04773A0EE",
+      "size": 4217
+    },
+    ".bot/systems/ui/modules/InboxWatcher.psm1": {
+      "sha256": "A3B0C9DB4A09B613F26B138DBB406366379A7F844E7CDBA10D396B3217CD13DF",
+      "size": 20138
+    },
+    ".bot/systems/ui/modules/NotificationPoller.psm1": {
+      "sha256": "0849F4092EF8F063E23996626E08823F39CAA9ACC74A858F6245A73F5D4DB7F4",
+      "size": 21847
+    },
+    ".bot/systems/ui/modules/ProcessAPI.psm1": {
+      "sha256": "E7E491E904550731CF5AD9ECB41598A297636E74215DFD36FD9788506103F7E7",
+      "size": 17715
+    },
+    ".bot/systems/ui/modules/ProductAPI.psm1": {
+      "sha256": "327C3BF7417AF4169913C75DBD6BB81F5E71FCD081D886C1FE6B870596F4BC3D",
+      "size": 43372
+    },
+    ".bot/systems/ui/modules/ReferenceCache.psm1": {
+      "sha256": "291AC618717410301594FC6826D415CDD6557FF42C7087EBAD032E1A2F08B4BA",
+      "size": 15204
+    },
+    ".bot/systems/ui/modules/SettingsAPI.psm1": {
+      "sha256": "816DB2436F4E29BCFF1F0500DA228DEDA73771BB553F53800F1FAEBE189FEED0",
+      "size": 44753
+    },
+    ".bot/systems/ui/modules/StateBuilder.psm1": {
+      "sha256": "BC35F12A247FF43506F6A32E581D85D236D4CC31AA26A2427C73BA40C71D0C1D",
+      "size": 33126
+    },
+    ".bot/systems/ui/modules/TaskAPI.psm1": {
+      "sha256": "218DC4AE0BA8FF4EA4109D29DC653AEEB1A8AF89FBA21D7A1FCA0E80053DB8C8",
+      "size": 21935
+    },
+    ".bot/systems/ui/README.md": {
+      "sha256": "2B79BDA6A48704FBD5A982FA9DB871DF6C483101040FA5CA5262E078C1BA0045",
+      "size": 4522
+    },
+    ".bot/systems/ui/server.ps1": {
+      "sha256": "E1B3B1332BEF86BF75210B1A3A1B0A6A7C130ADC86DA01AB67ED8C2B559A0702",
+      "size": 141126
+    },
+    ".bot/systems/ui/static/app.js": {
+      "sha256": "3201AE7072F1B5B9CDFC9F5976CC4A72533EA915CA444E3866A14B1B74276852",
+      "size": 2226
+    },
+    ".bot/systems/ui/static/css/base.css": {
+      "sha256": "138893F0564A9AB7A54CD016B38034D78B3B58518D203B1A394A700404B7BC05",
+      "size": 6103
+    },
+    ".bot/systems/ui/static/css/crt.css": {
+      "sha256": "11AA8C9679F80540745BFAA3027301C3C2668F5010FE9ABB08CA31C4BCAB3932",
+      "size": 8132
+    },
+    ".bot/systems/ui/static/css/layout.css": {
+      "sha256": "067FEE9B11F9498B79CB3CD1C2CC99C76E137B28499EB11AC2E6591A60EB0C36",
+      "size": 8332
+    },
+    ".bot/systems/ui/static/css/modal.css": {
+      "sha256": "3189D2A6B9A967F0453946026B5FCF2475369E7DD6C29486B01D949CBA67F073",
+      "size": 48047
+    },
+    ".bot/systems/ui/static/css/modules.css": {
+      "sha256": "E23E472FD7DFA3D7CF8CD3F8866C9E92E1FDC92DE77F26B4E79A24463F03543C",
+      "size": 27060
+    },
+    ".bot/systems/ui/static/css/processes.css": {
+      "sha256": "FB4E79F27D53A09CC4E38D35BE225B84B57ED2A32262D2919818F81FAEBD5DBE",
+      "size": 16919
+    },
+    ".bot/systems/ui/static/css/responsive.css": {
+      "sha256": "A9D98245EFE3EE0AC3F5EF0E24EB9158BEC02AB3FC1A8A0AEADBE05418445496",
+      "size": 3803
+    },
+    ".bot/systems/ui/static/css/sidebar.css": {
+      "sha256": "3CB1BC4448D95514D842EB095231BCB074F0B624D36DD8DAF18B087F1ED3D239",
+      "size": 19083
+    },
+    ".bot/systems/ui/static/css/theme.css": {
+      "sha256": "D00922F9BE8B7D04A725F53BCA639CF981C000DDDF5C5A65CC0160D75281D23D",
+      "size": 6862
+    },
+    ".bot/systems/ui/static/css/views.css": {
+      "sha256": "4BCED4F25CBB70CC024D6343E0EB4A05CA88AAFE7F4A833C06897894A805E18F",
+      "size": 66122
+    },
+    ".bot/systems/ui/static/favicon.svg": {
+      "sha256": "455D769E06319185BD4A9D8BF31426E4829FDF686728D502BC5A4D74DB061BCB",
+      "size": 3160
+    },
+    ".bot/systems/ui/static/index.html": {
+      "sha256": "D4E3B365E212DB5954E7B88C6FFB9083B8EBD2BB8ABAD0BB26751C389483D409",
+      "size": 104988
+    },
+    ".bot/systems/ui/static/lib/mermaid.min.js": {
+      "sha256": "B2DBAA72ED85AE36025C33B2B56140E52A1413FAF79E4A7A813825CCD4A56AF5",
+      "size": 3337675
+    },
+    ".bot/systems/ui/static/material-icons.json": {
+      "sha256": "E539DD1CA1BD3849FE85B35D25FC25901B34C674CF862104C65622502CD7B17B",
+      "size": 11292
+    },
+    ".bot/systems/ui/static/modules/actions.js": {
+      "sha256": "3378C64E8D307AA4CD4790C59AAEA10554C262E1F8ED92CACF2A0A64DC764E8B",
+      "size": 53861
+    },
+    ".bot/systems/ui/static/modules/activity.js": {
+      "sha256": "85E7A8810F3BED432A86E6613A6F2290AE54DBE9EF1BC07306B80397A9010C37",
+      "size": 6556
+    },
+    ".bot/systems/ui/static/modules/aether.js": {
+      "sha256": "D1B696AAF93446823C4E942FC76DCA24DA508E9847A9668340DA5535E35966AD",
+      "size": 31325
+    },
+    ".bot/systems/ui/static/modules/config.js": {
+      "sha256": "8C536BEF70F0C556179B98E78734FD5913DBA4849609111EF14466A1109B2259",
+      "size": 4520
+    },
+    ".bot/systems/ui/static/modules/controls.js": {
+      "sha256": "A3FD94C069D6E64BCF45C5D1967ED0E6E110EEAEA7741ACAD4B4A5B64B0BFBC8",
+      "size": 63917
+    },
+    ".bot/systems/ui/static/modules/decisions.js": {
+      "sha256": "E7B7008FF284658A2F07822A8B2FC99E7DFA34F84E0817F81694E7960E23B59F",
+      "size": 19219
+    },
+    ".bot/systems/ui/static/modules/editor.js": {
+      "sha256": "1AA1ABBBDC498A4642A785E7C2CFA0892710693C06837329309508CE982727D8",
+      "size": 15410
+    },
+    ".bot/systems/ui/static/modules/icons.js": {
+      "sha256": "520934F20A80094873F563545BE774812848F24F0815E7758093DE2100F5AB18",
+      "size": 3108
+    },
+    ".bot/systems/ui/static/modules/kickstart.js": {
+      "sha256": "E8F7BFE55CFC23BAE6E5F2FFDF1C79AA0629A2F021A690A693B1EEDC34700E66",
+      "size": 66390
+    },
+    ".bot/systems/ui/static/modules/markdown.js": {
+      "sha256": "C197F4F4626155325B4E4E0F092D0146C332236184BE690FAACD9F1A4DCB3C2C",
+      "size": 18837
+    },
+    ".bot/systems/ui/static/modules/mermaid-loader.js": {
+      "sha256": "6636F35BC20620EC5F8AF7FE513239293104BBCE318DB1FA731F42E9520B6861",
+      "size": 10065
+    },
+    ".bot/systems/ui/static/modules/notifications.js": {
+      "sha256": "770FE6E848669D658D123AE94DDF910AA5669E68F101731935D3251BAD78F3CA",
+      "size": 16186
+    },
+    ".bot/systems/ui/static/modules/polling.js": {
+      "sha256": "1ADA21F31163925663F263E7912A1C470B492FFAC1F2ECBD2DC4DBE84373FF8B",
+      "size": 6383
+    },
+    ".bot/systems/ui/static/modules/processes.js": {
+      "sha256": "8344D210DCBC85B7498EAEE707481FEDBA164E47C67E37B294E0CF129AECC93A",
+      "size": 28828
+    },
+    ".bot/systems/ui/static/modules/product.js": {
+      "sha256": "19A0A2819485999D5C19D8EAF5737DE69B74FD56003C61C478A475197AE7A582",
+      "size": 15560
+    },
+    ".bot/systems/ui/static/modules/roadmap-task-actions.js": {
+      "sha256": "0EEEE5BBAF356920BDF4AACAF2E0AD1A8AF824CA9D2D2392E580EA98D5EDA1D3",
+      "size": 28526
+    },
+    ".bot/systems/ui/static/modules/sidebar.js": {
+      "sha256": "79FD1519CFCA65CAC6277D5F5359B0BBBEB0D63E9D75D3DE3898AC631E1C63CE",
+      "size": 7879
+    },
+    ".bot/systems/ui/static/modules/tabs.js": {
+      "sha256": "D6EAFB1407789EA4620A6D1DA8BB02A8934485BC47B95F93578ED649F33E1EF4",
+      "size": 4893
+    },
+    ".bot/systems/ui/static/modules/tasks.js": {
+      "sha256": "B2D4D20F9E5D17E8BAA3144FEAB5B6E486DE903201D6EE7F854CE5888CC3F2FA",
+      "size": 37801
+    },
+    ".bot/systems/ui/static/modules/theme.js": {
+      "sha256": "8701ABFC66BC4285DC3CB20685C3CF07F58775FE0A7744FED5F9C197385663BF",
+      "size": 6296
+    },
+    ".bot/systems/ui/static/modules/ui-updates.js": {
+      "sha256": "BD1D5720789947574F3F2CB0E9CDFD8F0200FCD5C5D7A82B2E8E50E223CD9949",
+      "size": 37010
+    },
+    ".bot/systems/ui/static/modules/utils.js": {
+      "sha256": "17121FA2260BC4760FD335A263CE3ACB161706550B526933FED88DC33459C2D6",
+      "size": 28305
+    },
+    ".bot/systems/ui/static/modules/workflow.js": {
+      "sha256": "55BE1AF31BA47B81B4A96660EC90C9EE31E4597A1FC5A231078E38694DB0492A",
+      "size": 42355
+    },
+    ".bot/systems/ui/static/scope.js": {
+      "sha256": "1879D6D7EF819B883681C2B6D2C3AB30F159F66ACE5E4376B2147B3804A93575",
+      "size": 16542
+    },
+    ".bot/systems/ui/static/theme-config.json": {
+      "sha256": "5AD21CF09B5EDA09EDCF1574ECF0C0A25A6F5D67B2491E4BE710521CE1EC0AED",
+      "size": 6576
+    },
+    ".bot/hooks/dev/Start-Dev.ps1": {
+      "sha256": "53E0B552E3E851FE78844AAD67028C93C1513ECE148B58464E09F6FDDD7E5437",
+      "size": 1043
+    },
+    ".bot/hooks/dev/Stop-Dev.ps1": {
+      "sha256": "DA280329583F6DEEC2240FEBE2A6A2BDAB1E523FAFED59D1D2B4AB994F09F10A",
+      "size": 1043
+    },
+    ".bot/hooks/scripts/commit-bot-state.ps1": {
+      "sha256": "A4A6E0E02741075AE927CDA793A4458951EE4E6F0BD0B8862ADDA495968B04CB",
+      "size": 1836
+    },
+    ".bot/hooks/scripts/steering.ps1": {
+      "sha256": "EFAC7BC9C2514B214B77C0878AD109804F29BDA9A8D4087D1B3B68A91CFB9959",
+      "size": 10444
+    },
+    ".bot/hooks/verify/00-privacy-scan.ps1": {
+      "sha256": "D566FAF28E8D3CF4D2C9A060A33D0ED0680A10C06F92FF3EA8FF32D99445FDC4",
+      "size": 6839
+    },
+    ".bot/hooks/verify/01-git-clean.ps1": {
+      "sha256": "254DC2062BC3C49E1D030DE8FD16153E3713AEF25157DA930A09325B9E0BDAF0",
+      "size": 1690
+    },
+    ".bot/hooks/verify/02-git-pushed.ps1": {
+      "sha256": "18FDCC3A0C92C8C3828C3B173A4C70A317E176682DC69565B2C973BE4C3F75EC",
+      "size": 1894
+    },
+    ".bot/hooks/verify/03-check-md-refs.ps1": {
+      "sha256": "A137CA2DA0D7AB40A5F3F06C034C6CED1F741AE3555D191F8901DDCF7E6CF013",
+      "size": 9004
+    },
+    ".bot/hooks/verify/04-framework-integrity.ps1": {
+      "sha256": "D5D221C8B87F0ED10EAF3378EA8975CBAEE3CFB946FBEF8AF24B64D7758C96E6",
+      "size": 2528
+    },
+    ".bot/hooks/verify/config.json": {
+      "sha256": "5A6124885FD1B4E722D3F1BD1EEC05287120D17C55A1F9B51BD799EA74A25428",
+      "size": 1020
+    },
+    ".bot/hooks/verify/README.md": {
+      "sha256": "66228D0D1E7D6868930FC2625BC6284D1663EEE118AC86E50D5A31445AE06C52",
+      "size": 8286
+    },
+    ".bot/recipes/agents/implementer/AGENT.md": {
+      "sha256": "75CCB80C5BC07C6F5AA644AAAB5CD6B82E3E348083B14C565BA6BBB9DED07D5F",
+      "size": 2370
+    },
+    ".bot/recipes/agents/planner/AGENT.md": {
+      "sha256": "60385C3358290609A92E531B1A44288E3D3BCB6D68D0426D3998C795357EB95F",
+      "size": 1934
+    },
+    ".bot/recipes/agents/reviewer/AGENT.md": {
+      "sha256": "9991524FDA4FC45D84B977149DF35F2FDCA26ECBE62FF64DB4BA0F77101A7271",
+      "size": 3176
+    },
+    ".bot/recipes/agents/tester/AGENT.md": {
+      "sha256": "28D36A6391619838B011EA0E137DCF4A8E4FA1BCFDEAAF674576D000692DA4FB",
+      "size": 2720
+    },
+    ".bot/recipes/includes/adjust-after-answers.md": {
+      "sha256": "AB0E00D75DDE2D071464058E1F92BF429657DACA49A7C3879A7C334C1F022C5E",
+      "size": 2213
+    },
+    ".bot/recipes/prompts/00-kickstart-interview.md": {
+      "sha256": "F34749D69B6B0B9EC8CFD4D13DE338D7819B1C7081C040E8A4E3758FAD521C73",
+      "size": 4603
+    },
+    ".bot/recipes/prompts/01-generate-product.md": {
+      "sha256": "4617A474E3B139FEE24F9B780DEAE74D152B0AFCEA2F042249CE6A0242C02F4C",
+      "size": 3847
+    },
+    ".bot/recipes/prompts/02a-plan-internet-research.md": {
+      "sha256": "24F720B7397269E59999CD32B76A3778BFBD297F026790F745F1444DF00680F8",
+      "size": 2939
+    },
+    ".bot/recipes/prompts/03-plan-roadmap.md": {
+      "sha256": "A27D6ECD86B3F6DD2547EB582EEA108E301F58C7FD9982D96BC3601AD9A28807",
+      "size": 11225
+    },
+    ".bot/recipes/prompts/04-plan-test-plan.md": {
+      "sha256": "5294AB986BADF34D6036F26CF47014C9CDFD2EAD602E706BCB6232DE136642E0",
+      "size": 4364
+    },
+    ".bot/recipes/prompts/05-retrospective-task.md": {
+      "sha256": "73198FBED06EA1E129F446FB15DC7B72C878AA5FB2AC724A652F220801224284",
+      "size": 3794
+    },
+    ".bot/recipes/prompts/90-commit-and-push.md": {
+      "sha256": "3B1F0A50823A305A1163DC257FDC8DA988F2E85A5CA1C97FC185D7527E1C689D",
+      "size": 3082
+    },
+    ".bot/recipes/prompts/91-new-tasks.md": {
+      "sha256": "16A43BFA9EA26F3D1D98EF2A84375EB1EB3D1AC10355CBECC43A5F5872ABC35C",
+      "size": 6225
+    },
+    ".bot/recipes/prompts/92-steering-protocol.include.md": {
+      "sha256": "D60EDB60AD3187C1E6D9497D5CC872104E1A0CBDA2C9AD9CFD786A6DBC025AE0",
+      "size": 1406
+    },
+    ".bot/recipes/prompts/98-analyse-task.md": {
+      "sha256": "6B69191661AA82F3E17BA9A6CCD4FFCBE33EB378BC66459381F3ACAC20EA0803",
+      "size": 22778
+    },
+    ".bot/recipes/prompts/99-autonomous-task.md": {
+      "sha256": "5FF0CF37E2488609781432B78AFC83D08F4C45E9DA73F3BABE21DA923CC14655",
+      "size": 10468
+    },
+    ".bot/recipes/prompts/README.md": {
+      "sha256": "00215D35140711177105BB750CE1F553E0F20E10CC443E1DD87820FA57DEB7F4",
+      "size": 5321
+    },
+    ".bot/recipes/research/public.md": {
+      "sha256": "6094CF158781A43ABA2B3DFDBE645E2B59436E53C0E9164BDC88B1092751C728",
+      "size": 7117
+    },
+    ".bot/recipes/skills/status/SKILL.md": {
+      "sha256": "4AC0BB106094B9D15D9EBFD307DEF4D226F3312DBA405DAC4953F08631F2880C",
+      "size": 2582
+    },
+    ".bot/recipes/skills/verify/SKILL.md": {
+      "sha256": "25EE9CF2D7E1CE3E9966ABCB81EC4D175AFE5B0F3DB1E5FBDE7BC66B9467DB74",
+      "size": 1731
+    },
+    ".bot/recipes/skills/write-test-plan/SKILL.md": {
+      "sha256": "7BB5B5B2A8EBE4646D327E8DA0517C657DB2A6DAC8F6A7D3E9B5C7E66364CE8C",
+      "size": 7101
+    },
+    ".bot/recipes/skills/write-unit-tests/SKILL.md": {
+      "sha256": "C4F4ACA7555C781E9AB013189F66F6D8D44C3EB2D42A83D4E3CF3367A803C182",
+      "size": 4663
+    },
+    ".bot/settings/providers/claude.json": {
+      "sha256": "4D1E7C9A1E0F11F03F3645D6BE9E23EBC3936B521A8C65C4E0CF6177C70B2955",
+      "size": 1619
+    },
+    ".bot/settings/providers/codex.json": {
+      "sha256": "9409F56AA899A3D92D93DAB92D5FFCF4D442160CEEE2ADDE35D51BD164C2257D",
+      "size": 1395
+    },
+    ".bot/settings/providers/gemini.json": {
+      "sha256": "C27F11D1A71557034A3652D8AC2E17DF77C91AC9F2207C390315A4B219166973",
+      "size": 1296
+    },
+    ".bot/settings/settings.default.json": {
+      "sha256": "2663A5F2F3E897CFAAC6B3448A333D6E1B691C8217F5E76AC0154ECCF387D809",
+      "size": 1357
+    },
+    ".bot/settings/theme.default.json": {
+      "sha256": "0FB745EFCE27D5C816854376672805EE47B6167E935774E439CDBE6F6B23836B",
+      "size": 1780
+    },
+    ".bot/go.ps1": {
+      "sha256": "11D0AD45D7A27FF9002A456B56BC0EEB98868C28AA7528A843CC8676C9DF9B62",
+      "size": 6785
+    },
+    ".bot/init.ps1": {
+      "sha256": "6BA5BE94E10C90ED1306571A74AEF84B2F7D0D4A7F2D82199D230FA1DDF31329",
+      "size": 7490
+    },
+    ".bot/workflow.yaml": {
+      "sha256": "D89D421D195D446EFB1AB87794F5AA88DD754F08D4FA62100E248FB24F2D965A",
+      "size": 2451
+    },
+    ".bot/.gitignore": {
+      "sha256": "F9938F362CD6492B83202D6019CE15D0C81F304DDC7D23D318A4D98453038677",
+      "size": 289
+    },
+    ".bot/README.md": {
+      "sha256": "89F68F03191A3885F334AE92A6863C06B38190F0E9FFEAA74DC58054CFC3ABF4",
+      "size": 9310
+    }
+  }
+}

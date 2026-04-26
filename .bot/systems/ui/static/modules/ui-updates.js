@@ -38,13 +38,17 @@ function updateUI(state) {
         updateWorkflowControlStates(state.workflows);
     }
 
-    // Refresh product file nav when doc count changes
+    // Refresh product file nav when doc count changes.
+    // Skip the initial -1 → N transition: the bootstrap payload (window.__DOTBOT_BOOTSTRAP__)
+    // already hydrated project info, and re-firing initProjectName() here would queue a
+    // redundant /api/info request into the page-load fetch burst (issue #269).
     if (state.product_docs !== undefined && state.product_docs !== lastProductDocCount) {
+        const wasInitialLoad = lastProductDocCount === -1;
         lastProductDocCount = state.product_docs;
         const navContainer = document.getElementById('product-file-nav');
         if (navContainer) delete navContainer.dataset.loaded;
         if (typeof updateProductFileNav === 'function') updateProductFileNav();
-        if (typeof initProjectName === 'function') initProjectName();
+        if (!wasInitialLoad && typeof initProjectName === 'function') initProjectName();
     }
 
     // Update active processes widget on Overview tab
@@ -219,8 +223,6 @@ function updateRunningStatus(session, control, analysis, loops) {
     const agentState = document.getElementById('agent-state');
 
     // Update loop status LEDs
-    const workflowLed = document.getElementById('workflow-loop-led');
-    const workflowActive = loops?.workflow_alive ?? false;
     // Legacy LEDs (kept for backward compat if old HTML is cached)
     const analysisLed = document.getElementById('analysis-loop-led');
     const executionLed = document.getElementById('execution-loop-led');
@@ -228,10 +230,6 @@ function updateRunningStatus(session, control, analysis, loops) {
     // Use loops.analysis_alive if available (PID-validated), fall back to signal file check
     const analysisActive = loops?.analysis_alive ?? analysis?.running;
     const executionActive = loops?.execution_alive ?? control?.running;
-
-    if (workflowLed) {
-        workflowLed.className = workflowActive ? 'led pulse' : 'led off';
-    }
 
     if (analysisLed) {
         analysisLed.className = analysisActive ? 'led pulse' : 'led off';
@@ -616,10 +614,6 @@ function updateControlButtonStates(session, control, loops) {
     const anyAlive = loops?.any_alive ?? false;
 
     const btnMap = [
-        // Unified workflow controls
-        { action: 'start-workflow', enabled: !workflowAlive && !analysisAlive && !executionAlive },
-        { action: 'stop-workflow', enabled: workflowAlive },
-        { action: 'kill-workflow', enabled: workflowAlive },
         // Legacy controls (kept for backward compat)
         { action: 'start-analysis', enabled: !analysisAlive && !workflowAlive },
         { action: 'stop-analysis', enabled: analysisAlive },
@@ -703,25 +697,39 @@ function updateRuntime() {
 }
 
 /**
- * Initialize project name from API
+ * Initialize project name from API.
+ *
+ * On first call, prefer the server-inlined bootstrap (issue #269) and
+ * consume it so any later re-invocation (e.g. product_docs count change)
+ * fetches fresh data.
  */
 async function initProjectName() {
-    try {
-        const response = await fetch(`${API_BASE}/api/info`);
-        if (response.ok) {
-            const info = await response.json();
-            projectName = info.project_name || 'unknown';
-            projectRoot = info.full_path || 'unknown';
-            executiveSummary = info.executive_summary || null;
-            hasExistingCode = info.has_existing_code || false;
-            const workflowName = info.workflow || null;
-            currentWorkflowName = workflowName;
-            updateWorkflowBadge(workflowName);
-            updateWorkflowPills(info.installed_workflows || []);
+    let info = null;
+    if (typeof window !== 'undefined' && window.__DOTBOT_BOOTSTRAP__ && window.__DOTBOT_BOOTSTRAP__.info) {
+        info = window.__DOTBOT_BOOTSTRAP__.info;
+        window.__DOTBOT_BOOTSTRAP__.info = null;
+    }
+    if (!info) {
+        try {
+            const response = await fetch(`${API_BASE}/api/info`);
+            if (response.ok) info = await response.json();
+        } catch (error) {
+            console.warn('Could not fetch project info:', error);
         }
-    } catch (error) {
-        console.warn('Could not fetch project info:', error);
-        projectName = 'unknown';
+    }
+    if (info) {
+        // 'autonomous' is the established default badge text when no project name
+        // is resolvable — preserved from the original hardcoded HTML.
+        projectName = info.project_name || 'autonomous';
+        projectRoot = info.full_path || 'unknown';
+        executiveSummary = info.executive_summary || null;
+        hasExistingCode = info.has_existing_code || false;
+        const workflowName = info.workflow || null;
+        currentWorkflowName = workflowName;
+        updateWorkflowBadge(workflowName);
+        updateWorkflowPills(info.installed_workflows || []);
+    } else {
+        projectName = 'autonomous';
         projectRoot = 'unknown';
         executiveSummary = null;
         currentWorkflowName = null;

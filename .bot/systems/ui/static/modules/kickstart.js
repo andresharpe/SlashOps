@@ -17,22 +17,63 @@ let kickstartDialog = null;    // workflow-driven dialog config from /api/info
 let kickstartPhases = [];      // workflow-driven phases from /api/info
 let kickstartMode = null;      // server-evaluated form mode from workflow manifest
 let kickstartSubmitting = false; // in-flight guard against double submit
+let preflightController = null;  // AbortController for preflight fetch + animation
+
+/**
+ * Cancellable delay — rejects with AbortError when signal aborts.
+ * Used in place of chained setTimeout calls so preflight animation
+ * can be halted mid-flight.
+ */
+function preflightSleep(ms, signal) {
+    return new Promise((resolve, reject) => {
+        if (signal && signal.aborted) {
+            reject(new DOMException('aborted', 'AbortError'));
+            return;
+        }
+        const id = setTimeout(() => {
+            if (signal) signal.removeEventListener('abort', onAbort);
+            resolve();
+        }, ms);
+        function onAbort() {
+            clearTimeout(id);
+            reject(new DOMException('aborted', 'AbortError'));
+        }
+        if (signal) signal.addEventListener('abort', onAbort, { once: true });
+    });
+}
 
 /**
  * Initialize kickstart functionality
  * Checks if this is a new project and sets up event handlers
  */
 async function initKickstart() {
-    try {
-        const response = await fetch(`${API_BASE}/api/product/list`);
-        if (response.ok) {
-            const data = await response.json();
-            const docs = data.docs || [];
-            const mdDocs = docs.filter(d => d.type === 'md');
-            isNewProject = mdDocs.length === 0;
+    // Seed elements that carry a data-default with the default text so the
+    // modal never briefly renders with an empty label before the dialog
+    // config arrives. data-default stays the single source of truth (see
+    // #kickstart-interview-label / #kickstart-interview-hint in index.html).
+    document.querySelectorAll('[data-default]').forEach(el => {
+        if (!el.textContent) el.textContent = el.dataset.default;
+    });
+
+    // Determine isNewProject from the product list. Prefer the server-inlined
+    // bootstrap (issue #269) and consume it so later calls fetch fresh data.
+    let productListData = null;
+    if (typeof window !== 'undefined' && window.__DOTBOT_BOOTSTRAP__ && window.__DOTBOT_BOOTSTRAP__.productList) {
+        productListData = window.__DOTBOT_BOOTSTRAP__.productList;
+        window.__DOTBOT_BOOTSTRAP__.productList = null;
+    }
+    if (!productListData) {
+        try {
+            const response = await fetch(`${API_BASE}/api/product/list`);
+            if (response.ok) productListData = await response.json();
+        } catch (error) {
+            console.warn('Could not check product docs for kickstart:', error);
         }
-    } catch (error) {
-        console.warn('Could not check product docs for kickstart:', error);
+    }
+    if (productListData) {
+        const docs = productListData.docs || [];
+        const mdDocs = docs.filter(d => d.type === 'md');
+        isNewProject = mdDocs.length === 0;
     }
 
     // Now that isNewProject is set, re-trigger executive summary display
@@ -43,23 +84,31 @@ async function initKickstart() {
     // Apply workflow-driven dialog text from /api/info (active/default workflow).
     // Per-workflow modals re-fetch this from /api/workflows/{name}/form via
     // applyKickstartDialog when openKickstartModal runs (issue #235).
-    try {
-        const infoResp = await fetch(`${API_BASE}/api/info`);
-        if (infoResp.ok) {
-            const info = await infoResp.json();
-            applyKickstartDialog(
-                info.kickstart_dialog || null,
-                info.kickstart_phases || [],
-                info.kickstart_mode || null
-            );
-
-            // Re-render executive summary now that dialog/phases are loaded
-            if (typeof updateExecutiveSummary === 'function') {
-                updateExecutiveSummary();
-            }
+    // Reuse the inlined bootstrap info if initProjectName hasn't already consumed it.
+    let info = null;
+    if (typeof window !== 'undefined' && window.__DOTBOT_BOOTSTRAP__ && window.__DOTBOT_BOOTSTRAP__.info) {
+        info = window.__DOTBOT_BOOTSTRAP__.info;
+        window.__DOTBOT_BOOTSTRAP__.info = null;
+    }
+    if (!info) {
+        try {
+            const infoResp = await fetch(`${API_BASE}/api/info`);
+            if (infoResp.ok) info = await infoResp.json();
+        } catch (error) {
+            console.warn('Could not load kickstart dialog config:', error);
         }
-    } catch (error) {
-        console.warn('Could not load kickstart dialog config:', error);
+    }
+    if (info) {
+        applyKickstartDialog(
+            info.kickstart_dialog || null,
+            info.kickstart_phases || [],
+            info.kickstart_mode || null
+        );
+
+        // Re-render executive summary now that dialog/phases are loaded
+        if (typeof updateExecutiveSummary === 'function') {
+            updateExecutiveSummary();
+        }
     }
 
     // Bind kickstart modal handlers
@@ -321,8 +370,12 @@ function applyKickstartDialog(dialog, phases, mode) {
     // Reset dialog-controlled content before applying new values so a workflow
     // that omits a field does not inherit the previous workflow's text (#235).
     if (descEl) descEl.textContent = '';
-    if (labelEl) labelEl.textContent = '';
-    if (hintEl) hintEl.textContent = '';
+    // Fall back to data-default attributes defined in index.html — the
+    // workflow-configured interview_label/interview_hint can be empty when
+    // the server defaults show_interview to true without supplying text
+    // (e.g. a mode that omits show_interview in its form block).
+    if (labelEl) labelEl.textContent = labelEl.dataset.default || '';
+    if (hintEl) hintEl.textContent = hintEl.dataset.default || '';
     if (promptEl) promptEl.placeholder = '';
 
     // Remove any auto-detect button injected on a previous apply so repeated
@@ -472,6 +525,16 @@ async function openKickstartModal(workflowName, options) {
         setTimeout(() => textarea?.focus(), 100);
     }
 
+    // Set title from workflow name immediately so it's correct before the
+    // async form fetch completes. Falls back to generic label when no name.
+    const titleEl = document.getElementById('kickstart-modal-title');
+    if (titleEl) {
+        const displayName = workflowName
+            ? workflowName.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+            : 'Kickstart Project';
+        titleEl.textContent = displayName;
+    }
+
     if (!workflowName) return;
 
     // Re-fetch this workflow's form config so the modal reflects the
@@ -526,6 +589,12 @@ async function openKickstartModal(workflowName, options) {
  * Close the kickstart modal and reset form
  */
 function closeKickstartModal() {
+    // Abort pending preflight animation/fetch so closing the modal
+    // (via X, backdrop click, or Esc) cannot let executeKickstart fire
+    // after the modal is gone. Controller not nulled so the
+    // `signal.aborted` guard in executeKickstart still sees it.
+    preflightController?.abort();
+
     const modal = document.getElementById('kickstart-modal');
     const textarea = document.getElementById('kickstart-prompt');
     const submitBtn = document.getElementById('kickstart-submit');
@@ -670,9 +739,13 @@ async function submitKickstart() {
         submitBtn.disabled = true;
     }
 
+    preflightController?.abort();
+    preflightController = new AbortController();
+    const signal = preflightController.signal;
+
     try {
         // Fetch preflight checks in background — form phase is still visible
-        const preResp = await fetch(`${API_BASE}/api/product/preflight`);
+        const preResp = await fetch(`${API_BASE}/api/product/preflight`, { signal });
         const preflight = await preResp.json();
         const checks = preflight.checks || [];
 
@@ -684,9 +757,10 @@ async function submitKickstart() {
         } else {
             // Swap to the preflight phase now that we know we actually have checks to animate
             showPreflightPhaseChecking(prompt, needsInterview, autoWorkflow, skipPhases);
-            updatePreflightWithResults(checks, preflight.success, prompt, needsInterview, autoWorkflow, skipPhases);
+            await runPreflightAnimation(checks, preflight.success, prompt, needsInterview, autoWorkflow, skipPhases, signal);
         }
     } catch (error) {
+        if (error.name === 'AbortError') return;
         console.error('Error during preflight:', error);
         resetToFormPhase();
         showToast('Error running preflight checks: ' + error.message, 'error');
@@ -702,6 +776,10 @@ async function submitKickstart() {
  * Execute the actual kickstart POST request
  */
 async function executeKickstart(prompt, needsInterview, autoWorkflow, skipPhases = []) {
+    // Belt-and-braces: if the preflight was aborted between the last
+    // await and now, bail out before issuing the workflow POST.
+    if (preflightController?.signal.aborted) return;
+
     const submitBtn = document.getElementById('kickstart-submit');
 
     // When launched from a per-workflow Run button, route through the task-runner
@@ -836,57 +914,10 @@ function showPreflightPhaseChecking(prompt, needsInterview, autoWorkflow, skipPh
 }
 
 /**
- * Update preflight phase with real results after server responds
+ * Animate preflight checks and, on success, fire executeKickstart.
+ * All delays are cancellable via `signal` so Back aborts cleanly.
  */
-function updatePreflightWithResults(checks, allPassed, prompt, needsInterview, autoWorkflow, skipPhases = []) {
-    const checklist = document.getElementById('preflight-checklist');
-    const footer = document.getElementById('preflight-footer');
-    const retryBtn = document.getElementById('kickstart-preflight-retry');
-    const backBtn = document.getElementById('kickstart-preflight-back');
-
-    // Replace loading indicator with actual check rows
-    checklist.innerHTML = checks.map((check, i) => `
-        <div class="preflight-check" data-index="${i}">
-            <span class="led off"></span>
-            <span class="preflight-check-label">${escapeHtml(check.message || check.name)}</span>
-            <span class="preflight-check-status"></span>
-        </div>
-        <div class="preflight-check-hint hidden" data-hint-index="${i}"></div>
-    `).join('');
-
-    // Staggered reveal of rows (100ms apart)
-    const rows = checklist.querySelectorAll('.preflight-check');
-    rows.forEach((row, i) => {
-        setTimeout(() => row.classList.add('revealed'), i * 100);
-    });
-
-    // After all revealed, resolve each at 400ms intervals
-    const revealDone = rows.length * 100 + 200;
-    checks.forEach((check, i) => {
-        setTimeout(() => resolvePreflightCheck(i, check), revealDone + i * 400);
-    });
-
-    // Show result after all resolved
-    const totalTime = revealDone + checks.length * 400 + 200;
-    setTimeout(() => {
-        showPreflightResult(allPassed, footer);
-        if (allPassed) {
-            // Auto-submit after 1.5s
-            setTimeout(() => executeKickstart(prompt, needsInterview, autoWorkflow, skipPhases), 1500);
-        } else {
-            retryBtn.classList.remove('hidden');
-        }
-    }, totalTime);
-
-    // Bind handlers
-    backBtn.onclick = resetToFormPhase;
-    retryBtn.onclick = () => retryPreflight(prompt, needsInterview, autoWorkflow, skipPhases);
-}
-
-/**
- * Show the preflight checklist phase with staggered animation (used by retry)
- */
-function showPreflightPhase(checks, allPassed, prompt, needsInterview, autoWorkflow, skipPhases = []) {
+async function runPreflightAnimation(checks, allPassed, prompt, needsInterview, autoWorkflow, skipPhases, signal) {
     const phaseForm = document.getElementById('kickstart-phase-form');
     const phasePreflight = document.getElementById('kickstart-phase-preflight');
     const footerForm = document.getElementById('kickstart-footer-form');
@@ -896,7 +927,7 @@ function showPreflightPhase(checks, allPassed, prompt, needsInterview, autoWorkf
     const backBtn = document.getElementById('kickstart-preflight-back');
     const retryBtn = document.getElementById('kickstart-preflight-retry');
 
-    // Swap phases
+    // Ensure preflight phase is visible (no-op for initial flow, needed for retry)
     phaseForm.classList.add('hidden');
     phasePreflight.classList.remove('hidden');
     footerForm.classList.add('hidden');
@@ -904,7 +935,6 @@ function showPreflightPhase(checks, allPassed, prompt, needsInterview, autoWorkf
     retryBtn.classList.add('hidden');
     footer.innerHTML = '';
 
-    // Render check rows with dim LEDs
     checklist.innerHTML = checks.map((check, i) => `
         <div class="preflight-check" data-index="${i}">
             <span class="led off"></span>
@@ -914,39 +944,45 @@ function showPreflightPhase(checks, allPassed, prompt, needsInterview, autoWorkf
         <div class="preflight-check-hint hidden" data-hint-index="${i}"></div>
     `).join('');
 
-    // Staggered reveal of rows (100ms apart)
-    const rows = checklist.querySelectorAll('.preflight-check');
-    rows.forEach((row, i) => {
-        setTimeout(() => row.classList.add('revealed'), i * 100);
-    });
+    backBtn.onclick = resetToFormPhase;
+    retryBtn.onclick = () => retryPreflight(prompt, needsInterview, autoWorkflow, skipPhases);
 
-    // After all revealed, resolve each at 400ms intervals
-    const revealDone = rows.length * 100 + 200;
-    checks.forEach((check, i) => {
-        setTimeout(() => resolvePreflightCheck(i, check), revealDone + i * 400);
-    });
+    try {
+        const rows = checklist.querySelectorAll('.preflight-check');
 
-    // Show result after all resolved
-    const totalTime = revealDone + checks.length * 400 + 200;
-    setTimeout(() => {
+        // Staggered reveal (100ms apart)
+        for (let i = 0; i < rows.length; i++) {
+            await preflightSleep(i === 0 ? 0 : 100, signal);
+            rows[i].classList.add('revealed');
+        }
+
+        await preflightSleep(200, signal);
+
+        // Resolve each check at 400ms intervals
+        for (let i = 0; i < checks.length; i++) {
+            if (i > 0) await preflightSleep(400, signal);
+            await resolvePreflightCheck(i, checks[i], signal);
+        }
+
+        await preflightSleep(200, signal);
         showPreflightResult(allPassed, footer);
+
         if (allPassed) {
-            // Auto-submit after 1.5s
-            setTimeout(() => executeKickstart(prompt, needsInterview, autoWorkflow, skipPhases), 1500);
+            await preflightSleep(1500, signal);
+            await executeKickstart(prompt, needsInterview, autoWorkflow, skipPhases);
         } else {
             retryBtn.classList.remove('hidden');
         }
-    }, totalTime);
-
-    // Bind handlers
-    backBtn.onclick = resetToFormPhase;
-    retryBtn.onclick = () => retryPreflight(prompt, needsInterview, autoWorkflow, skipPhases);
+    } catch (error) {
+        if (error.name !== 'AbortError') throw error;
+        // Aborted by Back — resetToFormPhase already handled UI rollback.
+    }
 }
 
 /**
  * Animate a single preflight check: LED off → pulse → green/red
  */
-function resolvePreflightCheck(index, check) {
+async function resolvePreflightCheck(index, check, signal) {
     const row = document.querySelector(`.preflight-check[data-index="${index}"]`);
     if (!row) return;
 
@@ -958,25 +994,23 @@ function resolvePreflightCheck(index, check) {
     led.classList.remove('off');
     led.classList.add('pulse');
 
-    setTimeout(() => {
-        led.classList.remove('pulse');
+    await preflightSleep(200, signal);
+    led.classList.remove('pulse');
 
-        if (check.passed) {
-            row.classList.add('passed');
-            row.setAttribute('data-type', 'success');
-            status.textContent = 'PASS';
-        } else {
-            row.classList.add('failed');
-            row.setAttribute('data-type', 'error');
-            status.textContent = 'FAIL';
+    if (check.passed) {
+        row.classList.add('passed');
+        row.setAttribute('data-type', 'success');
+        status.textContent = 'PASS';
+    } else {
+        row.classList.add('failed');
+        row.setAttribute('data-type', 'error');
+        status.textContent = 'FAIL';
 
-            // Show hint below
-            if (hintEl && check.hint) {
-                hintEl.textContent = '\u2192 ' + check.hint;
-                hintEl.classList.remove('hidden');
-            }
+        if (hintEl && check.hint) {
+            hintEl.textContent = '\u2192 ' + check.hint;
+            hintEl.classList.remove('hidden');
         }
-    }, 200);
+    }
 }
 
 /**
@@ -994,6 +1028,11 @@ function showPreflightResult(allPassed, footerEl) {
  * Back button — return to form phase
  */
 function resetToFormPhase() {
+    // Abort any pending preflight animation/fetch — prevents executeKickstart
+    // from firing after Back is clicked. Controller not nulled so the
+    // `signal.aborted` guard in executeKickstart still sees it.
+    preflightController?.abort();
+
     const phaseForm = document.getElementById('kickstart-phase-form');
     const phasePreflight = document.getElementById('kickstart-phase-preflight');
     const footerForm = document.getElementById('kickstart-footer-form');
@@ -1021,17 +1060,22 @@ function resetToFormPhase() {
  * Retry preflight checks — re-fetch and re-animate
  */
 async function retryPreflight(prompt, needsInterview, autoWorkflow, skipPhases = []) {
+    preflightController?.abort();
+    preflightController = new AbortController();
+    const signal = preflightController.signal;
+
     try {
-        const preResp = await fetch(`${API_BASE}/api/product/preflight`);
+        const preResp = await fetch(`${API_BASE}/api/product/preflight`, { signal });
         const preflight = await preResp.json();
         const checks = preflight.checks || [];
 
         if (checks.length === 0) {
             await executeKickstart(prompt, needsInterview, autoWorkflow, skipPhases);
         } else {
-            showPreflightPhase(checks, preflight.success, prompt, needsInterview, autoWorkflow, skipPhases);
+            await runPreflightAnimation(checks, preflight.success, prompt, needsInterview, autoWorkflow, skipPhases, signal);
         }
     } catch (error) {
+        if (error.name === 'AbortError') return;
         showToast('Error retrying preflight: ' + error.message, 'error');
     }
 }

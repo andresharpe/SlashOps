@@ -221,7 +221,7 @@ An interview-summary.md file exists in .bot/workspace/product/ containing the us
         }
         $processData.heartbeat_status = "Phase ${phaseNum}: $phaseName"
         Write-ProcessFile -Id $procId -Data $processData
-        Write-ProcessActivity -Id $procId -ActivityType "init" -Message "Phase $phaseNum — $($phaseName.ToLower())..."
+        Write-ProcessActivity -Id $procId -ActivityType "init" -Message "Phase $phaseNum — $($phaseName.ToLowerInvariant())..."
         Write-Header "Phase ${phaseNum}: $phaseName"
 
         if ($phaseType -eq "barrier") {
@@ -334,6 +334,44 @@ An interview-summary.md file exists in .bot/workspace/product/ containing the us
             $scriptInvokeArgs = @{ BotRoot = $botRoot; Model = $claudeModelName; ProcessId = $procId }
             if ($activeWorkflowDir) { $scriptInvokeArgs['WorkflowDir'] = $activeWorkflowDir }
             & $scriptPath @scriptInvokeArgs
+        } elseif ($phaseType -eq "task_gen") {
+            # --- Task-gen phase: run .md workflow with strict task-creation constraints ---
+            $wfContent = ""
+            $wfPath = Join-Path $botRoot "recipes\prompts\$($phase.workflow)"
+            if (-not (Test-Path $wfPath) -and $activeWorkflowDir) {
+                $wfPath = Join-Path $activeWorkflowDir "recipes\prompts\$($phase.workflow)"
+            }
+            if (Test-Path $wfPath) { $wfContent = Get-Content $wfPath -Raw }
+
+            $phasePrompt = @"
+$wfContent
+
+User's project description:
+$Prompt
+$fileRefs
+$interviewContext
+
+TASK GENERATION PHASE — STRICT RULES:
+1. Your ONLY job is to create task definitions using the task_create MCP tool
+2. Do NOT execute any research, analysis, or implementation work
+3. Do NOT edit any spec or product documents
+4. Do NOT write any files other than the task file created by task_create
+5. After task_create succeeds, report the task name and ID, then stop
+"@
+
+            $claudeSessionId = New-ProviderSession
+            $streamArgs = @{
+                Prompt         = $phasePrompt
+                Model          = $claudeModelName
+                SessionId      = $claudeSessionId
+                PersistSession = $false
+            }
+            if ($ShowDebug)      { $streamArgs['ShowDebugJson']  = $true }
+            if ($ShowVerbose)    { $streamArgs['ShowVerbose']     = $true }
+            if ($permissionMode) { $streamArgs['PermissionMode'] = $permissionMode }
+
+            Invoke-ProviderStream @streamArgs
+
         } else {
             # --- LLM phase ---
 
@@ -636,7 +674,7 @@ Instructions:
         $commitPaths = if ($phase.commit -and $phase.commit.paths) { $phase.commit.paths } else { $phase.commit_paths }
         $commitMsg = if ($phase.commit -and $phase.commit.message) { $phase.commit.message }
                      elseif ($phase.commit_message) { $phase.commit_message }
-                     else { "chore(kickstart): phase $phaseNum — $($phaseName.ToLower())" }
+                     else { "chore(kickstart): phase $phaseNum — $($phaseName.ToLowerInvariant())" }
         if ($commitPaths) {
             Write-Status "Committing phase $phaseNum artifacts..." -Type Info
             foreach ($cp in $commitPaths) {
@@ -706,7 +744,7 @@ Instructions:
             Write-ProcessFile -Id $procId -Data $processData
         }
 
-        Write-ProcessActivity -Id $procId -ActivityType "text" -Message "Phase $phaseNum complete — $($phaseName.ToLower())"
+        Write-ProcessActivity -Id $procId -ActivityType "text" -Message "Phase $phaseNum complete — $($phaseName.ToLowerInvariant())"
         $phaseNum++
     }
 
